@@ -36,7 +36,7 @@ export default function navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink activeClassName='li_active' to='/review'>review</NavLink>
+                        <NavLink activeClassName='li_active' to='/review'>Location</NavLink>
                     </li>
                     <li>
                         <NavLink activeClassName='li_active' to='/about'>about</NavLink>

@@ -4,6 +4,7 @@ import Tours from "../components/Tours";
 import ItemInCart from "../components/ItemInCart";
 import ItemsInCart from "../components/ItemsInCart";
 import ItemsssInCart from "../components/ItemsInCart";
+import DetailsCreateTour from "../components/DetailsCreateTour";
 
 const url = 'https://course-api.com/react-tours-project'
 
@@ -72,7 +73,7 @@ export default function CreateTour() {
 
             </div>
             <div className="right_c">
-
+                    <DetailsCreateTour/>
             </div>
         </div>
     )

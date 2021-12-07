@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import "./Tour.css"
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 export default function ItemInCart({ id, image, info, name, price, removeItem }){
     return (
         <div>
@@ -17,6 +18,7 @@ export default function ItemInCart({ id, image, info, name, price, removeItem })
                     {/*</p>*/}
                     <button className="delete-btn" onClick={() => removeItem(id)}>
                         Remove
+                        <RemoveCircleOutlineIcon style={{marginLeft:"10px"}}/>
                     </button>
                 </footer>
             </article>

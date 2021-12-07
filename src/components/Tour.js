@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import "./Tour.css"
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 const Tour = ({ id, image, info, name, price, removeTour }) => {
     const [readMore, setReadMore] = useState(false);
     return (
@@ -17,7 +19,8 @@ const Tour = ({ id, image, info, name, price, removeTour }) => {
                     </button>
                 </p>
                 <button className="delete-btn" onClick={() => removeTour(id)}>
-                    not interested
+                    Add To Cart
+                    <AddCircleIcon style={{marginLeft:"15px"}}/>
                 </button>
             </footer>
         </article>

@@ -36,17 +36,18 @@ export default function navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink activeClassName='li_active' to='/review'>Location</NavLink>
+                        <NavLink activeClassName='li_active' to='/location'>Location</NavLink>
                     </li>
-                    <li>
-                        <NavLink activeClassName='li_active' to='/about'>about</NavLink>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <NavLink activeClassName='li_active' to='/about'>about</NavLink>*/}
+                    {/*</li>*/}
                     <li>
                         <NavLink activeClassName='li_active' to='/create-tour'>Create Tour</NavLink>
                     </li>
                     <li>
                         <NavLink activeClassName='li_active' to='/login'>Login</NavLink>
                     </li>
+
                 </ul>
 
             </div>

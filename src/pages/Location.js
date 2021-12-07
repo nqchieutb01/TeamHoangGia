@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import Loading from './Loading'
 import Tours from "../components/Tours";
+import SearchForm from "../components/SearchForm";
 const url = 'https://course-api.com/react-tours-project'
 
-export default function Review() {
+export default function Location() {
     const [loading, setLoading] = useState(true)
     const [tours, setTours] = useState([])
-
+    const [toursInCart , setToursInCart] = useState([])
     const removeTour = (id) => {
+        const removeTour = tours.filter((tour) => tour.id === id)
         const newTours = tours.filter((tour) => tour.id !== id)
         setTours(newTours)
+        setToursInCart([...toursInCart,removeTour])
     }
 
     const fetchTours = async () => {
@@ -39,17 +42,18 @@ export default function Review() {
             <main>
                     <div className='title'>
                         <h2>no tours left</h2>
-                        <button className='btn' onClick={() => fetchTours()}>
+                        <button className='btn_c' onClick={() => fetchTours()}>
                             refresh
                         </button>
                     </div>
             </main>
-
         )
     }
     return (
-        <main className='main-tour'>
-            <Tours tours={tours} removeTour={removeTour} />
-        </main>
+
+                <main className='main-tour'>
+                    <Tours tours={tours} removeTour={removeTour} />
+                </main>
+
     )
 }

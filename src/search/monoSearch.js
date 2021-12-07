@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import List from './List';
 import Alert from './Alert';
+import {useGlobalContext} from "../context";
 const getLocalStorage = () => {
     return [];
     let list = localStorage.getItem('list');
@@ -11,6 +12,9 @@ const getLocalStorage = () => {
     }
 };
 export default function Search_element({input}) {
+    const { setSearchTerm } = useGlobalContext()
+    const searchValue = React.useRef('')
+
     const [name, setName] = useState('');
     const [list, setList] = useState(getLocalStorage());
     const [isEditingName, setIsEditingName] = useState(false);
@@ -29,6 +33,7 @@ export default function Search_element({input}) {
                     return item;
                 })
             );
+
             setName('');
             setEditID(null);
             setIsEditingName(false);
@@ -36,6 +41,7 @@ export default function Search_element({input}) {
         } else {
             showAlert(true, 'success', 'item added to the list');
             const newItem = { id: new Date().getTime().toString(), title: name };
+            setSearchTerm(name)
 
             setList([...list, newItem]);
             setName('');
@@ -63,11 +69,12 @@ export default function Search_element({input}) {
         localStorage.setItem('list', JSON.stringify(list));
     }, [list]);
     return (
-        <section className='section-center_c'>
+        // <section className='section-center_c'>
+        <>
             <form className='grocery_c-form' onSubmit={handleSubmit}>
                 {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
 
-                <h3 className='dcm'>{input}</h3>
+                <h3>{input}</h3>
                 <div className='form-control_c'>
                     <input
                         type='text'
@@ -89,8 +96,8 @@ export default function Search_element({input}) {
                     {/*</button>*/}
                 </div>
             )}
+        </>
 
-
-        </section>
+        // </section>
     );
 }

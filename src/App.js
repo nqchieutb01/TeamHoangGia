@@ -10,18 +10,19 @@ import Error from "./pages/Error";
 // import components
 import Navbar from "./components/Navbar";
 import SettingAccount from "./pages/SettingAccount";
-import Review from "./pages/Review";
-import Login from "./components/Login";
+import Location from "./pages/Location";
+import Login from "./pages/Login";
 import Modal from "./components/Modal_test";
 import ModalCocktail from "./components/ModalCocktail";
 import {useGlobalContext} from "./context";
+import Register from "./pages/Register";
 
 function App() {
     const isModalOpen = useGlobalContext()
     return (
         <Router>
             <Navbar/>
-            {isModalOpen ? <Modal/> : <></>}
+            {/*{isModalOpen ? <Modal/> : <></>}*/}
             {/*<Modal/>*/}
             <div>
                 <Switch>
@@ -44,11 +45,14 @@ function App() {
                     <Route path="/setting-account">
                         <SettingAccount/>
                     </Route>
-                    <Route path="/review">
-                        <Review/>
+                    <Route path="/location">
+                        <Location/>
                     </Route>
                     <Route path="/login">
                         <Login/>
+                    </Route>
+                    <Route path="/registration">
+                        <Register/>
                     </Route>
                     <Route path="*">
                         <Error/>

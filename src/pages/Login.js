@@ -2,6 +2,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 import logo from '../logo.svg'
 import background from '../background.png'
+import {NavLink} from "react-router-dom";
+import React from "react";
 export default function Login(){
     return (
         <section className="h-100 gradient-form" style={{background : "#eee"}} >
@@ -13,7 +15,6 @@ export default function Login(){
                             <div className="row g-0">
                                 <div className="col-lg-6">
                                     <div className="card-body p-md-5 mx-md-4">
-
                                         <div className="text-center">
                                             <img
                                                 src={logo}
@@ -49,8 +50,10 @@ export default function Login(){
 
                                             <div className="d-flex align-items-center justify-content-center pb-4">
                                                 <p className="mb-0 me-2">Don't have an account?</p>
-                                                <button type="button" className="btn btn-outline-danger">Create new
-                                                </button>
+                                                {/*<button type="button" className="btn btn-outline-danger">*/}
+                                                {/*    Create new*/}
+                                                {/*</button>*/}
+                                                <NavLink activeClassName='li_active'  className="btn btn-outline-danger" to='/registration'>Register</NavLink>
                                             </div>
 
                                         </form>

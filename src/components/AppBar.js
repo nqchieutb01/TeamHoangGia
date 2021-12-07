@@ -15,6 +15,7 @@ import {useHistory} from "react-router-dom";
 import Button from '@mui/material/Button';
 import {useGlobalContext} from "../context";
 import {useEffect, useRef, useState} from "react";
+import BasicModal from "./BasicModal";
 
 export default function AppBar_v1() {
 
@@ -50,9 +51,10 @@ export default function AppBar_v1() {
     return (
 
                 <Toolbar style={{background:"white"}}>
-                    <Button variant="contained" color="primary" onClick={openModal}>
-                        Your Tour
-                    </Button>
+                    {/*<Button variant="contained" color="primary" onClick={openModal}>*/}
+                    {/*    Your Tour*/}
+                    {/*</Button>*/}
+                    <BasicModal/>
                     <IconButton
                         size="large"
                         edge="start"

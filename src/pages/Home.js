@@ -7,18 +7,19 @@ import monoSearch from "../search/monoSearch";
 import MessageSender from "../components/MessageSender";
 import Search_element from "../search/monoSearch";
 import {useGlobalContext} from "../context";
+import RangeSlider from "../search/RangeSlider";
+import HoverRating from "../search/Rating";
 
 export default function Home() {
     const auth = useGlobalContext()
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(auth.auth)
-    },[auth])
+    }, [auth])
 
-    if (auth.auth===false){
+    if (auth.auth === false) {
         return <></>
-    }
-    else {
+    } else {
         return (
             <main>
                 <div class="row_c">
@@ -30,8 +31,17 @@ export default function Home() {
                         <CocktailList/>
                     </div>
                     <div class="right_c">
-                        <Search_element input={'Name'}/>
-                        <Search_element input={'Place'}/>
+                        <section className='section-center_c'>
+                            <Search_element input={'Name'}/>
+                            <br/>
+                            <Search_element input={'Place'}/>
+                            <br/>
+                            <h3>Price</h3>
+                            <RangeSlider/>
+                            <br/>
+                            <h3>Rating</h3>
+                            <HoverRating />
+                        </section>
                     </div>
                 </div>
 

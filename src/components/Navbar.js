@@ -4,7 +4,8 @@ import logo from '../logo.svg'
 import AppBar_v1 from "./AppBar";
 import SvgIcon from '@mui/material/SvgIcon';
 // import 'bootstrap/dist/css/bootstrap.min.css';
-
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 function HomeIcon(props) {
     return (
         <SvgIcon {...props}>
@@ -36,13 +37,23 @@ export default function navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink activeClassName='li_active' to='/location'>Location</NavLink>
+                        <NavLink activeClassName='li_active' to='/location'>
+                            <div>
+                                <GpsFixedIcon color="primary" style={{color: "#1C1C1E"}}/>
+                            </div>
+                            Location
+                        </NavLink>
                     </li>
                     {/*<li>*/}
                     {/*    <NavLink activeClassName='li_active' to='/about'>about</NavLink>*/}
                     {/*</li>*/}
                     <li>
-                        <NavLink activeClassName='li_active' to='/create-tour'>Create Tour</NavLink>
+                        <NavLink activeClassName='li_active' to='/create-tour'>
+                            <div>
+                                <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
+                            </div>
+                            Create Tour
+                        </NavLink>
                     </li>
                     <li>
                         <NavLink activeClassName='li_active' to='/login'>Login</NavLink>

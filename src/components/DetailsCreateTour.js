@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 const initialValues = {
     company: "",
     position: "",
@@ -40,7 +40,7 @@ export default function DetailsCreateTour() {
             <h4>Name of Tour</h4>
             <input type="text" id="typeText" className="form-control"/>
             <br/>
-            <h4>Price</h4>
+            <h4>Price <AttachMoneyIcon style={{color:"yellowgreen"}}/></h4>
             <input type="text" id="typeText" className="form-control"/>
             <br/>
             <h4>Description</h4>

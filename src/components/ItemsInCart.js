@@ -2,11 +2,16 @@ import React from 'react';
 import Tour from './Tour';
 import "./Tour.css"
 import ItemInCart from "./ItemInCart";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const ItemsssInCart = ({ items, removeItem }) => {
     return (
         <section>
             <div className="title">
-                <h2>Cart</h2>
+                <div>
+
+                    <h2>
+                        <ShoppingCartIcon style={{color:"blue"}}/>  Cart</h2>
+                </div>
                 <div className="underline"></div>
             </div>
             <div>

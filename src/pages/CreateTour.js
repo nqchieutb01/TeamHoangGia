@@ -54,9 +54,7 @@ export default function CreateTour() {
     return (
         <div className="row_c">
             <div className="left_c">
-                {/*{ItemsInCart.map((tour) => {*/}
-                {/*    return <ItemInCart key={tour.id} {...tour}  removeItem={removeItemInCart}/>;*/}
-                {/*})}*/}
+
                 <ItemsssInCart items={ItemsInCart} removeItem={removeItemInCart}/>
             </div>
             <div className="main_c">
@@ -73,7 +71,8 @@ export default function CreateTour() {
 
             </div>
             <div className="right_c">
-                    <DetailsCreateTour/>
+                <h2> menu component</h2>
+                <DetailsCreateTour/>
             </div>
         </div>
     )

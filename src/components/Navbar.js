@@ -37,7 +37,7 @@ export default function navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink activeClassName='li_active' to='/location'>
+                        <NavLink activeClassName='li_active' to='/locations'>
                             <div>
                                 <GpsFixedIcon color="primary" style={{color: "#1C1C1E"}}/>
                             </div>

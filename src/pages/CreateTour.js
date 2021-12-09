@@ -5,6 +5,7 @@ import ItemInCart from "../components/ItemInCart";
 import ItemsInCart from "../components/ItemsInCart";
 import ItemsssInCart from "../components/ItemsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
+import Search_element from "../search/monoSearch";
 
 const url = 'https://course-api.com/react-tours-project'
 
@@ -58,13 +59,15 @@ export default function CreateTour() {
                 <ItemsssInCart items={ItemsInCart} removeItem={removeItemInCart}/>
             </div>
             <div className="main_c">
-                {tours.length === 0 ? <div className='title'>
+                {tours.length === 0 ?
+                    <div className='title'>
                         <h2>no tours left</h2>
                         <button className='btn_c' onClick={() => fetchTours()}>
                             refresh
                         </button>
                     </div> :
                     <main className='main-tour'>
+                        <Search_element input={"Chieu"}/>
                         <Tours tours={tours} removeTour={addToCart}/>
                     </main>
                 }

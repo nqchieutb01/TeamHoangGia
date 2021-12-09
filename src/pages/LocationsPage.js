@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Loading from './Loading'
 import Locations from "../components/Locations";
+import Search_element from "../search/monoSearch";
 const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 export default function LocationsPage() {
@@ -49,6 +50,7 @@ export default function LocationsPage() {
     }
     return (
         <main className='main-tour'>
+            <Search_element input={"Chieu"}/>
             <Locations locations={locations} removeLocation={removeLocation} />
         </main>
     )

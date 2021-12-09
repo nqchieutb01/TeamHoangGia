@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Loading from './Loading'
 import Tours from "../components/Tours";
 import SearchForm from "../components/SearchForm";
+import Search_element from "../search/monoSearch";
 const url = 'https://course-api.com/react-tours-project'
 
 export default function Location() {

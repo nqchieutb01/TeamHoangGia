@@ -16,6 +16,7 @@ import Modal from "./components/Modal_test";
 import ModalCocktail from "./components/ModalCocktail";
 import {useGlobalContext} from "./context";
 import Register from "./pages/Register";
+import MyTour from "./pages/MyTour";
 
 function App() {
     const isModalOpen = useGlobalContext()
@@ -53,6 +54,9 @@ function App() {
                     </Route>
                     <Route path="/registration">
                         <Register/>
+                    </Route>
+                    <Route path="/my-tour">
+                        <MyTour/>
                     </Route>
                     <Route path="*">
                         <Error/>

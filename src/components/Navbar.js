@@ -56,6 +56,14 @@ export default function navbar() {
                         </NavLink>
                     </li>
                     <li>
+                        <NavLink activeClassName='li_active' to='/my-tour'>
+                            <div>
+                                <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
+                            </div>
+                            My Tour
+                        </NavLink>
+                    </li>
+                    <li>
                         <NavLink activeClassName='li_active' to='/login'>Login</NavLink>
                     </li>
 

@@ -1,7 +1,10 @@
 import React from 'react'
 import Loading from './Loading'
 import { useParams, Link } from 'react-router-dom'
-
+import "../index.css"
+const pStyle = {
+  float:"left"
+};
 export default function SingleCocktail() {
   const { id } = useParams()
   // console.log(id)
@@ -73,11 +76,13 @@ export default function SingleCocktail() {
       ingredients,
     } = cocktail
     return (
+
       <section className='section cocktail-section'>
         <Link to='/' className='btn_c btn_c-primary'>
           back home
         </Link>
-        <h2 className='section-title'>{name}</h2>
+
+        <h2 className='section_c-title'>{name}</h2>
         <div className='drink'>
           <img src={image} alt={name}></img>
           <div className='drink-info'>

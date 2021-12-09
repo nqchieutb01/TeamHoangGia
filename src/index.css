@@ -1,6 +1,6 @@
-/* 
-====== 
-Variables 
+/*
+======
+Variables
 ======
 */
 :root {
@@ -62,9 +62,9 @@ Variables
   --max-width: 1170px;
   --fixed-width: 620px;
 }
-/* 
-====== 
-Global Styles 
+/*
+======
+Global Styles
 ======
 */
 * {
@@ -75,7 +75,7 @@ Global Styles
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: var(--mainBlack);
   background: var(--mainBackground);
   line-height: 1.4;
@@ -92,9 +92,8 @@ h6 {
   margin-bottom: 1.25rem;
   letter-spacing: var(--mainSpacing);
 }
-p {
-  margin-bottom: 1.25rem;
-}
+
+
 ul {
   list-style-type: none;
 }
@@ -107,9 +106,9 @@ img {
   display: block;
 }
 
-/* 
-====== 
-Buttons 
+/*
+======
+Buttons
 ======
 */
 .btn_c,
@@ -120,7 +119,6 @@ Buttons
   color: var(--primaryColor);
   border: 2px solid var(--primaryColor);
   padding: 0.45rem 0.8rem;
-  display: inline-block;
   transition: var(--mainTransition);
   cursor: pointer;
   font-size: 0.8rem;
@@ -164,8 +162,8 @@ Buttons
   background: var(--primaryLightColor);
   border-color: var(--primaryLightColor);
 }
-/* 
-====== 
+/*
+======
 nav_cbar
 ======
 */
@@ -226,8 +224,8 @@ nav_cbar
 .logo {
   width: 12rem;
 }
-/* 
-====== 
+/*
+======
 About
 ======
 */
@@ -241,8 +239,8 @@ About
   font-weight: 400;
   letter-spacing: 2px;
 }
-/* 
-====== 
+/*
+======
 Error
 ======
 */
@@ -254,16 +252,16 @@ Error
   text-align: center;
   text-transform: capitalize;
 }
-/* 
-====== 
-Cocktails List 
+/*
+======
+Cocktails List
 ======
 */
 
 .section {
   padding: 5rem 0;
 }
-.section-title {
+.section_c-title {
   font-size: 2rem;
   text-transform: capitalize;
   letter-spacing: var(--mainSpacing);
@@ -273,10 +271,11 @@ Cocktails List
 }
 .cocktails-center {
   width: var(--smallWidth);
+  /*width: 100%;*/
   margin: 0 auto;
   max-width: 100%;
   display: grid;
-  row-gap: 2rem;
+  row-gap: 4rem;
   column-gap: 2rem;
   /* align-items: start; */
 }
@@ -285,9 +284,9 @@ Cocktails List
     grid-template-columns: repeat(auto-fill, minmax(338.8px, 1fr));
   }
 }
-/* 
-====== 
-Cocktail 
+/*
+======
+Cocktail
 ======
 */
 
@@ -296,8 +295,8 @@ Cocktail
   margin-bottom: 2rem;
   box-shadow: var(--lightShadow);
   transition: var(--mainTransition);
-  display: grid;
-  grid-template-rows: auto 1fr;
+  /*display: grid;*/
+  grid-template-rows: auto 1fr ;
   border-radius: var(--mainBorderRadius);
 }
 .cocktail:hover {
@@ -324,8 +323,8 @@ Cocktail
   color: var(--darkGrey);
   margin-bottom: 0.5rem;
 }
-/* 
-====== 
+/*
+======
 Form
 ======
 */
@@ -362,8 +361,8 @@ Form
   padding: 0.5rem;
   font-size: 1.2rem;
 }
-/* 
-====== 
+/*
+======
 Cocktail
 ======
 */
@@ -393,6 +392,7 @@ Cocktail
   padding: 0.25rem 0.5rem;
   border-radius: var(--mainBorderRadius);
   color: var(--primaryColor);
+  float: left;
 }
 .drink-info {
   padding-top: 2rem;
@@ -655,3 +655,7 @@ li a{
 div {
   text-align: center;
 }
+.fck{
+
+}
+

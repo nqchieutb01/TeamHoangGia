@@ -2,9 +2,6 @@ import React from 'react'
 import Loading from './Loading'
 import { useParams, Link } from 'react-router-dom'
 import "../index.css"
-const pStyle = {
-  float:"left"
-};
 export default function SingleCocktail() {
   const { id } = useParams()
   // console.log(id)

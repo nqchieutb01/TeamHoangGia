@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Loading from './Loading'
-import Tours from "../components/Tours";
-import SearchForm from "../components/SearchForm";
 import Button from "@mui/material/Button";
-import DeleteIcon from '@mui/icons-material/Delete';
 
 // const url = 'https://course-api.com/react-tours-project'
 const url  = 'http://localhost:8080/locations/'

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./Tour.css"
+import "./Tour_test.css"
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 export default function ItemInCart({ id, image, info, name, price, removeItem }){
     return (

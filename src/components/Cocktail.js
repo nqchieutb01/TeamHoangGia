@@ -1,10 +1,6 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import {useGlobalContext} from "../context";
-import Button from "@mui/material/Button";
-import ModalCocktail from "./ModalCocktail";
-import Modal from "./Modal_test";
-import LetterAvatars from "./LetterAvarta";
 import Avatar from "@mui/material/Avatar";
 import Stack from '@mui/material/Stack';
 import "../index.css"

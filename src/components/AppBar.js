@@ -123,6 +123,9 @@ export default function AppBar_v1() {
                     <NavLink to='/login' >
                         <Button variant="contained" style={{marginRight:'0%'}}>Login</Button>
                     </NavLink>
+                    <NavLink to='/admin' >
+                        <Button variant="contained" style={{marginRight:'0%'}}>Admin</Button>
+                    </NavLink>
                 </Toolbar>
     );
 }

@@ -14,7 +14,7 @@ import Location from "./pages/Location";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyTour from "./pages/MyTour";
-import Admin from "./pages/Admin";
+import Admin from "./admin/Admin";
 
 function App() {
     return (
@@ -28,6 +28,10 @@ function App() {
                             <Admin/>
                         </Route>
                         <Route exact path="/home">
+                            <Navbar/>
+                            <Home/>
+                        </Route>
+                        <Route exact path="/">
                             <Navbar/>
                             <Home/>
                         </Route>

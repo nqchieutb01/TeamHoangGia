@@ -4,6 +4,7 @@ import logo from '../logo.svg'
 import background from '../background.png'
 import {NavLink} from "react-router-dom";
 import React from "react";
+import Signup from "./SignUp";
 export default function Register(){
     return (
         <section className="h-100 gradient-form" style={{background : "#eee"}} >
@@ -23,39 +24,41 @@ export default function Register(){
                                             <h4 className="mt-1 mb-5 pb-1">We are Hoang Gia Team</h4>
                                         </div>
 
-                                        <form>
-                                            <p>Please signup your account</p>
+                                        {/*<form>*/}
+                                        {/*    <p>Please signup your account</p>*/}
 
-                                            <div className="form-outline mb-4">
-                                                <input type="email" id="form2Example11" className="form-control"
-                                                       placeholder="Phone number or email address"/>
-                                                <label className="form-label" htmlFor="form2Example11">Username</label>
-                                            </div>
+                                        {/*    <div className="form-outline mb-4">*/}
+                                        {/*        <input type="email" id="form2Example11" className="form-control"*/}
+                                        {/*               placeholder="Phone number or email address"/>*/}
+                                        {/*        <label className="form-label" htmlFor="form2Example11">Username</label>*/}
+                                        {/*    </div>*/}
 
-                                            <div className="form-outline mb-4">
-                                                <input type="password" id="form2Example22" className="form-control"/>
-                                                <label className="form-label" htmlFor="form2Example22">Password</label>
-                                                <input type="password" id="form2Example22" className="form-control"/>
-                                                <label className="form-label" htmlFor="form2Example22">Password</label>
-                                            </div>
+                                        {/*    <div className="form-outline mb-4">*/}
+                                        {/*        <input type="password" id="form2Example22" className="form-control"/>*/}
+                                        {/*        <label className="form-label" htmlFor="form2Example22">Password</label>*/}
+                                        {/*        <input type="password" id="form2Example22" className="form-control"/>*/}
+                                        {/*        <label className="form-label" htmlFor="form2Example22">Password</label>*/}
+                                        {/*    </div>*/}
 
-                                            <div className="text-center pt-1 mb-5 pb-1">
-                                                <button
-                                                    className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style={{width:'80%'}}
-                                                    type="button">Register
-                                                </button>
-                                            </div>
+                                        {/*    <div className="text-center pt-1 mb-5 pb-1">*/}
+                                        {/*        <button*/}
+                                        {/*            className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" style={{width:'80%'}}*/}
+                                        {/*            type="button">Register*/}
+                                        {/*        </button>*/}
+                                        {/*    </div>*/}
+                                        {/*    /!*<Signup/>*!/*/}
 
-
-                                            <div className="d-flex align-items-center justify-content-center pb-4">
-                                                {/*<p className="mb-0 me-2">Don't have an account?</p>*/}
-                                                {/*<button type="button" className="btn btn-outline-danger">*/}
-                                                {/*    Create new*/}
-                                                {/*</button>*/}
-                                                <NavLink activeClassName='li_active'  className="btn btn-outline-danger" to='/login'>Login</NavLink>
-                                            </div>
-                                        </form>
-
+                                        {/*    <div className="d-flex align-items-center justify-content-center pb-4">*/}
+                                        {/*        /!*<p className="mb-0 me-2">Don't have an account?</p>*!/*/}
+                                        {/*        /!*<button type="button" className="btn btn-outline-danger">*!/*/}
+                                        {/*        /!*    Create new*!/*/}
+                                        {/*        /!*</button>*!/*/}
+                                        {/*        <NavLink activeClassName='li_active'  className="btn btn-outline-danger" to='/login'>Login</NavLink>*/}
+                                        {/*    </div>*/}
+                                        {/*</form>*/}
+                                        <Signup/>
+                                        <br/>
+                                        <NavLink activeClassName='li_active'  className="btn btn-outline-danger" to='/login'>Login</NavLink>
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">

@@ -51,10 +51,9 @@ export default function Location() {
         )
     }
     return (
-
-                <main className='main-tour'>
-                    <Tours tours={tours} removeTour={removeTour} />
-                </main>
+        <main className='main-tour'>
+            <Tours tours={tours} removeTour={removeTour} />
+        </main>
 
     )
 }

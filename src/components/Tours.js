@@ -1,6 +1,7 @@
 import React from 'react';
 import Tour from './Tour';
 import "./Tour.css"
+
 const Tours = ({ tours, removeTour }) => {
     return (
         <section>

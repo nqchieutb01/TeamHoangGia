@@ -1,6 +1,7 @@
 import React from 'react';
 import Location from './Location';
 import "./Location.css"
+
 const Locations = ({ locations, removeLocation }) => {
     return (
         <section>

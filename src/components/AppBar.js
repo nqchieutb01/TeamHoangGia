@@ -11,7 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import Button from '@mui/material/Button';
 import {useGlobalContext} from "../context";
 import {useEffect, useRef, useState} from "react";
@@ -23,7 +23,7 @@ export default function AppBar_v1() {
     const {openModal} = useGlobalContext()
     const {auth,setAuth} = useGlobalContext()
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const open = Boolean(anchorEl);
     const handleChange = (event) => {
         setAuth(event.target.checked);
     };
@@ -49,7 +49,6 @@ export default function AppBar_v1() {
         setAnchorEl(null);
     }
     return (
-
                 <Toolbar style={{background:"white"}}>
                     {/*<Button variant="contained" color="primary" onClick={openModal}>*/}
                     {/*    Your Tour*/}
@@ -68,59 +67,36 @@ export default function AppBar_v1() {
                     {/*</Typography>*/}
                     {auth && (
                         <div>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleMenu}
-                                // color="inherit"
-                            >
                                 <AccountCircle />
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorEl)}
-                                onClose={handleClose}
-                            >
-                                <MenuItem onClick={routeChange_profile}>Profile</MenuItem>
-                                <MenuItem onClick={routeChange_setting_account}>My account</MenuItem>
-                            </Menu>
                         </div>
                     )}
                     {auth && (
                         <div>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
+                            <Button
+                                id="basic-button"
+                                aria-controls="basic-menu"
                                 aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
                                 onClick={handleMenu}
                                 // color="inherit"
                             >
                                 <MenuIcon />
-                            </IconButton>
+                                {/*Dash Board*/}
+                            </Button>
                             <Menu
-                                id="menu-appbar"
+                                id="basic-menu"
                                 anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
+                                // anchorOrigin={{
+                                //     vertical: 'top',
+                                //     horizontal: 'right',
+                                // }}
+                                // keepMounted
+                                // transformOrigin={{
+                                //     vertical: 'top',
+                                //     horizontal: 'right',
+                                // }}
+                                MenuListProps={{
+                                    'aria-labelledby': 'basic-button',
                                 }}
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
@@ -131,20 +107,22 @@ export default function AppBar_v1() {
                             </Menu>
                         </div>
                     )}
-                    <FormGroup>
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={auth}
-                                    onChange={handleChange}
-                                    aria-label="login switch"
-                                />
-                            }
-                            label={auth ? 'Logout' : 'Login'}
-                            style={{color:"black"}}
-                        />
-                    </FormGroup>
-
+                    {/*<FormGroup>*/}
+                    {/*    <FormControlLabel*/}
+                    {/*        control={*/}
+                    {/*            <Switch*/}
+                    {/*                checked={auth}*/}
+                    {/*                onChange={handleChange}*/}
+                    {/*                aria-label="login switch"*/}
+                    {/*            />*/}
+                    {/*        }*/}
+                    {/*        label={auth ? 'Logout' : 'Login'}*/}
+                    {/*        style={{color:"black"}}*/}
+                    {/*    />*/}
+                    {/*</FormGroup>*/}
+                    <NavLink to='/login' >
+                        <Button variant="contained" style={{marginRight:'0%'}}>Login</Button>
+                    </NavLink>
                 </Toolbar>
     );
 }

@@ -63,9 +63,9 @@ export default function navbar() {
                             My Tour
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink activeClassName='li_active' to='/login'>Login</NavLink>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <NavLink activeClassName='li_active' to='/login'>Login</NavLink>*/}
+                    {/*</li>*/}
 
                 </ul>
 

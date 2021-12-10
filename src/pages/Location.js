@@ -1,19 +1,74 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect} from 'react'
 import Loading from './Loading'
-import Tours from "../components/Tours";
-import SearchForm from "../components/SearchForm";
-const url = 'https://course-api.com/react-tours-project'
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import ImageUploading from "react-images-uploading";
+import "../components/Tour.css"
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import Slide from '@mui/material/Slide';
+
+const url = 'http://localhost:8080/locations/'
+const delete_location = 'http://localhost:8080/locations/delete/'
+const add_location = 'http://localhost:8080/locations/add'
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const requestOptions = {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+        name: 'Chieunq',
+        address: 'Thái Bình',
+        image: null,
+        priceMinPerPerson: null,
+        priceMaxPerPerson: null,
+        timeOpen: null,
+        timeClose: null,
+        type: null
+    })
+};
 
 export default function Location() {
     const [loading, setLoading] = useState(true)
     const [tours, setTours] = useState([])
-    const [toursInCart , setToursInCart] = useState([])
-    const removeTour = (id) => {
-        const removeTour = tours.filter((tour) => tour.id === id)
-        const newTours = tours.filter((tour) => tour.id !== id)
-        setTours(newTours)
-        setToursInCart([...toursInCart,removeTour])
-    }
+    const [images, setImages] = React.useState([]);
+    const [open, setOpen] = React.useState(false);
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleYes = () => {
+        addLocation()
+        setOpen(false);
+    };
+    const handleNo = () => {
+        setOpen(false);
+    };
+    const onChange = (imageList, addUpdateIndex) => {
+        // console.log(imageList, addUpdateIndex);
+        // console.log(imageList[0]['data_url'])
+        setImages(imageList);
+    };
+
+    const [values, setValues] = useState({
+        name: null,
+        address: null,
+        image: null,
+        priceMinPerPerson: null,
+        priceMaxPerPerson: null,
+        timeOpen: null,
+        timeClose: null,
+        type: null,
+    })
+
+    const handleChange = (prop) => (event) => {
+        setValues({...values, [prop]: event.target.value});
+    };
 
     const fetchTours = async () => {
         setLoading(true)
@@ -27,33 +82,148 @@ export default function Location() {
             console.log(error)
         }
     }
+
+    const addLocation = async () => {
+        try {
+            requestOptions.body = JSON.stringify(values)
+            // if (images.length >0){
+            //     requestOptions.body.image = images[0]['data_url']
+            //     console.log(images[0]["data_url"])
+            // }
+            // console.log(images[0]["data_url"])
+            // console.log(requestOptions)
+            const res_add_location = await fetch(add_location, requestOptions)
+            await fetchTours()
+            console.log('ok......')
+            console.log(res_add_location.json())
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    async function deleteLocation(tour) {
+        try {
+            const res = await fetch(delete_location + tour.id, {method: "DELETE"})
+            await fetchTours()
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     useEffect(() => {
         fetchTours()
     }, [])
+
     if (loading) {
         return (
             <main>
-                <Loading />
-            </main>
-        )
-    }
-    if (tours.length === 0) {
-        return (
-            <main>
-                    <div className='title'>
-                        <h2>no tours left</h2>
-                        <button className='btn_c' onClick={() => fetchTours()}>
-                            refresh
-                        </button>
-                    </div>
+                <Loading/>
             </main>
         )
     }
     return (
+        <>
+            <div class="row_c">
+                <div className='left_c' style={{background: 'white', marginTop: '5%'}}>
+                    <div><TextField id="standard-basic" label={"Name"} variant="standard"
+                                    onChange={handleChange('name')}/></div>
+                    <div><TextField id="standard-basic" label={"Address"} variant="standard"
+                                    onChange={handleChange('address')}/></div>
+                    <div><TextField id="standard-basic" label={"Image"} variant="standard"
+                                    onChange={handleChange('image')}/></div>
+                    <div><TextField id="standard-basic" label={"priceMinPerPerson"} variant="standard"
+                                    onChange={handleChange('priceMinPerPerson')}/></div>
+                    <div><TextField id="standard-basic" label={"priceMaxPerPerson"} variant="standard"
+                                    onChange={handleChange('priceMaxPerPerson')}/></div>
+                    <div><TextField id="standard-basic" label={"TimeOpen"} variant="standard"
+                                    onChange={handleChange('timeOpen')}/></div>
+                    <div><TextField id="standard-basic" label={"TimeClose"} variant="standard"
+                                    onChange={handleChange('timeClose')}/></div>
+                    <div><TextField id="standard-basic" label={"Type"} variant="standard"
+                                    onChange={handleChange('type')}/></div>
+                    <br/>
 
-                <main className='main-tour'>
-                    <Tours tours={tours} removeTour={removeTour} />
-                </main>
+                    <h6>Upload Image</h6>
+                    <ImageUploading
+                        multiple
+                        value={images}
+                        onChange={onChange}
+                        // maxNumber={maxNumber}
+                        dataURLKey="data_url"
+                    >
+                        {({
+                              imageList,
+                              onImageUpload,
+                              onImageRemoveAll,
+                              onImageUpdate,
+                              onImageRemove,
+                              isDragging,
+                              dragProps
+                          }) => (
+                            // write your building UI
+                            <div className="">
+                                <Button
+                                    style={isDragging ? {color: "red"} : undefined}
+                                    onClick={onImageUpload}
+                                    {...dragProps}
+                                >
+                                    Click or Drop here
+                                </Button>
+                                &nbsp;
+                                <br/>
+                                <Button onClick={onImageRemoveAll}>Remove all images</Button>
+                                {imageList.map((image, index) => (
+                                    <div key={index} className="image-item">
+                                        <img src={image["data_url"]} alt="" width="100"/>
+                                        <div className="image-item__btn-wrapper">
+                                            <Button style={{color: 'red'}} className="delete-btn"
+                                                    onClick={() => onImageUpdate(index)}>Update</Button>
+                                            <Button style={{color: 'red'}} className="delete-btn"
+                                                    onClick={() => onImageRemove(index)}>Remove</Button>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </ImageUploading>
+                    <br/>
+
+                    <div>
+                        <Button variant="contained" onClick={handleClickOpen}>
+                            Add Location
+                        </Button>
+                        <Dialog
+                            open={open}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={handleNo}
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    Bạn có chắc chắn muốn thêm không ?
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleNo}>Không</Button>
+                                <Button onClick={handleYes}>Có</Button>
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                </div>
+
+                <div className='main_c' style={{background: 'white', marginTop: '2%'}}>
+                    {tours.map((tour) => {
+                        return <article className="single-tour">
+                            <h5>{tour.name}</h5>
+                            <Button onClick={() => deleteLocation(tour)}>Delete</Button>
+                            {/*<DeleteIcon onClick={deleteLocation(tour.id)}/>*/}
+                        </article>
+                    })}
+                </div>
+            </div>
+        </>
+
 
     )
 }

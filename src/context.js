@@ -3,7 +3,6 @@ import {useCallback} from 'react'
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 const AppContext = React.createContext()
-const newurl = 'http://localhost:8080/locations/1'
 const AppProvider = ({children}) => {
     const [auth, setAuth] = useState(true)
     const [loading, setLoading] = useState(true)
@@ -21,9 +20,6 @@ const AppProvider = ({children}) => {
     const fetchDrinks = useCallback(async () => {
         setLoading(true)
         try {
-            const res = await fetch(newurl)
-            const data_test = await res.json()
-            console.log(data_test)
             const response = await fetch(`${url}${searchTerm}`)
             const data = await response.json()
             // console.log(data);

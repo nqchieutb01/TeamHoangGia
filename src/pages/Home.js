@@ -27,7 +27,7 @@ export default function Home() {
                         <SearchForm/>
                     </div>
                     <div class="main_c">
-                        <MessageSender/>
+                        {/*<MessageSender/>*/}
                         <CocktailList/>
                     </div>
                     <div class="right_c">

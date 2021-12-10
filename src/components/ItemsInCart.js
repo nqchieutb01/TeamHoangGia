@@ -1,6 +1,5 @@
 import React from 'react';
-import Tour from './Tour';
-import "./Tour.css"
+import "./Tour_test.css"
 import ItemInCart from "./ItemInCart";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const ItemsssInCart = ({ items, removeItem }) => {

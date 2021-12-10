@@ -1,47 +1,49 @@
 import React, {useEffect, useState} from "react";
 import Loading from "./Loading";
-import Tours from "../components/Tours";
-import ItemInCart from "../components/ItemInCart";
-import ItemsInCart from "../components/ItemsInCart";
+import Locations from "../components/Locations";
 import ItemsssInCart from "../components/ItemsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
+import Search_element from "../search/monoSearch";
 
-const url = 'https://course-api.com/react-tours-project'
+//const url = 'https://course-api.com/react-tours-project'
+const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+
 
 export default function CreateTour() {
     const [loading, setLoading] = useState(true)
-    const [tours, setTours] = useState([])
+    const [locations, setLocations] = useState([])
     const [ItemsInCart, setItemsInCart] = useState([])
 
     const addToCart = (id) => {
-        const removeTour = tours.filter((tour) => tour.id === id)
-        const newTours = tours.filter((tour) => tour.id !== id)
-        setTours(newTours)
-        setItemsInCart(ItemsInCart.concat(removeTour))
+        const removeLocation = locations.filter((location) => location.id === id)
+        const newLocations = locations.filter((location) => location.id !== id)
+        setLocations(newLocations)
+        setItemsInCart(ItemsInCart.concat(removeLocation))
     }
 
-    const removeItemInCart = (id)=>{
-        const item = ItemsInCart.filter((item)=> item.id ===id)
+    const removeItemInCart = (id) => {
+        const item = ItemsInCart.filter((item) => item.id === id)
         const newItems = ItemsInCart.filter((item) => item.id !== id)
         setItemsInCart(newItems)
-        setTours(tours.concat(item))
+        setLocations(locations.concat(item))
     }
 
-    const fetchTours = async () => {
+    const fetchLocations = async () => {
         setLoading(true)
         try {
             const response = await fetch(url)
-            const tours = await response.json()
+            const locations = await response.json()
             setLoading(false)
-            setTours(tours)
+            setLocations(locations)
         } catch (error) {
             setLoading(false)
             console.log(error)
         }
     }
+    console.log(locations)
 
     useEffect(() => {
-        fetchTours()
+        fetchLocations()
     }, [])
 
     if (loading) {
@@ -51,30 +53,66 @@ export default function CreateTour() {
             </main>
         )
     }
+    /*
+    return  (
+        <div> sss </div>
+    )
+
+     */
     return (
         <div className="row_c">
             <div className="left_c">
-                {/*{ItemsInCart.map((tour) => {*/}
-                {/*    return <ItemInCart key={tour.id} {...tour}  removeItem={removeItemInCart}/>;*/}
-                {/*})}*/}
                 <ItemsssInCart items={ItemsInCart} removeItem={removeItemInCart}/>
             </div>
             <div className="main_c">
-                {tours.length === 0 ? <div className='title'>
-                        <h2>no tours left</h2>
-                        <button className='btn_c' onClick={() => fetchTours()}>
+                {locations.length === 0 ?
+                    <div className='title'>
+                        <h2>no locations left</h2>
+                        <button className='btn_c' onClick={() => fetchLocations()}>
                             refresh
                         </button>
                     </div> :
-                    <main className='main-tour'>
-                        <Tours tours={tours} removeTour={addToCart}/>
+                    <main className='main-location'>
+                        <Search_element input={"Chieu"}/>
+                        <Locations locations={locations} removeTour={addToCart}/>
+
                     </main>
                 }
 
             </div>
             <div className="right_c">
-                    <DetailsCreateTour/>
+                <h2> menu component</h2>
+                <DetailsCreateTour/>
             </div>
         </div>
     )
+    /*
+    return (
+        <div className="row_c">
+            <div className="left_c">
+                <ItemsssInCart items={ItemsInCart} removeItem={removeItemInCart}/>
+            </div>
+            <div className="main_c">
+                {locations.length === 0 ?
+                    <div className='title'>
+                        <h2>no locations left</h2>
+                        <button className='btn_c' onClick={() => fetchLocations()}>
+                            refresh
+                        </button>
+                    </div> :
+                    <main className='main-location'>
+                        <Search_element input={"Chieu"}/>
+                        <Locations tours={locations} removeTour={addToCart}/>
+                    </main>
+                }
+
+            </div>
+            <div className="right_c">
+                <h2> menu component</h2>
+                <DetailsCreateTour/>
+            </div>
+        </div>
+    )
+
+     */
 }

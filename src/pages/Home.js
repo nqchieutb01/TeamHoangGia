@@ -1,10 +1,6 @@
 import React, {useEffect} from 'react'
 import CocktailList from '../components/CocktailList'
 import SearchForm from '../components/SearchForm'
-import Advertisement from '../components/Advertisement'
-import Search from "../search/Search";
-import monoSearch from "../search/monoSearch";
-import MessageSender from "../components/MessageSender";
 import Search_element from "../search/monoSearch";
 import {useGlobalContext} from "../context";
 import RangeSlider from "../search/RangeSlider";
@@ -27,7 +23,7 @@ export default function Home() {
                         <SearchForm/>
                     </div>
                     <div class="main_c">
-                        <MessageSender/>
+                        {/*<MessageSender/>*/}
                         <CocktailList/>
                     </div>
                     <div class="right_c">

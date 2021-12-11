@@ -1,30 +1,30 @@
 import React, {useEffect, useState} from "react";
 import Loading from "./Loading";
 import Locations from "../components/Locations";
-import ItemsssInCart from "../components/ItemsInCart";
+import LocationsInCart from "../components/LocationsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
 import Search_element from "../search/monoSearch";
-
-//const url = 'https://course-api.com/react-tours-project'
+import Location from "../components/Location";
 const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 
-export default function CreateTour() {
+export default function CreateTour({userId }) {
+
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
-    const [ItemsInCart, setItemsInCart] = useState([])
+    const [LocatonInCart, setLocationsInCart] = useState([])
 
     const addToCart = (id) => {
-        const removeLocation = locations.filter((location) => location.id === id)
-        const newLocations = locations.filter((location) => location.id !== id)
+        const removeLocation = locations.filter((location) => location.locationId === id)
+        const newLocations = locations.filter((location) => location.locationId !== id)
         setLocations(newLocations)
-        setItemsInCart(ItemsInCart.concat(removeLocation))
+        setLocationsInCart(LocatonInCart.concat(removeLocation))
     }
 
     const removeItemInCart = (id) => {
-        const item = ItemsInCart.filter((item) => item.id === id)
-        const newItems = ItemsInCart.filter((item) => item.id !== id)
-        setItemsInCart(newItems)
+        const item = LocatonInCart.filter((item) => item.locationId === id)
+        const newItems = LocatonInCart.filter((item) => item.locationId !== id)
+        setLocationsInCart(newItems)
         setLocations(locations.concat(item))
     }
 
@@ -40,7 +40,6 @@ export default function CreateTour() {
             console.log(error)
         }
     }
-    console.log(locations)
 
     useEffect(() => {
         fetchLocations()
@@ -53,16 +52,11 @@ export default function CreateTour() {
             </main>
         )
     }
-    /*
-    return  (
-        <div> sss </div>
-    )
 
-     */
     return (
         <div className="row_c">
             <div className="left_c">
-                <ItemsssInCart items={ItemsInCart} removeItem={removeItemInCart}/>
+                <LocationsInCart items={LocatonInCart} removeItem={removeItemInCart}/>
             </div>
             <div className="main_c">
                 {locations.length === 0 ?
@@ -72,9 +66,10 @@ export default function CreateTour() {
                             refresh
                         </button>
                     </div> :
-                    <main className='main-location'>
-                        <Search_element input={"Chieu"}/>
-                        <Locations locations={locations} removeTour={addToCart}/>
+                    <main className='main-tour'>
+                        <Search_element input= {""}/>
+
+                        <Locations locations={locations} removeLocation={addToCart}/>
 
                     </main>
                 }
@@ -82,37 +77,9 @@ export default function CreateTour() {
             </div>
             <div className="right_c">
                 <h2> menu component</h2>
-                <DetailsCreateTour/>
+                <DetailsCreateTour userId={userId} locationsInCart={LocatonInCart}/>
+
             </div>
         </div>
     )
-    /*
-    return (
-        <div className="row_c">
-            <div className="left_c">
-                <ItemsssInCart items={ItemsInCart} removeItem={removeItemInCart}/>
-            </div>
-            <div className="main_c">
-                {locations.length === 0 ?
-                    <div className='title'>
-                        <h2>no locations left</h2>
-                        <button className='btn_c' onClick={() => fetchLocations()}>
-                            refresh
-                        </button>
-                    </div> :
-                    <main className='main-location'>
-                        <Search_element input={"Chieu"}/>
-                        <Locations tours={locations} removeTour={addToCart}/>
-                    </main>
-                }
-
-            </div>
-            <div className="right_c">
-                <h2> menu component</h2>
-                <DetailsCreateTour/>
-            </div>
-        </div>
-    )
-
-     */
 }

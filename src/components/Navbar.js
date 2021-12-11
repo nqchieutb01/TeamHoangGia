@@ -4,8 +4,11 @@ import logo from '../logo.svg'
 import AppBar_v1 from "./AppBar";
 import SvgIcon from '@mui/material/SvgIcon';
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import {useDispatch, useSelector} from "react-redux";
+
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+
 function HomeIcon(props) {
     return (
         <SvgIcon {...props}>
@@ -16,6 +19,9 @@ function HomeIcon(props) {
 
 export default function navbar() {
 
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {user: currentUser} = useSelector((state) => state.auth);
+
     return (
         <nav className='nav_cbar'>
             <div className='nav_c-left'>
@@ -25,7 +31,6 @@ export default function navbar() {
             </div>
 
             <div className='nav_c-center'>
-
                 <ul className='nav_c-links'>
 
                     <li>
@@ -47,22 +52,28 @@ export default function navbar() {
                     {/*<li>*/}
                     {/*    <NavLink activeClassName='li_active' to='/about'>about</NavLink>*/}
                     {/*</li>*/}
-                    <li>
-                        <NavLink activeClassName='li_active' to='/create-tour'>
-                            <div>
-                                <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
-                            </div>
-                            Create Tour
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink activeClassName='li_active' to='/my-tour'>
-                            <div>
-                                <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
-                            </div>
-                            My Tour
-                        </NavLink>
-                    </li>
+                    {
+                        currentUser &&
+                        <>
+                            <li>
+                                <NavLink activeClassName='li_active' to='/create-tour'>
+                                    <div>
+                                        <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
+                                    </div>
+                                    Create Tour
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName='li_active' to='/my-tour'>
+                                    <div>
+                                        <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
+                                    </div>
+                                    My Tour
+                                </NavLink>
+                            </li>
+                        </>
+                    }
+
                     {/*<li>*/}
                     {/*    <NavLink activeClassName='li_active' to='/login'>Login</NavLink>*/}
                     {/*</li>*/}

@@ -3,17 +3,17 @@ import "./Login.css"
 import logo from '../logo.svg'
 import background from '../background.png'
 import {NavLink} from "react-router-dom";
-import Signup from "./SignUp";
-import React, { useState, useRef } from "react";
+import React, {useState, useRef} from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-import { isEmail } from "validator";
+import {isEmail} from "validator";
 
-import { register } from "../actions/auth";
+import {register} from "../actions/auth";
+import Link from "react-router-dom/es/Link";
 
 const required = (value) => {
     if (!value) {
@@ -55,7 +55,7 @@ const vpassword = (value) => {
     }
 };
 
-export default function Register(){
+export default function Register() {
     const form = useRef();
     const checkBtn = useRef();
 
@@ -64,7 +64,7 @@ export default function Register(){
     const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
 
-    const { message } = useSelector(state => state.message);
+    const {message} = useSelector(state => state.message);
     const dispatch = useDispatch();
 
     const onChangeUsername = (e) => {
@@ -82,26 +82,26 @@ export default function Register(){
         setPassword(password);
     };
 
+
     const handleRegister = (e) => {
         e.preventDefault();
 
         setSuccessful(false);
-
+        console.log(username,password)
         form.current.validateAll();
 
-        if (checkBtn.current.context._errors.length === 0) {
-            dispatch(register(username, email, password))
+        // if (checkBtn.current.context._errors.length === 0) {
+            dispatch(register(username, password))
                 .then(() => {
                     setSuccessful(true);
                 })
                 .catch(() => {
                     setSuccessful(false);
                 });
-        }
+        // }
     };
     return (
-        <section className="h-100 gradient-form" style={{background : "#eee"}} >
-
+        <section className="h-100 gradient-form" style={{background: "#eee"}}>
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-xl-10">
@@ -112,8 +112,10 @@ export default function Register(){
                                         <div className="text-center">
                                             <img
                                                 src={logo}
-                                                style={{ display:"block",marginLeft:"35%" ,
-                                                    width: "70%"}} alt="logo"/>
+                                                style={{
+                                                    display: "block", marginLeft: "35%",
+                                                    width: "70%"
+                                                }} alt="logo"/>
                                             <h4 className="mt-1 mb-5 pb-1">We are Hoang Gia Team</h4>
                                         </div>
                                         {/*<Signup/>*/}
@@ -156,23 +158,29 @@ export default function Register(){
                                                             validations={[required, vpassword]}
                                                         />
                                                     </div>
-
+                                                    <br/>
                                                     <div className="form-group">
                                                         <button className="btn btn-primary btn-block">Sign Up</button>
                                                     </div>
                                                 </div>
                                             )}
-
-                                            {message && (
-                                                <div className="form-group">
-                                                    <div className={ successful ? "alert alert-success" : "alert alert-danger" } role="alert">
-                                                        {message}
-                                                    </div>
-                                                </div>
-                                            )}
-                                            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+                                            <CheckButton style={{display: "none"}} ref={checkBtn}/>
                                         </Form>
-                                        <NavLink activeClassName='li_active'  className="btn btn-outline-danger" to='/login'>Login</NavLink>
+                                        {message && (
+                                            <div className="form-group">
+                                                <div
+                                                    className={successful ? "alert alert-success" : "alert alert-danger"}
+                                                    role="alert">
+                                                    {message}
+                                                </div>
+                                            </div>
+                                        )}
+                                        <br/>
+                                        <a href="/login" className="btn btn-outline-danger">
+                                            Login
+                                        </a>
+                                        {/*<Link activeClassName='li_active' className="btn btn-outline-danger"*/}
+                                        {/*         to='/login'>Login</Link>*/}
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">

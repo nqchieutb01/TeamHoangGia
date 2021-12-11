@@ -6,7 +6,6 @@ import {NavLink} from "react-router-dom";
 import React, {useState, useRef} from "react";
 import Input from "react-validation/build/input";
 
-// import {Input} from "@material-ui/core";
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from 'react-router-dom';
 
@@ -14,6 +13,7 @@ import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 
 import {login} from "../actions/auth";
+import Link from "react-router-dom/es/Link";
 
 const required = (value) => {
     if (!value) {
@@ -24,7 +24,7 @@ const required = (value) => {
         );
     }
 };
-const Login = (props) =>{
+const Login = (props) => {
     const form = useRef();
     const checkBtn = useRef();
 
@@ -53,11 +53,11 @@ const Login = (props) =>{
         setLoading(true);
 
         form.current.validateAll();
-
+        console.log(username, password)
         if (checkBtn.current.context._errors.length === 0) {
             dispatch(login(username, password))
                 .then(() => {
-                    props.history.push("/profile");
+                    props.history.push("/home");
                     window.location.reload();
                 })
                 .catch(() => {
@@ -69,7 +69,7 @@ const Login = (props) =>{
     };
 
     if (isLoggedIn) {
-        return <Redirect to="/profile"/>;
+        return <Redirect to="/home"/>;
     }
 
     return (
@@ -110,7 +110,6 @@ const Login = (props) =>{
                                             </div>
 
                                             <div className="form-outline mb-4">
-                                                {/*<input type="password" id="form2Example22" className="form-control"/>*/}
                                                 <Input
                                                     type="password"
                                                     className="form-control"
@@ -128,33 +127,36 @@ const Login = (props) =>{
                                                 {/*    style={{width: '80%'}}*/}
                                                 {/*    type="button">Log in*/}
                                                 {/*</button>*/}
-                                                <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" disabled={loading}>
+                                                <button
+                                                    className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
+                                                    disabled={loading}>
                                                     {loading && (
                                                         <span className="spinner-border spinner-border-sm"></span>
                                                     )}
                                                     Login
                                                 </button>
                                             </div>
-                                            {message && (
-                                                <div className="form-group">
-                                                    <div className="alert alert-danger" role="alert">
-                                                        {message}
-                                                    </div>
-                                                </div>
-                                            )}
-                                            <CheckButton style={{ display: "none" }} ref={checkBtn} />
-
+                                            <CheckButton style={{display: "none"}} ref={checkBtn}/>
                                             <div className="d-flex align-items-center justify-content-center pb-4">
                                                 <p className="mb-0 me-2">Don't have an account?</p>
                                                 {/*<button type="button" className="btn btn-outline-danger">*/}
                                                 {/*    Create new*/}
                                                 {/*</button>*/}
-                                                <NavLink activeClassName='li_active' className="btn btn-outline-danger"
-                                                         to='/registration'>Register</NavLink>
                                             </div>
 
                                         </Form>
-
+                                        {message && (
+                                            <div className="form-group">
+                                                <div className="alert alert-danger" role="alert">
+                                                    {message}
+                                                </div>
+                                            </div>
+                                        )}
+                                        <a href="/register" className="btn btn-outline-danger">
+                                            Register
+                                        </a>
+                                        {/*<Link activeClassName='li_active' className="btn btn-outline-danger"*/}
+                                        {/*         to='/register'>Register</Link>*/}
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">

@@ -15,7 +15,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyTour from "./pages/MyTour";
 import Admin from "./admin/Admin";
-import Login_test from "./test/login";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {history} from "./helpers/history";
@@ -29,6 +28,9 @@ function App() {
     const [showAdminBoard, setShowAdminBoard] = useState(false);
 
     const {user: currentUser} = useSelector((state) => state.auth);
+    const {user: testState} = useSelector((state) => state);
+
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -43,8 +45,9 @@ function App() {
 
     useEffect(() => {
         if (currentUser) {
-            setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-            setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+            console.log(currentUser)
+            // setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
+            // setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
         } else {
             setShowModeratorBoard(false);
             setShowAdminBoard(false);
@@ -59,71 +62,69 @@ function App() {
         };
     }, [currentUser, logOut]);
     return (
-        <>
-            <Router>
+        <Router history={history}>
+            <Switch>
+                <Route exact path="/home">
+                    <Navbar/>
+                    <Home/>
+                </Route>
+                <Route exact path="/">
+                    <Navbar/>
+                    <Home/>
+                </Route>
+                <Route path="/about">
+                    <Navbar/>
+                    <About/>
+                </Route>
 
-                <div>
+                <Route path="/cocktail/:id">
+                    <Navbar/>
+                    <SingleCocktail/>
+                </Route>
 
-                    <Switch>
-                        <Route path='/admin'>
-                            <Admin/>
-                        </Route>
-                        <Route exact path="/home">
-                            <Navbar/>
-                            <Home/>
-                        </Route>
-                        <Route exact path="/">
-                            <Navbar/>
-                            <Home/>
-                        </Route>
-                        <Route path="/about">
-                            <Navbar/>
-                            <About/>
-                        </Route>
+                <Route path="/location/:id">
+                    <SingleLocation/>
+                </Route>
+                <Route path="/location">
+                    <Navbar/>
+                    <LocationPage/>
+                </Route>
 
-                        <Route path="/cocktail/:id">
-                            <Navbar/>
-                            <SingleCocktail/>
-                        </Route>
+                <Route path="/login">
+                    <Navbar/>
+                    <Login/>
+                </Route>
+                <Route path="/register">
+                    <Navbar/>
+                    <Register/>
+                </Route>
 
-                        <Route path="/location/:id">
-                            <SingleLocation/>
-                        </Route>
-
+                {
+                    currentUser && <>
                         <Route path="/create-tour">
                             <Navbar/>
                             <CreateTour/>
                         </Route>
-
+                        <Route path='/admin'>
+                            <Admin/>
+                        </Route>
                         <Route path="/setting-account">
                             <Navbar/>
                             <SettingAccount/>
-                        </Route>
-                        <Route path="/location">
-                            <Navbar/>
-                            <LocationPage/>
-                        </Route>
-                        <Route path="/login">
-                            {/*<Login/>*/}
-                            <Login/>
-                        </Route>
-                        <Route path="/registration">
-                            <Register/>
                         </Route>
                         <Route path="/my-tour">
                             <Navbar/>
                             <MyTour/>
                         </Route>
-                        <Route path="*">
-                            <Navbar/>
-                            <Error/>
-                        </Route>
+                    </>
+                }
 
-                    </Switch>
-                </div>
-            </Router>
-
-        </>
+                <Route path="*">
+                    <Navbar/>
+                    <Error/>
+                </Route>
+            </Switch>
+        </Router>
 
     );
 }

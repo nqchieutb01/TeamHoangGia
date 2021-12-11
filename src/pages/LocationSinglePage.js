@@ -100,7 +100,6 @@ export default function SingleLocation() {
                         <p>
                             <span className='drink-data'>TimeClose :</span> {TimeClose}
                         </p>
-
                     </div>
                 </div>
             </section>

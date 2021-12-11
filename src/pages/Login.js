@@ -152,7 +152,7 @@ const Login = (props) => {
                                                 </div>
                                             </div>
                                         )}
-                                        <a href="/login" className="btn btn-outline-danger">
+                                        <a href="/register" className="btn btn-outline-danger">
                                             Register
                                         </a>
                                         {/*<Link activeClassName='li_active' className="btn btn-outline-danger"*/}

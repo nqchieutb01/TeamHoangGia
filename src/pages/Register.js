@@ -16,6 +16,7 @@ import { isEmail } from "validator";
 import { register } from "../actions/auth";
 
 const required = (value) => {
+    console.log("sss")
     if (!value) {
         return (
             <div className="alert alert-danger" role="alert">
@@ -36,6 +37,7 @@ const validEmail = (value) => {
 };
 
 const vusername = (value) => {
+
     if (value.length < 3 || value.length > 20) {
         return (
             <div className="alert alert-danger" role="alert">
@@ -116,8 +118,7 @@ export default function Register(){
                                                     width: "70%"}} alt="logo"/>
                                             <h4 className="mt-1 mb-5 pb-1">We are Hoang Gia Team</h4>
                                         </div>
-                                        {/*<Signup/>*/}
-                                        {/*<br/>*/}
+
                                         <Form onSubmit={handleRegister} ref={form}>
                                             {!successful && (
                                                 <div>

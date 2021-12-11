@@ -29,6 +29,7 @@ const validEmail = (value) => {
 };
 
 const vusername = (value) => {
+
     if (value.length < 3 || value.length > 20) {
         return (
             <div className="alert alert-danger" role="alert">
@@ -93,6 +94,7 @@ const Register_test = () => {
         }
     };
 
+
     return (
         <div className="col-md-12">
             <div className="card card-container">
@@ -115,6 +117,7 @@ const Register_test = () => {
                                     onChange={onChangeUsername}
                                     validations={[required, vusername]}
                                 />
+
                             </div>
 
                             <div className="form-group">

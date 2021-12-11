@@ -8,10 +8,10 @@ import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 
-// const url = 'https://course-api.com/react-tours-project'
+const url = 'https://course-api.com/react-tours-project'
 
 // Lấy tạm API để test xóa Tour
-const url = 'http://localhost:8080/locations/'
+// const url = 'http://localhost:8080/locations/'
 const delete_tour = 'http://localhost:8080/locations/delete/'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -76,7 +76,7 @@ export default function MyTour() {
     }
     if (tours.length === 0) {
         return (
-            <main>
+            <main style={{marginTop:'10%'}}>
                 <div className='title'>
                     <h2>Bạn chưa có tour nào , xin vui lòng tạo Tour</h2>
                 </div>

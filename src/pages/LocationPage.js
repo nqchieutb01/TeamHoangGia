@@ -10,6 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import Location from "../components/Location";
+const imageToBase64 = require('image-to-base64');
 
 const url = 'http://localhost:8080/locations/'
 // const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
@@ -63,7 +64,7 @@ export default function LocationPage() {
     const [values, setValues] = useState({
         name: null,
         address: null,
-        image: null,
+        image: '',
         priceMinPerPerson: null,
         priceMaxPerPerson: null,
         timeOpen: null,
@@ -94,12 +95,11 @@ export default function LocationPage() {
             requestOptions.body = JSON.stringify(values)
             if (images.length >0){
                 console.log(images[0]["data_url"])
-                requestOptions.body.image = images[0]['data_url']
+                requestOptions.body.image = images[0]['data_url'];
             }
-            // console.log(images[0]["data_url"])
             // console.log(requestOptions)
             const res_add_location = await fetch(add_location, requestOptions)
-            await fetchTours()
+            fetchTours()
             console.log('ok......')
             console.log(res_add_location.json())
         } catch (e) {
@@ -127,6 +127,15 @@ export default function LocationPage() {
             </main>
         )
     }
+    // if (locations.length === 0) {
+    //     return (
+    //         <main>
+    //             <div className='title'>
+    //                 <h2>Chưa có Location nào</h2>
+    //             </div>
+    //         </main>
+    //     )
+    // }
     return (
         <>
             <div class="row_c">

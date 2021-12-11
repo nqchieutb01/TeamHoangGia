@@ -5,8 +5,9 @@ import LocationsInCart from "../components/LocationsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
 import Search_element from "../search/monoSearch";
 import Location from "../components/Location";
-const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+import ChienCoi from '../services/user.service'
 
+const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 export default function CreateTour({userId }) {
 
@@ -40,9 +41,31 @@ export default function CreateTour({userId }) {
             console.log(error)
         }
     }
-
+    // useEffect(() => {
+    //     UserService.getPublicContent().then(
+    //         (response) => {
+    //             setContent(response.data);
+    //         },
+    //         (error) => {
+    //             const _content =
+    //                 (error.response && error.response.data) ||
+    //                 error.message ||
+    //                 error.toString();
+    //
+    //             setContent(_content);
+    //         }
+    //     );
+    // }, []);
     useEffect(() => {
-        fetchLocations()
+        // fetchLocations()
+        console.log('Dmm.........')
+        ChienCoi.getPublicContent().then(
+            (res) =>{
+                console.log(res.data)
+                setLoading(false)
+                setLocations(res.data)
+            }
+        ).catch((e)=>console.log(e))
     }, [])
 
     if (loading) {

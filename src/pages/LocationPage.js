@@ -11,8 +11,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import Location from "../components/Location";
 
-const url = 'http://localhost:8080/locations/'
-// const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+//const url = 'http://localhost:8080/locations/'
+const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 const delete_location = 'http://localhost:8080/locations/delete/'
 const add_location = 'http://localhost:8080/locations/add'

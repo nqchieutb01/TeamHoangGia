@@ -74,7 +74,6 @@ export default function Search_element({input}) {
             <form className='grocery_c-form' onSubmit={handleSubmit}>
                 {alert.show && <Alert {...alert} removeAlert={showAlert} list={list} />}
 
-                <h3>{input}</h3>
                 <div className='form-control_c'>
                     <input
                         type='text'

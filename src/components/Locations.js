@@ -2,7 +2,7 @@ import React from 'react';
 import Location from './Location';
 import "./Location.css"
 
-const Locations = ({ locations, removeLocation }) => {
+export default function Locations({ locations, removeLocation }) {
     return (
         <section>
             <div className="title">
@@ -17,6 +17,5 @@ const Locations = ({ locations, removeLocation }) => {
         </section>
 
     );
-};
+}
 
-export default Locations;

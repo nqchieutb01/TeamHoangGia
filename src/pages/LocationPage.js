@@ -11,8 +11,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import Location from "../components/Location";
 
-const url = 'http://localhost:8080/locations/'
-// const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+//const url = 'http://localhost:8080/locations/'
+const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 const delete_location = 'http://localhost:8080/locations/delete/'
 const add_location = 'http://localhost:8080/locations/add'
@@ -43,6 +43,7 @@ export default function LocationPage() {
     const [images, setImages] = React.useState([]);
     const [open, setOpen] = React.useState(false);
     const handleClickOpen = () => {
+        console.log(values)
         setOpen(true);
     };
 
@@ -71,7 +72,9 @@ export default function LocationPage() {
     })
 
     const handleChange = (prop) => (event) => {
+        console.log("ss")
         setValues({...values, [prop]: event.target.value});
+        console.log(values)
     };
 
     const fetchTours = async () => {
@@ -130,7 +133,9 @@ export default function LocationPage() {
             <div class="row_c">
                 <div className='left_c' style={{background: 'white', marginTop: '5%'}}>
                     <div><TextField id="standard-basic" label={"Name"} variant="standard"
-                                    onChange={handleChange('name')}/></div>
+                                    onChange={handleChange('name')}/> </div>
+
+
                     <div><TextField id="standard-basic" label={"Address"} variant="standard"
                                     onChange={handleChange('address')}/></div>
                     <div><TextField id="standard-basic" label={"Image"} variant="standard"

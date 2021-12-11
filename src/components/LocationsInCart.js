@@ -1,8 +1,9 @@
 import React from 'react';
 import "./Tour_test.css"
-import ItemInCart from "./ItemInCart";
+import LocationInCart from "./LocationInCart";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-const ItemsssInCart = ({ items, removeItem }) => {
+
+export default function LocationsInCart ({ items, removeItem }){
     return (
         <section>
             <div className="title">
@@ -15,12 +16,10 @@ const ItemsssInCart = ({ items, removeItem }) => {
             </div>
             <div>
                 {items.map((item) => {
-                    return <ItemInCart key={item.id} {...item} removeItem={removeItem} />;
+                    return <LocationInCart key={item.locationId} {...item} removeItem={removeItem} />;
                 })}
             </div>
         </section>
 
     );
-};
-
-export default ItemsssInCart;
+}

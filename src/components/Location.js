@@ -7,7 +7,7 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 
 export default function Location ({ locationId, name, city, address, image, priceMinPerson, priceMaxPerson, timeOpen, TimeClose}) {
     return (
-        <article className='locatoion'>
+        <article className='location'>
             <div className='img-container'>
                 <img src={background} alt={name} />
             </div>
@@ -18,7 +18,6 @@ export default function Location ({ locationId, name, city, address, image, pric
                 <Link to={`/location/${locationId}`} className='btn btn-primary btn-details'>
                     details
                 </Link>
-
 
             </div>
         </article>

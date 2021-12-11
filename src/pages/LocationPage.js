@@ -10,8 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import Location from "../components/Location";
-const imageToBase64 = require('image-to-base64');
-
+import Locations from "../components/Locations";
 
 
 const url = 'http://localhost:8080/locations/'
@@ -25,7 +24,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-const requestOptions = {
+let requestOptions = {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -45,6 +44,17 @@ export default function LocationPage() {
     const [locations, setLocations] = useState([])
     const [images, setImages] = React.useState([]);
     const [open, setOpen] = React.useState(false);
+    const [loadImg , setLoadImg] = useState(false)
+    const [values, setValues] = useState({
+        name: null,
+        address: null,
+        image: '',
+        priceMinPerPerson: null,
+        priceMaxPerPerson: null,
+        timeOpen: null,
+        timeClose: null,
+        type: null,
+    })
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -63,16 +73,7 @@ export default function LocationPage() {
         setImages(imageList);
     };
 
-    const [values, setValues] = useState({
-        name: null,
-        address: null,
-        image: '',
-        priceMinPerPerson: null,
-        priceMaxPerPerson: null,
-        timeOpen: null,
-        timeClose: null,
-        type: null,
-    })
+
 
     const handleChange = (prop) => (event) => {
         setValues({...values, [prop]: event.target.value});
@@ -91,19 +92,18 @@ export default function LocationPage() {
             console.log(error)
         }
     }
-
     const addLocation = async () => {
         try {
-            requestOptions.body = JSON.stringify(values)
-            if (images.length >0){
-                console.log(images[0]["data_url"])
-                requestOptions.body.image = images[0]['data_url'];
+            console.log('ass',images.length)
+            if (images.length > 0){
+                setValues({...values, image: images[0]['data_url']})
             }
-            // console.log(requestOptions)
-            const res_add_location = await fetch(add_location, requestOptions)
+            // console.log(images[0]['data_url'])
+            values.image = images[0]['data_url']
+            requestOptions.body = JSON.stringify(values)
+            await fetch(add_location,requestOptions)
             fetchTours()
-            console.log('ok......')
-            console.log(res_add_location.json())
+            // console.log(requestOptions)
         } catch (e) {
             console.log(e)
         }
@@ -141,7 +141,8 @@ export default function LocationPage() {
     return (
         <>
             <div class="row_c">
-                <div className='left_c' style={{background: 'white', marginTop: '5%'}}>
+                <div className='left_c' style={{marginTop: '1%'}}>
+                    <div className="underline"></div>
                     <div><TextField id="standard-basic" label={"Name"} variant="standard"
                                     onChange={handleChange('name')}/></div>
                     <div><TextField id="standard-basic" label={"Address"} variant="standard"
@@ -230,7 +231,7 @@ export default function LocationPage() {
                     </div>
                 </div>
 
-                <div className='main_c' style={{background: 'white', marginTop: '2%'}}>
+                <div className='main_c' style={{background: 'white', marginTop: '1%'}}>
                     {/*{tours.map((tour) => {*/}
                     {/*    return <article className="single-tour">*/}
                     {/*        <h5>{tour.name}</h5>*/}
@@ -239,11 +240,10 @@ export default function LocationPage() {
                     {/*        /!*<DeleteIcon onClick={deleteLocation(tour.id)}/>*!/*/}
                     {/*    </article>*/}
                     {/*})}*/}
-                    {
-                        locations.map( (location)=>{
-                            return <Location {...location}></Location>
-                        })
-                    }
+                    <main className='main-tour'>
+                        <Locations locations={locations}></Locations>
+                    </main>
+
                 </div>
             </div>
         </>

@@ -7,7 +7,7 @@ export default function Locations({ locations, removeLocation }) {
         <section>
             <div className="title">
                 {/*<h2>our locations</h2>*/}
-                <div className="underline"></div>
+                {/*<div className="underline"></div>*/}
             </div>
             <div>
                 {locations.map((location) => {

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import SERVICE from "../services/location.service";
+
 import {
     DataGrid,
     GridToolbarContainer,
@@ -21,6 +23,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
+import {useEffect, useState} from "react";
 
 function CustomToolbar() {
     return (
@@ -37,22 +40,31 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function User() {
-    const {data} = useDemoData({
-        dataSet: 'Commodity',
-        rowLength: 10,
-        maxColumns: 6,
-    });
+export default function Location() {
+    const [locations, setLocations] = useState([])
+    const [currentLocationID, setCurrentLocationID] = useState(-1);
+    const [open, setOpen] = React.useState(false);
+
+    useEffect(() => {
+        SERVICE.getAllLocations().then(
+            (res) => {
+                setLocations(res.data)
+            }
+        ).catch((e) => console.log(e))
+    }, [])
+
     const [editRowsModel, setEditRowsModel] = React.useState({});
-    const [currentID,setCurrentID] = React.useState(-1);
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleYes = () => {
-        console.log(currentID)
+    const handleYes = async () => {
+        console.log(currentLocationID)
+        setLocations(locations.filter((location)=>location.id !== currentLocationID))
+        await SERVICE.deleteLocation(currentLocationID)
         setOpen(false);
     };
+
     const handleNo = () => {
         setOpen(false);
     };
@@ -60,19 +72,19 @@ export default function User() {
         setEditRowsModel(model);
     }, []);
 
-    const handleClick = ()=>{
+    const handleClick = () => {
         console.log(editRowsModel)
     }
 
-    const handleDeleteUser = (id)=>{
-        // console.log(id)
-        setCurrentID(id)
+    const handleDeleteLocation = (id) => {
+        setCurrentLocationID(id)
         handleClickOpen()
+        // console.log(id)
     }
 
-    const [open, setOpen] = React.useState(false);
     const columns = [
-        {field: 'id',headerName: 'Delete',width: 100,
+        {
+            field: 'id', headerName: 'Delete', width: 100,
             renderCell: (params) => (
                 <strong>
                     {/*{params.value}*/}
@@ -81,10 +93,10 @@ export default function User() {
                             variant="contained"
                             color="primary"
                             size="small"
-                            style={{ marginLeft: 0 , background:'red'}}
-                            onClick={()=>handleDeleteUser(params.value)}
+                            style={{marginLeft: 0, background: 'red'}}
+                            onClick={() => handleDeleteLocation(params.value)}
                         >
-                            Delete {params.value}
+                            Delete
                         </Button>
                         <Dialog
                             open={open}
@@ -105,24 +117,17 @@ export default function User() {
                         </Dialog>
                     </div>
                 </strong>
-            )},
-        {field: 'name', headerName: 'Name', width: 180, editable: true
+            )
         },
-        {field: 'age', headerName: 'Age', type: 'number', editable: true},
-        {
-            field: 'dateCreated',
-            headerName: 'Date Created',
-            type: 'date',
-            width: 180,
-            editable: true,
-        },
-        {
-            field: 'lastLogin',
-            headerName: 'Last Login',
-            type: 'dateTime',
-            width: 220,
-            editable: true,
-        },
+        {field: 'name', headerName: 'Name', width: 180, editable: true},
+        {field: 'address', headerName: 'Address', editable: true},
+        {field: 'image', headerName: 'image', width: 120, editable: true,},
+        {field: 'priceMinPerPerson', headerName: 'priceMinPerPerson', type: 'number', width: 120, editable: true,},
+        {field: 'priceMaxPerPerson', headerName: 'priceMaxPerPerson', type: 'dateTime', width: 120, editable: true,},
+        {field: 'timeOpen', headerName: 'timeOpen', width: 120, editable: true,},
+        {field: 'timeClose', headerName: 'timeClose', width: 120, editable: true,},
+        {field: 'createdAt', headerName: 'createdAt', width: 120, editable: true,},
+        {field: 'updatedAt', headerName: 'updatedAt', width: 120, editable: true,},
     ];
 
     return (
@@ -132,7 +137,7 @@ export default function User() {
             </Alert>
             <div style={{height: 600, width: '100%'}}>
                 <DataGrid
-                    rows={rows}
+                    rows={locations}
                     columns={columns}
                     editRowsModel={editRowsModel}
                     onEditRowsModelChange={handleEditRowsModelChange}

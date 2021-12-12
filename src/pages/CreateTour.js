@@ -4,11 +4,10 @@ import Locations from "../components/Locations";
 import LocationsInCart from "../components/LocationsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
 import Search_element from "../search/monoSearch";
-import Location from "../components/Location";
-import ChienCoi from '../services/user.service'
+import ChienCoi from '../services/location.service'
 import {useSelector} from "react-redux";
 
-const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+// const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 export default function CreateTour({userId }) {
 
@@ -29,23 +28,23 @@ export default function CreateTour({userId }) {
         setLocations(locations.concat(item))
     }
 
-    const fetchLocations = async () => {
-        setLoading(true)
-        try {
-            const response = await fetch(url)
-            const locations = await response.json()
-            setLoading(false)
-            setLocations(locations)
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
-    }
+    // const fetchLocations = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const response = await fetch(url)
+    //         const locations = await response.json()
+    //         setLoading(false)
+    //         setLocations(locations)
+    //     } catch (error) {
+    //         setLoading(false)
+    //         console.log(error)
+    //     }
+    // }
 
     useEffect(() => {
         // fetchLocations()
         setLoading(true)
-        ChienCoi.getPublicContent().then(
+        ChienCoi.getAllLocations().then(
             (res) =>{
                 // console.log(res.data)
                 setLoading(false)
@@ -72,9 +71,9 @@ export default function CreateTour({userId }) {
                 {locations.length === 0 ?
                     <div className='title'>
                         <h2>no locations left</h2>
-                        <button className='btn_c' onClick={() => fetchLocations()}>
-                            refresh
-                        </button>
+                        {/*<button className='btn_c' onClick={() => fetchLocations()}>*/}
+                        {/*    refresh*/}
+                        {/*</button>*/}
                     </div> :
                     <main className='main-tour'>
                         <Search_element input= {""}/>

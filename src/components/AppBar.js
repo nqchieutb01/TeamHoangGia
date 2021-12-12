@@ -1,24 +1,18 @@
 import * as React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {NavLink, useHistory} from "react-router-dom";
 import Button from '@mui/material/Button';
 import {useGlobalContext} from "../context";
-import {useCallback, useEffect, useRef, useState} from "react";
-import BasicModal from "./BasicModal";
+import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../actions/auth";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Divider from '@mui/material/Divider';
-import ArchiveIcon from '@mui/icons-material/Archive';
-import FileCopyIcon from '@mui/icons-material/FileCopy';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {styled, alpha} from '@mui/material/styles';
-import EditIcon from '@mui/icons-material/Edit';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
@@ -129,7 +123,7 @@ export default function AppBar_v1() {
                         <div>
                             <Stack direction="row" spacing={2}>
                                 <Avatar>C</Avatar>
-                                <h6 style={{textAlign:"left" , letterSpacing:"0.05rem"}}>
+                                <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
                                     Chieunq1
                                     <br/>Role: user
                                 </h6>
@@ -162,22 +156,22 @@ export default function AppBar_v1() {
                                 <ContactPageIcon/>
                                 My account
                             </MenuItem>
-                            <MenuItem onClick={logOut}>
-                                <LogoutIcon/>
-                                Log out
-                            </MenuItem>
-                            <Divider sx={{my: 0.5}}/>
                             <MenuItem onClick={routeAdmin} disableRipple>
                                 <AdminPanelSettingsIcon/>
                                 Admin
                             </MenuItem>
-                            <MenuItem onClick={handleClose} disableRipple>
-                                <MoreHorizIcon/>
-                                More
+                            <Divider sx={{my: 0.5}}/>
+
+                            <MenuItem onClick={logOut}>
+                                <LogoutIcon/>
+                                Log out
                             </MenuItem>
+                            {/*<MenuItem onClick={handleClose} disableRipple>*/}
+                            {/*    <MoreHorizIcon/>*/}
+                            {/*    More*/}
+                            {/*</MenuItem>*/}
                         </StyledMenu>
                     </Stack>
-
 
 
                 </div>

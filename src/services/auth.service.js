@@ -16,11 +16,11 @@ const register_v1= (username, password) => {
     }));
 };
 const login = (username, password) => {
-    console.log('client' , username,password)
+    // console.log('client' , username,password)
     return axios
         .post(API_URL + "login", {
             username,
-            password,
+            password
         })
         .then((response) => {
             console.log(response)

@@ -28,9 +28,7 @@ function App() {
     const [showAdminBoard, setShowAdminBoard] = useState(false);
 
     const {user: currentUser} = useSelector((state) => state.auth);
-    const {user: testState} = useSelector((state) => state);
-
-
+    console.log(currentUser)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -100,13 +98,19 @@ function App() {
                 </Route>
 
                 {
+                    currentUser &&
+                    (
+                        currentUser.role ==='admin' &&
+                        <Route path='/admin'>
+                            <Admin/>
+                        </Route>
+                    )
+                }
+                {
                     currentUser && <>
                         <Route path="/create-tour">
                             <Navbar/>
                             <CreateTour/>
-                        </Route>
-                        <Route path='/admin'>
-                            <Admin/>
                         </Route>
                         <Route path="/setting-account">
                             <Navbar/>
@@ -118,6 +122,7 @@ function App() {
                         </Route>
                     </>
                 }
+
 
                 <Route path="*">
                     <Navbar/>

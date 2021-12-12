@@ -8,7 +8,6 @@ export default function LocationsInCart ({ items, removeItem }){
         <section>
             <div className="title">
                 <div>
-
                     <h2>
                         <ShoppingCartIcon style={{color:"blue"}}/>  Cart</h2>
                 </div>
@@ -16,7 +15,7 @@ export default function LocationsInCart ({ items, removeItem }){
             </div>
             <div>
                 {items.map((item) => {
-                    return <LocationInCart key={item.locationId} {...item} removeItem={removeItem} />;
+                    return <LocationInCart key={item.id} {...item} removeItem={removeItem} />;
                 })}
             </div>
         </section>

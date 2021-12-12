@@ -30,7 +30,7 @@ export default function Home() {
                         <section className='section-center_c'>
                             <Search_element input={'Name'}/>
                             <br/>
-                            <Search_element input={'Place'}/>
+                            <Search_element input={'Location'}/>
                             <br/>
                             <h3>Price</h3>
                             <RangeSlider/>

@@ -259,7 +259,7 @@ Cocktails List
 */
 
 .section {
-  padding: 5rem 0;
+  padding: 0rem 0;
 }
 .section_c-title {
   font-size: 2rem;
@@ -477,8 +477,9 @@ Cocktail
 /* Sidebar/left column */
 .left_c {
   width: 25%;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   padding: 20px;
+   margin-top: 1%;
 }
 
 /* Main column */
@@ -486,11 +487,14 @@ Cocktail
   width: 50%;
   background-color: white;
   padding: 20px;
+  margin-top: 1%;
 }
 .right_c {
   width: 25%;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   padding: 20px;
+  margin-top: 1%;
+
 }
 
 /*

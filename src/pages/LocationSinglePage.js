@@ -5,11 +5,10 @@ import Location from "../components/Location";
 
 export default function SingleLocation() {
     const { id } = useParams()
-    console.log(id)
+    // console.log(id)
 
     const [loading, setLoading] = React.useState(false)
     const [location, setLocation] = React.useState(null)
-
 
 
     React.useEffect(() => {
@@ -20,7 +19,7 @@ export default function SingleLocation() {
                     `https://61af70223e2aba0017c49342.mockapi.io/getlocations/${id}`
                 )
                 const data = await response.json()
-                console.log(data)
+                // console.log(data)
 
                 if (data) {
                     const {

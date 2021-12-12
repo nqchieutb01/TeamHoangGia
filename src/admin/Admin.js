@@ -9,6 +9,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import User from "./User";
 import {useSelector} from "react-redux";
+import LocationChart from "./LocationChart";
+import ChartsPage from "./LocationChart";
 
 function TabPanel(props) {
 
@@ -84,7 +86,8 @@ export default function Admin() {
                         <User/>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        Item Two
+                        {/*<LocationChart/>*/}
+                        <ChartsPage/>
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         Item Three

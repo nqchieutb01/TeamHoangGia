@@ -6,6 +6,7 @@ import DetailsCreateTour from "../components/DetailsCreateTour";
 import Search_element from "../search/monoSearch";
 import Location from "../components/Location";
 import ChienCoi from '../services/user.service'
+import {useSelector} from "react-redux";
 
 const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
@@ -14,7 +15,6 @@ export default function CreateTour({userId }) {
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
     const [LocationInCart, setLocationsInCart] = useState([])
-
     const addToCart = (id) => {
         const removeLocation = locations.filter((location) => location.id === id)
         const newLocations = locations.filter((location) => location.id !== id)

@@ -9,9 +9,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
-import Location from "../components/Location";
 import Locations from "../components/Locations";
-
+import SERVICE from "../services/location.service"
 
 //const url = 'http://localhost:8080/locations/'
 const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
@@ -23,28 +22,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-
-let requestOptions = {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-        name: 'Chieunq',
-        address: 'Thái Bình',
-        image: null,
-        priceMinPerPerson: null,
-        priceMaxPerPerson: null,
-        timeOpen: null,
-        timeClose: null,
-        type: null
-    })
-};
-
 export default function LocationPage() {
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
     const [images, setImages] = React.useState([]);
     const [open, setOpen] = React.useState(false);
-    const [loadImg , setLoadImg] = useState(false)
+    const [loadImg, setLoadImg] = useState(false)
     const [values, setValues] = useState({
         name: null,
         address: null,
@@ -74,7 +57,6 @@ export default function LocationPage() {
     };
 
 
-
     const handleChange = (prop) => (event) => {
         setValues({...values, [prop]: event.target.value});
     };
@@ -94,24 +76,12 @@ export default function LocationPage() {
     }
     const addLocation = async () => {
         try {
-            console.log('ass',images.length)
-            if (images.length > 0){
+            if (images.length > 0) {
                 setValues({...values, image: images[0]['data_url']})
+                values.image = images[0]['data_url']
             }
-            // console.log(images[0]['data_url'])
-            values.image = images[0]['data_url']
-            requestOptions.body = JSON.stringify(values)
-            await fetch(add_location,requestOptions)
-            fetchTours()
-            // console.log(requestOptions)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    async function deleteLocation(tour) {
-        try {
-            const res = await fetch(delete_location + tour.id, {method: "DELETE"})
+            // await fetch(add_location, requestOptions)
+            await SERVICE.addLocation(values)
             await fetchTours()
         } catch (e) {
             console.log(e)
@@ -129,15 +99,15 @@ export default function LocationPage() {
             </main>
         )
     }
-    // if (locations.length === 0) {
-    //     return (
-    //         <main>
-    //             <div className='title'>
-    //                 <h2>Chưa có Location nào</h2>
-    //             </div>
-    //         </main>
-    //     )
-    // }
+    if (locations.length === 0) {
+        return (
+            <main>
+                <div className='title'>
+                    <h2>Chưa có Location nào</h2>
+                </div>
+            </main>
+        )
+    }
     return (
         <>
             <div class="row_c">
@@ -172,7 +142,7 @@ export default function LocationPage() {
                         {({
                               imageList,
                               onImageUpload,
-                              onImageRemoveAll,
+                              // onImageRemoveAll,
                               onImageUpdate,
                               onImageRemove,
                               isDragging,
@@ -189,7 +159,7 @@ export default function LocationPage() {
                                 </Button>
                                 &nbsp;
                                 <br/>
-                                <Button onClick={onImageRemoveAll}>Remove all images</Button>
+                                {/*<Button onClick={onImageRemoveAll}>Remove all images</Button>*/}
                                 {imageList.map((image, index) => (
                                     <div key={index} className="image-item">
                                         <img src={image["data_url"]} alt="" width="100"/>

@@ -1,10 +1,9 @@
 import React from 'react'
 import Loading from './Loading'
-import { useParams, Link } from 'react-router-dom'
-import Location from "../components/Location";
+import {useParams, Link} from 'react-router-dom'
 
 export default function SingleLocation() {
-    const { id } = useParams()
+    const {id} = useParams()
     // console.log(id)
 
     const [loading, setLoading] = React.useState(false)
@@ -13,6 +12,7 @@ export default function SingleLocation() {
 
     React.useEffect(() => {
         setLoading(true)
+
         async function getLocation() {
             try {
                 const response = await fetch(
@@ -51,6 +51,7 @@ export default function SingleLocation() {
             }
             setLoading(false)
         }
+
         getLocation()
     }, [id])
     if (loading) {

@@ -12,3 +12,6 @@
 ## TeamHoangGia
 ## Repo BackEnd
 https://github.com/MaxVNese/VietnamTourism
+
+## Link các API
+https://docs.google.com/spreadsheets/d/1-BpJRDU9scDHdHh0tBP_XKAQOEdh0PXZIJIPg6DMBt0/edit#gid=331166045

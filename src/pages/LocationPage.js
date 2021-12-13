@@ -66,6 +66,8 @@ export default function LocationPage() {
         try {
             const response = await fetch(url)
             const data = await response.json()
+            const tmp = await SERVICE.getAllLocations()
+            console.log('dmm',tmp)
             setLoading(false)
             console.log(data)
             setLocations(data)
@@ -80,6 +82,7 @@ export default function LocationPage() {
                 setValues({...values, image: images[0]['data_url']})
                 values.image = images[0]['data_url']
             }
+            console.log(values)
             // await fetch(add_location, requestOptions)
             await SERVICE.addLocation(values)
             await fetchTours()
@@ -99,15 +102,15 @@ export default function LocationPage() {
             </main>
         )
     }
-    if (locations.length === 0) {
-        return (
-            <main>
-                <div className='title'>
-                    <h2>Chưa có Location nào</h2>
-                </div>
-            </main>
-        )
-    }
+    // if (locations.length === 0) {
+    //     return (
+    //         <main>
+    //             <div className='title'>
+    //                 <h2>Chưa có Location nào</h2>
+    //             </div>
+    //         </main>
+    //     )
+    // }
     return (
         <>
             <div class="row_c">

@@ -13,8 +13,8 @@ export default function Location ({ id, name, address, image, priceMinPerson, pr
             <article className='single-tour'>
                 <div className='img-container'>
                     {
-                        (image !== '') ? <img src={"data:image/png;base64,"+image} alt={name}/> :
-                            <img src={background} alt={name}/>
+                        (image !== '') ? <img src={"data:image/png;base64,"+image} alt={name} style={{objectFit: "fill"}}/> :
+                            <img src={background} alt={name} style={{objectFit: "fill"}}/>
                     }
                 </div>
                 <div className='cocktail-footer'>
@@ -40,8 +40,8 @@ export default function Location ({ id, name, address, image, priceMinPerson, pr
             <article className='single-tour'>
                 <div className='img-container'>
                     {
-                        (image !== '') ? <img src={"data:image/png;base64,"+image} alt={name} style={{width:'100%'}}/> :
-                            <img src={background} alt={name}/>
+                        (image !== '') ? <img src={"data:image/png;base64,"+image} alt={name} style={{objectFit: "fill"}}/> :
+                                 <img src={background} alt={name} style={{objectFit: "fill"}} />
                     }
                 </div>
                 <div className='cocktail-footer'>

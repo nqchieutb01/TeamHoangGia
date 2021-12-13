@@ -13,7 +13,7 @@ export default function Location ({ id, name, address, image, priceMinPerson, pr
             <article className='single-tour'>
                 <div className='img-container'>
                     {
-                        (image !== '') ? <img src={"data:image/png;base64,"+image} alt={name} style={{objectFit: "fill"}}/> :
+                        (image !== '') ? <img src={image} alt={name} style={{objectFit: "fill"}}/> :
                             <img src={background} alt={name} style={{objectFit: "fill"}}/>
                     }
                 </div>
@@ -40,7 +40,7 @@ export default function Location ({ id, name, address, image, priceMinPerson, pr
             <article className='single-tour'>
                 <div className='img-container'>
                     {
-                        (image !== '') ? <img src={"data:image/png;base64,"+image} alt={name} style={{objectFit: "fill"}}/> :
+                        (image !== '') ? <img src={image} alt={name} style={{objectFit: "fill"}}/> :
                                  <img src={background} alt={name} style={{objectFit: "fill"}} />
                     }
                 </div>

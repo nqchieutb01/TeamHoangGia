@@ -46,11 +46,13 @@ export default function Location() {
     const [open, setOpen] = React.useState(false);
 
     useEffect(() => {
+
         SERVICE.getAllLocations().then(
             (res) => {
                 setLocations(res.data)
             }
         ).catch((e) => console.log(e))
+
     }, [])
 
     const [editRowsModel, setEditRowsModel] = React.useState({});

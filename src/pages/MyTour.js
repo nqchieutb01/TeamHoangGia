@@ -28,9 +28,8 @@ export default function MyTour() {
         setOpen(true);
     };
 
-    const handleYes = (tour) => {
-        deleteTour(tour).then(r => {
-        })
+    const handleYes = async (tour) => {
+        await deleteTour(tour)
         setOpen(false);
     };
 

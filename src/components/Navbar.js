@@ -5,6 +5,7 @@ import AppBar_v1 from "./AppBar";
 import SvgIcon from '@mui/material/SvgIcon';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import {useDispatch, useSelector} from "react-redux";
+import {BrowserRouter, useHistory} from "react-router-dom";
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
@@ -17,10 +18,11 @@ function HomeIcon(props) {
     );
 }
 
-export default function navbar() {
+export default function Navbar() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const {user: currentUser} = useSelector((state) => state.auth);
+    const history = useHistory();
 
     return (
         <nav className='nav_cbar'>
@@ -28,6 +30,7 @@ export default function navbar() {
                 <Link to='/'>
                     <img src={logo} alt='Logo' className='logo'/>
                 </Link>
+                <button onClick={() => history.goBack()}>Go Back</button>
             </div>
 
             <div className='nav_c-center'>

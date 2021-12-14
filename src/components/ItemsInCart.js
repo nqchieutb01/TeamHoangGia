@@ -2,6 +2,7 @@ import React from 'react';
 import "./Tour_test.css"
 import ItemInCart from "./ItemInCart";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+
 const ItemsssInCart = ({ items, removeItem }) => {
     return (
         <section>

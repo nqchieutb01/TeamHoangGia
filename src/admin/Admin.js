@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import User from "./User";
 import {useSelector} from "react-redux";
-import LocationChart from "./LocationChart";
 import ChartsPage from "./LocationChart";
 import Location from "./Location";
 

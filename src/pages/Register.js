@@ -2,104 +2,59 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 import logo from '../logo.svg'
 import background from '../background.png'
-import {NavLink} from "react-router-dom";
 import React, {useState, useRef} from "react";
-
 import {useDispatch, useSelector} from "react-redux";
-
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-import CheckButton from "react-validation/build/button";
-import {isEmail} from "validator";
-
+import * as Yup from 'yup';
 import {register} from "../actions/auth";
-import Link from "react-router-dom/es/Link";
-
-const required = (value) => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
-
-const validEmail = (value) => {
-    if (!isEmail(value)) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This is not a valid email.
-            </div>
-        );
-    }
-};
-
-const vusername = (value) => {
-    if (value.length < 3 || value.length > 20) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                The username must be between 3 and 20 characters.
-            </div>
-        );
-    }
-};
-
-const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                The password must be between 6 and 40 characters.
-            </div>
-        );
-    }
-};
+import {ErrorMessage, Field, Formik, Form} from "formik";
 
 export default function Register() {
-    const form = useRef();
-    const checkBtn = useRef();
-
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const [successful, setSuccessful] = useState(false);
-
     const {message} = useSelector(state => state.message);
     const dispatch = useDispatch();
 
-    const onChangeUsername = (e) => {
-        const username = e.target.value;
-        setUsername(username);
-    };
+    const validationSchema = () => {
+        return Yup.object().shape({
+            fullname: Yup.string().required('Fullname is required'),
+            username: Yup.string()
+                .required('Username is required')
+                .min(3, 'Username must be at least 3 characters')
+                .max(20, 'Username must not exceed 20 characters'),
+            email: Yup.string()
+                .required('Email is required')
+                .email('Email is invalid'),
+            password: Yup.string()
+                .required('Password is required')
+                .min(6, 'Password must be at least 6 characters')
+                .max(40, 'Password must not exceed 40 characters'),
+            confirmPassword: Yup.string()
+                .required('Confirm Password is required')
+                .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
+            acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
+        });
+    }
 
-    const onChangeEmail = (e) => {
-        const email = e.target.value;
-        setEmail(email);
-    };
-
-    const onChangePassword = (e) => {
-        const password = e.target.value;
-        setPassword(password);
-    };
-
-
-    const handleRegister = (e) => {
-        e.preventDefault();
-
+    const handleSubmit = (data) => {
         setSuccessful(false);
-        console.log(username,password)
-        form.current.validateAll();
+        dispatch(register(data.username, data.password))
+            .then(() => {
+                setSuccessful(true);
+            })
+            .catch(() => {
+                setSuccessful(false);
+            });
+        console.log(JSON.stringify(data, null, 2));
+    }
 
-        // if (checkBtn.current.context._errors.length === 0) {
-            dispatch(register(username, password))
-                .then(() => {
-                    setSuccessful(true);
-                })
-                .catch(() => {
-                    setSuccessful(false);
-                });
-        // }
+    const initialValues = {
+        fullname: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        acceptTerms: false,
     };
+
     return (
         <section className="h-100 gradient-form" style={{background: "#eee"}}>
             <div className="container py-5 h-100">
@@ -118,54 +73,106 @@ export default function Register() {
                                                 }} alt="logo"/>
                                             <h4 className="mt-1 mb-5 pb-1">We are Hoang Gia Team</h4>
                                         </div>
-                                        {/*<Signup/>*/}
-                                        {/*<br/>*/}
-                                        <Form onSubmit={handleRegister} ref={form}>
-                                            {!successful && (
-                                                <div>
-                                                    <div className="form-group">
-                                                        <label htmlFor="username">Username</label>
-                                                        <Input
-                                                            type="text"
-                                                            className="form-control"
-                                                            name="username"
-                                                            value={username}
-                                                            onChange={onChangeUsername}
-                                                            validations={[required, vusername]}
-                                                        />
-                                                    </div>
+                                        {
+                                            !successful && (
+                                                <div className="register-form">
+                                                    <Formik
+                                                        initialValues={initialValues}
+                                                        validationSchema={validationSchema}
+                                                        onSubmit={handleSubmit}
+                                                    >
+                                                        {({resetForm}) => (
+                                                            <Form>
+                                                                <div className="form-group">
+                                                                    <label>Full Name</label>
+                                                                    <Field name="fullname" type="text"
+                                                                           className="form-control"/>
+                                                                    <ErrorMessage
+                                                                        name="fullname"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
 
-                                                    <div className="form-group">
-                                                        <label htmlFor="email">Email</label>
-                                                        <Input
-                                                            type="text"
-                                                            className="form-control"
-                                                            name="email"
-                                                            value={email}
-                                                            onChange={onChangeEmail}
-                                                            validations={[required, validEmail]}
-                                                        />
-                                                    </div>
+                                                                <div className="form-group">
+                                                                    <label htmlFor="username"> Username </label>
+                                                                    <Field name="username" type="text"
+                                                                           className="form-control"/>
+                                                                    <ErrorMessage
+                                                                        name="username"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
 
-                                                    <div className="form-group">
-                                                        <label htmlFor="password">Password</label>
-                                                        <Input
-                                                            type="password"
-                                                            className="form-control"
-                                                            name="password"
-                                                            value={password}
-                                                            onChange={onChangePassword}
-                                                            validations={[required, vpassword]}
-                                                        />
-                                                    </div>
-                                                    <br/>
-                                                    <div className="form-group">
-                                                        <button className="btn btn-primary btn-block">Sign Up</button>
-                                                    </div>
+                                                                <div className="form-group">
+                                                                    <label htmlFor="email"> Email </label>
+                                                                    <Field name="email" type="email"
+                                                                           className="form-control"/>
+                                                                    <ErrorMessage
+                                                                        name="email"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
+
+                                                                <div className="form-group">
+                                                                    <label htmlFor="password"> Password </label>
+                                                                    <Field
+                                                                        name="password"
+                                                                        type="password"
+                                                                        className="form-control"
+                                                                    />
+                                                                    <ErrorMessage
+                                                                        name="password"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
+
+                                                                <div className="form-group">
+                                                                    <label htmlFor="confirmPassword"> Confirm
+                                                                        Password </label>
+                                                                    <Field
+                                                                        name="confirmPassword"
+                                                                        type="password"
+                                                                        className="form-control"
+                                                                    />
+                                                                    <ErrorMessage
+                                                                        name="confirmPassword"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
+
+                                                                <div className="form-group form-check">
+                                                                    <Field
+                                                                        name="acceptTerms"
+                                                                        type="checkbox"
+                                                                        className="form-check-input"
+                                                                    />
+                                                                    <label htmlFor="acceptTerms"
+                                                                           className="form-check-label">
+                                                                        I have read and agree to the Terms
+                                                                    </label>
+                                                                    <ErrorMessage
+                                                                        name="acceptTerms"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
+
+                                                                <div className="form-group">
+                                                                    <button type="submit" className="btn btn-primary">Register</button>
+                                                                    <button type="button" onClick={resetForm} className="btn btn-warning float-right">Reset</button>
+                                                                </div>
+                                                            </Form>
+                                                        )}
+                                                    </Formik>
                                                 </div>
-                                            )}
-                                            <CheckButton style={{display: "none"}} ref={checkBtn}/>
-                                        </Form>
+                                            )
+                                        }
+
                                         {message && (
                                             <div className="form-group">
                                                 <div
@@ -175,12 +182,11 @@ export default function Register() {
                                                 </div>
                                             </div>
                                         )}
+
                                         <br/>
                                         <a href="/login" className="btn btn-outline-danger">
                                             Login
                                         </a>
-                                        {/*<Link activeClassName='li_active' className="btn btn-outline-danger"*/}
-                                        {/*         to='/login'>Login</Link>*/}
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
@@ -192,7 +198,6 @@ export default function Register() {
                 </div>
             </div>
         </section>
-
     )
 
 }

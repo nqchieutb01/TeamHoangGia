@@ -12,7 +12,7 @@ import {
     randomTraderName,
     randomUpdatedDate,
 } from '@mui/x-data-grid-generator';
-
+import SERVICE from '../services/user.service'
 import {useDemoData} from '@mui/x-data-grid-generator';
 import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
@@ -21,6 +21,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import {useEffect, useState} from "react";
 
 function CustomToolbar() {
     return (
@@ -38,13 +40,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function User() {
-    const {data} = useDemoData({
-        dataSet: 'Commodity',
-        rowLength: 10,
-        maxColumns: 6,
-    });
+
+    const [users,setUsers] = useState([])
     const [editRowsModel, setEditRowsModel] = React.useState({});
     const [currentID,setCurrentID] = React.useState(-1);
+
+    useEffect( ()=>{
+        SERVICE.getAllUsers().then((res)=>{
+            setUsers(res.data)
+            console.log("anh ban ",res.data)
+            console.log("anh ban ",users)
+        }).catch((e)=>console.log(e))
+    },[])
+
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -56,6 +65,7 @@ export default function User() {
     const handleNo = () => {
         setOpen(false);
     };
+
     const handleEditRowsModelChange = React.useCallback((model) => {
         setEditRowsModel(model);
     }, []);
@@ -84,7 +94,7 @@ export default function User() {
                             style={{ marginLeft: 0 , background:'red'}}
                             onClick={()=>handleDeleteUser(params.value)}
                         >
-                            Delete {params.value}
+                            <DeleteForeverIcon/> ID = {params.value}
                         </Button>
                         <Dialog
                             open={open}
@@ -106,23 +116,14 @@ export default function User() {
                     </div>
                 </strong>
             )},
-        {field: 'name', headerName: 'Name', width: 180, editable: true
-        },
-        {field: 'age', headerName: 'Age', type: 'number', editable: true},
-        {
-            field: 'dateCreated',
-            headerName: 'Date Created',
-            type: 'date',
-            width: 180,
-            editable: true,
-        },
-        {
-            field: 'lastLogin',
-            headerName: 'Last Login',
-            type: 'dateTime',
-            width: 220,
-            editable: true,
-        },
+        {field: 'username', headerName: 'Name', width: 180, editable: true},
+        {field: 'firstname', headerName: 'First Name', width: 180, editable: true},
+        {field: 'password', headerName: 'Password', width: 180, editable: true},
+        {field: 'lastname', headerName: 'Last Name', editable: true},
+        {field: 'phonenumber', headerName: 'Phone Number', type: 'number', editable: true},
+        {field: 'role', headerName: 'Role', type: 'number', editable: true},
+        {field: 'createdAt', headerName: 'CreatedAt', type: 'date', width: 180, editable: true,},
+        {field: 'updatedAt', headerName: 'UpdatedAt', type: 'dateTime', width: 220, editable: true,},
     ];
 
     return (
@@ -132,7 +133,7 @@ export default function User() {
             </Alert>
             <div style={{height: 600, width: '100%'}}>
                 <DataGrid
-                    rows={rows}
+                    rows={users}
                     columns={columns}
                     editRowsModel={editRowsModel}
                     onEditRowsModelChange={handleEditRowsModelChange}
@@ -145,41 +146,3 @@ export default function User() {
         </div>
     );
 }
-
-const rows = [
-    {
-        id: 1,
-        name: randomTraderName(),
-        age: 25,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 2,
-        name: randomTraderName(),
-        age: 36,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 3,
-        name: randomTraderName(),
-        age: 19,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 4,
-        name: randomTraderName(),
-        age: 28,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 5,
-        name: randomTraderName(),
-        age: 23,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-];

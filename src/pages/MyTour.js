@@ -22,14 +22,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function MyTour() {
     const [loading, setLoading] = useState(true)
     const [tours, setTours] = useState([])
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(false)
+    const [deleteId , setDeleteId] = useState(-1)
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (id) => {
+        setDeleteId(id)
         setOpen(true);
     };
 
-    const handleYes = async (tour) => {
-        await deleteTour(tour)
+    const handleYes = async () => {
+        // console.log(deleteId)
+        await deleteTour()
         setOpen(false);
     };
 
@@ -42,6 +45,7 @@ export default function MyTour() {
         try {
             const response = await fetch(url)
             const tours = await response.json()
+            // console.log(tours)
             setLoading(false)
             setTours(tours)
         } catch (error) {
@@ -50,20 +54,19 @@ export default function MyTour() {
         }
     }
 
-    async function deleteTour(tour) {
+    const deleteTour = async ()=> {
         try {
             setOpen(true)
-            const res = await fetch(delete_tour + tour.id, {method: "DELETE"})
-            await fetchTours()
-            // return res.json()
+            console.log(deleteId)
+            await fetch(delete_tour + deleteId, {method: "DELETE"})
+            setTours([...tours.filter((tour)=>tour.id!==deleteId)])
         } catch (e) {
             console.log(e)
         }
     }
 
-    useEffect(() => {
-        fetchTours().then(r => {
-        })
+    useEffect(async () => {
+        await fetchTours()
     }, [])
 
     if (loading) {
@@ -86,34 +89,31 @@ export default function MyTour() {
         <>
             <div className='main-tour'>
                 {tours.map((tour) => {
-                    return <article className="single-tour">
+                    return <article className="single-tour" key={tour.id}>
                         <h5>{tour.name}</h5>
                         <div>
-                            <Button style={{color: 'red'}} onClick={handleClickOpen}>Delete <DeleteIcon/>
-                            </Button>
-
-                            <Dialog
-                                open={open}
-                                TransitionComponent={Transition}
-                                keepMounted
-                                onClose={handleNo}
-                                aria-describedby="alert-dialog-slide-description"
-                            >
-                                <DialogContent>
-                                    <DialogContentText id="alert-dialog-slide-description">
-                                        Bạn có chắc chắn xóa Tour này không ?
-                                    </DialogContentText>
-                                </DialogContent>
-                                <DialogActions>
-                                    <Button onClick={handleNo}>Không</Button>
-                                    <Button onClick={() => handleYes(tour)}>Có</Button>
-                                </DialogActions>
-                            </Dialog>
+                            <Button style={{color: 'red'}} onClick={()=>handleClickOpen(tour.id)}>Delete <DeleteIcon/></Button>
                         </div>
-
                     </article>
                 })}
             </div>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleNo}
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        Bạn có chắc chắn xóa Tour này không ?
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleNo}>Không</Button>
+                    <Button onClick={handleYes}>Có</Button>
+                </DialogActions>
+            </Dialog>
         </>
 
 

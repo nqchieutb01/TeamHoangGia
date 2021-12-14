@@ -15,7 +15,6 @@ import {
     randomUpdatedDate,
 } from '@mui/x-data-grid-generator';
 
-import {useDemoData} from '@mui/x-data-grid-generator';
 import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
 import Slide from "@mui/material/Slide";
@@ -24,6 +23,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import {useEffect, useState} from "react";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function CustomToolbar() {
     return (
@@ -50,6 +50,8 @@ export default function Location() {
         SERVICE.getAllLocations().then(
             (res) => {
                 setLocations(res.data)
+                console.log(res.data)
+                console.log(locations)
             }
         ).catch((e) => console.log(e))
 
@@ -98,7 +100,7 @@ export default function Location() {
                             style={{marginLeft: 0, background: 'red'}}
                             onClick={() => handleDeleteLocation(params.value)}
                         >
-                            Delete
+                            <DeleteForeverIcon/> ID = {params.value}
                         </Button>
                         <Dialog
                             open={open}

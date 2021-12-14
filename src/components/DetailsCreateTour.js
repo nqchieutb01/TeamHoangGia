@@ -49,7 +49,6 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
 
         if (!checkRequired) {
             setOpen(true);
-
         }
     };
     const handleOk = () => {

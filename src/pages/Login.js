@@ -2,7 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 import logo from '../logo.svg'
 import background from '../background.png'
-import {NavLink} from "react-router-dom";
 import React, {useState, useRef} from "react";
 import Input from "react-validation/build/input";
 
@@ -13,7 +12,6 @@ import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 
 import {login} from "../actions/auth";
-import Link from "react-router-dom/es/Link";
 
 const required = (value) => {
     if (!value) {

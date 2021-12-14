@@ -27,8 +27,7 @@ export default function SingleLocation() {
                         city: city,
                         address: address,
                         image: image,
-                        priceMinPerson: priceMinPerson,
-                        priceMaxPerson: priceMaxPerson,
+                        price: price,
                         timeOpen: timeOpen,
                         TimeClose: TimeClose,
 
@@ -37,8 +36,7 @@ export default function SingleLocation() {
                         name,
                         address,
                         image,
-                        priceMinPerson,
-                        priceMaxPerson,
+                        price,
                         timeOpen,
                         TimeClose,
                     }
@@ -68,7 +66,7 @@ export default function SingleLocation() {
             name,
             address,
             image,
-            priceMinPerson,
+            price,
             priceMaxPerson,
             timeOpen,
             TimeClose,
@@ -89,10 +87,7 @@ export default function SingleLocation() {
                             <span className='drink-data'>address :</span> {address}
                         </p>
                         <p>
-                            <span className='drink-data'>priceMinPerson :</span> {priceMinPerson}
-                        </p>
-                        <p>
-                            <span className='drink-data'>priceMaxPerson :</span> {priceMaxPerson}
+                            <span className='drink-data'>price :</span> {price}
                         </p>
                         <p>
                             <span className='drink-data'>timeOpen :</span> {timeOpen}

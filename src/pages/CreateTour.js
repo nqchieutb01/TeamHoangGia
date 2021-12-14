@@ -4,7 +4,7 @@ import Locations from "../components/Locations";
 import LocationsInCart from "../components/LocationsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
 import Search_element from "../search/monoSearch";
-import ChienCoi from '../services/location.service'
+import Service from '../services/location.service'
 import {useSelector} from "react-redux";
 
 // const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
@@ -44,7 +44,7 @@ export default function CreateTour({userId }) {
     useEffect(() => {
         // fetchLocations()
         setLoading(true)
-        ChienCoi.getAllLocations().then(
+        Service.getAllLocations().then(
             (res) =>{
                 // console.log(res.data)
                 setLoading(false)

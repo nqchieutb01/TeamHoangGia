@@ -12,8 +12,8 @@ import Slide from '@mui/material/Slide';
 import Locations from "../components/Locations";
 import SERVICE from "../services/location.service"
 
-const url = 'http://localhost:8080/locations/'
-// const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+//const url = 'http://localhost:8080/locations/'
+const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
 
 const delete_location = 'http://localhost:8080/locations/delete/'
 const add_location = 'http://localhost:8080/locations/add'
@@ -32,16 +32,36 @@ export default function LocationPage() {
         name: null,
         address: null,
         image: '',
-        price:0,
+        price: 0,
         timeOpen: null,
         timeClose: null,
         type: null,
     })
+    const [check, setcheck] = React.useState({
+        bool: false,
+        message: null,
+    });
+    let checkRequired = false
 
     const handleClickOpen = () => {
-        setOpen(true);
+        checkRequired = false
+        required(values.type, "Type of Location Tour must be not null")
+        required(values.timeClose, "TimeClose  of Location must be not null")
+        required(values.timeOpen, "TimeOpen of Location must be not null")
+        validPrice(values.price, "Price of Location must be >= 0")
+        required(values.price, "Price of Location must be not null")
+        required(values.address, "address of Location must be not null")
+        required(values.name, "Name of Location must be not null")
+
+        if (!checkRequired) {
+            setOpen(true);
+
+        }
     };
 
+    const handleOk = () => {
+        setcheck({bool: false});
+    };
     const handleYes = () => {
         addLocation()
         setOpen(false);
@@ -49,11 +69,27 @@ export default function LocationPage() {
     const handleNo = () => {
         setOpen(false);
     };
+
     const onChange = (imageList, addUpdateIndex) => {
-        // console.log(imageList, addUpdateIndex);
-        // console.log(imageList[0]['data_url'])
         setImages(imageList);
     };
+
+    const required = (value, message) => {
+        if (!value) {
+            checkRequired = true
+            setOpen(false)
+            setcheck({bool: true, message: message})
+            console.log(message)
+        }
+    }
+    const validPrice = (value, message) => {
+        if (value < 0) {
+            checkRequired = true
+            setOpen(false)
+            setcheck({bool: true, message: message})
+            console.log(message)
+        }
+    }
 
 
     const handleChange = (prop) => (event) => {
@@ -66,7 +102,7 @@ export default function LocationPage() {
             const response = await fetch(url)
             const data = await response.json()
             const tmp = await SERVICE.getAllLocations()
-            console.log('dmm',tmp)
+            console.log('dmm', tmp)
             setLoading(false)
             console.log(data)
             setLocations(data)
@@ -119,12 +155,10 @@ export default function LocationPage() {
                                     onChange={handleChange('name')}/></div>
                     <div><TextField id="standard-basic" label={"Address"} variant="standard"
                                     onChange={handleChange('address')}/></div>
-                    <div><TextField id="standard-basic" label={"Image"} variant="standard"
-                                    onChange={handleChange('image')}/></div>
-                    <div><TextField id="standard-basic" label={"priceMinPerPerson"} variant="standard"
-                                    onChange={handleChange('priceMinPerPerson')}/></div>
-                    <div><TextField id="standard-basic" label={"priceMaxPerPerson"} variant="standard"
-                                    onChange={handleChange('priceMaxPerPerson')}/></div>
+                    <div><TextField type="number" min="0" step={1000} id="standard-basic" label={"price"}
+                                    variant="standard"
+                                    onChange={handleChange('price')}/></div>
+
                     <div><TextField id="standard-basic" label={"TimeOpen"} variant="standard"
                                     onChange={handleChange('timeOpen')}/></div>
                     <div><TextField id="standard-basic" label={"TimeClose"} variant="standard"
@@ -200,18 +234,26 @@ export default function LocationPage() {
                                 <Button onClick={handleYes}>Có</Button>
                             </DialogActions>
                         </Dialog>
+                        <Dialog
+                            open={check.bool}
+                            TransitionComponent={Transition}
+                            keepMounted
+                            onClose={handleNo}
+                            aria-describedby="alert-dialog-slide-description"
+                        >
+                            <DialogContent>
+                                <DialogContentText id="alert-dialog-slide-description">
+                                    {check.message}
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleOk}> OK </Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 </div>
 
                 <div className='main_c' style={{background: 'white', marginTop: '1%'}}>
-                    {/*{tours.map((tour) => {*/}
-                    {/*    return <article className="single-tour">*/}
-                    {/*        <h5>{tour.name}</h5>*/}
-                    {/*        <Button onClick={() => deleteLocation(tour)}>Delete</Button>*/}
-                    {/*        <img src={test_img}></img>*/}
-                    {/*        /!*<DeleteIcon onClick={deleteLocation(tour.id)}/>*!/*/}
-                    {/*    </article>*/}
-                    {/*})}*/}
                     <main className='main-tour'>
                         <Locations locations={locations}></Locations>
                     </main>

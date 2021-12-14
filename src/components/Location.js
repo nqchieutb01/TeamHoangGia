@@ -7,7 +7,7 @@ import background from "../background.png"
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 
-export default function Location ({ id, name, address, image, priceMinPerson, priceMaxPerson, timeOpen, TimeClose, removeLocation}) {
+export default function Location ({ id, name, address, image, price, timeOpen, TimeClose, removeLocation}) {
     if (removeLocation) {
         return (
             <article className='single-tour'>

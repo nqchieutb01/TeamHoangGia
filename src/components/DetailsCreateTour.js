@@ -70,8 +70,8 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         //console.log(value)
         //let xx = value.toNumber
         //console.log(typeof xx)
-
     }
+
     const addTour = () => {
       
     }

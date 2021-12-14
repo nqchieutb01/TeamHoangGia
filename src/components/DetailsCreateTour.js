@@ -24,9 +24,6 @@ const initialValues = {
 };
 
 
-
-
-
 export default function DetailsCreateTour({userId, locationsInCart}) {
     const [values, setValues] = useState(initialValues);
     const [images, setImages] = React.useState([]);
@@ -57,7 +54,7 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
     };
 
     const handleYes = () => {
-        //addLocation()
+        //addTour()
         setOpen(false);
     };
 
@@ -74,6 +71,9 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         //let xx = value.toNumber
         //console.log(typeof xx)
 
+    }
+    const addTour = () => {
+      
     }
 
     const required = (value, message) => {

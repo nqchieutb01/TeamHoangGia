@@ -20,6 +20,7 @@ const getAdminBoard = () => {
 };
 
 export default {
+    getAllUsers,
     getUserInfo,
     getModeratorBoard,
     getAdminBoard,

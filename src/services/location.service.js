@@ -2,6 +2,11 @@ import axios from "axios";
 import authHeader from './auth.header';
 
 const API_URL = "http://localhost:8080/";
+//http://localhost:8080/locations?name=đại học công nghệ
+
+const searchLocation = (name) =>{
+    return axios.get(API_URL + "locations?name="+name, {headers: authHeader()});
+}
 
 const getAllLocations = () => {
     return axios.get(API_URL + "locations", {headers: authHeader()});
@@ -15,6 +20,7 @@ const addLocation = (req) => {
 }
 
 export default {
+    searchLocation,
     getAllLocations,
     deleteLocation,
     addLocation,

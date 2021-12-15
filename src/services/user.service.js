@@ -7,9 +7,13 @@ const getAllUsers = () => {
 };
 
 const getUserInfo = () => {
-    return axios.get("https://61af70223e2aba0017c49342.mockapi.io/user/1",{headers: authHeader()} )
-    //return axios.get(API_URL + "users/info", {headers: authHeader()});
+    // return axios.get("https://61af70223e2aba0017c49342.mockapi.io/user/1",{headers: authHeader()} )
+    return axios.get(API_URL + "users/info", {headers: authHeader()});
 }
+
+// const deleteUser = (id)=>{
+//     return axios.delete(API_URL + )
+// }
 
 const getModeratorBoard = () => {
     return axios.get(API_URL + "mod", {headers: authHeader()});

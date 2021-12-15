@@ -11,6 +11,7 @@ import User from "./User";
 import {useSelector} from "react-redux";
 import ChartsPage from "./LocationChart";
 import Location from "./Location";
+import Tour from './Tour';
 
 function TabPanel(props) {
 
@@ -75,6 +76,7 @@ export default function Admin() {
                         <Tab label="Users Table" {...a11yProps(0)} />
                         <Tab label="Locations Statistics" {...a11yProps(1)} />
                         <Tab label="Locations Table" {...a11yProps(2)} />
+                        <Tab label="Tour Table" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <SwappableViews
@@ -91,6 +93,9 @@ export default function Admin() {
                     </TabPanel>
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <Location/>
+                    </TabPanel>
+                    <TabPanel value={value} index={2} dir={theme.direction}>
+                        <Tour/>
                     </TabPanel>
                 </SwappableViews>
             </Box>

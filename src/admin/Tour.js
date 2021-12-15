@@ -1,6 +1,4 @@
 import * as React from 'react';
-import SERVICE from "../services/location.service";
-
 import {
     DataGrid,
     GridToolbarContainer,
@@ -9,12 +7,7 @@ import {
     GridToolbarExport,
     GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
-import {
-    randomCreatedDate,
-    randomTraderName,
-    randomUpdatedDate,
-} from '@mui/x-data-grid-generator';
-
+import SERVICE from '../services/tour.service'
 import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
 import Slide from "@mui/material/Slide";
@@ -22,8 +15,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
-import {useEffect, useState} from "react";
-import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import {useCallback, useEffect, useState} from "react";
 
 function CustomToolbar() {
     return (
@@ -40,55 +33,53 @@ const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Location() {
-    const [locations, setLocations] = useState([])
-    const [currentLocationID, setCurrentLocationID] = useState(-1);
-    const [open, setOpen] = React.useState(false);
+export default function Tour() {
 
-    useEffect(() => {
-
-        SERVICE.getAllLocations().then(
-            (res) => {
-                setLocations(res.data)
-                console.log(res.data)
-                console.log(locations)
-            }
-        ).catch((e) => console.log(e))
-
-    }, [])
-
+    const [tours,setTours] = useState([])
     const [editRowsModel, setEditRowsModel] = React.useState({});
+    const [currentID,setCurrentID] = React.useState(-1);
+
+    useEffect( ()=>{
+        SERVICE.getAllTour().then((res)=>{
+            setTours(res.data)
+            // console.log("anh ban ",res.data)
+            // console.log("anh ban ",users)
+        }).catch((e)=>console.log(e))
+    },[])
+
+
     const handleClickOpen = () => {
         setOpen(true);
     };
 
-    const handleYes = async () => {
-        console.log(currentLocationID)
-        setLocations(locations.filter((location)=>location.id !== currentLocationID))
-        await SERVICE.deleteLocation(currentLocationID)
+    const handleYes = () => {
+        console.log(currentID)
+        // Không cho phép xóa admin
+        setTours([...tours.filter((user)=>user.id!==currentID)])
         setOpen(false);
     };
-
     const handleNo = () => {
         setOpen(false);
     };
-    const handleEditRowsModelChange = React.useCallback((model) => {
+
+    const handleEditRowsModelChange = useCallback((model) => {
         setEditRowsModel(model);
+        // console.log(users)
     }, []);
 
-    const handleClick = () => {
+    const handleClick = ()=>{
         console.log(editRowsModel)
     }
 
-    const handleDeleteLocation = (id) => {
-        setCurrentLocationID(id)
-        handleClickOpen()
+    const handleDeleteUser = (id)=>{
         // console.log(id)
+        setCurrentID(id)
+        handleClickOpen()
     }
 
+    const [open, setOpen] = React.useState(false);
     const columns = [
-        {
-            field: 'id', headerName: 'Delete', width: 100,
+        {field: 'id',headerName: 'Delete',width: 100,
             renderCell: (params) => (
                 <strong>
                     {/*{params.value}*/}
@@ -97,25 +88,23 @@ export default function Location() {
                             variant="contained"
                             color="primary"
                             size="small"
-                            style={{marginLeft: 0, background: 'red'}}
-                            onClick={() => handleDeleteLocation(params.value)}
+                            style={{ marginLeft: 0 , background:'red'}}
+                            onClick={()=>handleDeleteUser(params.value)}
                         >
                             <DeleteForeverIcon/> ID = {params.value}
                         </Button>
 
                     </div>
                 </strong>
-            )
-        },
+            )},
         {field: 'name', headerName: 'Name', width: 180, editable: true},
-        {field: 'address', headerName: 'Address', editable: true},
-        {field: 'image', headerName: 'image', width: 120, editable: true,},
-        {field: 'priceMinPerPerson', headerName: 'priceMinPerPerson', type: 'number', width: 120, editable: true,},
-        {field: 'priceMaxPerPerson', headerName: 'priceMaxPerPerson', type: 'dateTime', width: 120, editable: true,},
-        {field: 'timeOpen', headerName: 'timeOpen', width: 120, editable: true,},
-        {field: 'timeClose', headerName: 'timeClose', width: 120, editable: true,},
-        {field: 'createdAt', headerName: 'createdAt', width: 120, editable: true,},
-        {field: 'updatedAt', headerName: 'updatedAt', width: 120, editable: true,},
+        {field: 'description', headerName: 'description', width: 180, editable: true},
+        // {field: 'password', headerName: 'Password', width: 180, editable: true},
+        {field: 'price', headerName: 'price', editable: true},
+        {field: 'star', headerName: 'star', type: 'number', editable: true},
+        {field: 'createdAt', headerName: 'CreatedAt', type: 'date', width: 180, editable: true,},
+        {field: 'updatedAt', headerName: 'UpdatedAt', type: 'dateTime', width: 180, editable: true,},
+        {field: 'Userid', headerName: 'Userid',  width: 180, editable: true,},
     ];
 
     return (
@@ -125,10 +114,10 @@ export default function Location() {
             </Alert>
             <div style={{height: 600, width: '100%'}}>
                 <DataGrid
-                    rows={locations}
+                    rows={tours}
                     columns={columns}
-                    editMode="row"
                     editRowsModel={editRowsModel}
+                    editMode="row"
                     onEditRowsModelChange={handleEditRowsModelChange}
                     components={{
                         Toolbar: CustomToolbar,
@@ -156,41 +145,3 @@ export default function Location() {
         </div>
     );
 }
-
-const rows = [
-    {
-        id: 1,
-        name: randomTraderName(),
-        age: 25,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 2,
-        name: randomTraderName(),
-        age: 36,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 3,
-        name: randomTraderName(),
-        age: 19,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 4,
-        name: randomTraderName(),
-        age: 28,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 5,
-        name: randomTraderName(),
-        age: 23,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-];

@@ -17,10 +17,9 @@ export default function Location ({ id, name, address, image, price, timeOpen, T
                     }
                 </div>
                 <div className='cocktail-footer'>
-                    <h3>{id}</h3>
                     <h3>{name}</h3>
                     <h4>{address}</h4>
-
+                    <h4 className="tour-price">Price: {price}</h4>
                     <Link to={`/location/${id}`} className='btn btn-primary btn-details'>
                         details
                     </Link>
@@ -44,12 +43,13 @@ export default function Location ({ id, name, address, image, price, timeOpen, T
                     }
                 </div>
                 <div className='cocktail-footer'>
-                    <h3>{id}</h3>
                     <h3>{name}</h3>
                     <h4>{address}</h4>
+                    <h4 className="tour-price">Price: {price}</h4>
                     <Link to={`/location/${id}`} className='btn btn-primary btn-details'>
                         details
                     </Link>
+
                 </div>
             </article>
         );

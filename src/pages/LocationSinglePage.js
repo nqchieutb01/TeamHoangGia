@@ -73,9 +73,9 @@ export default function SingleLocation() {
         } = location
         return (
             <section className='section location-section'>
-                <Link to='/' className='btn_c btn_c-primary'>
-                    back home
-                </Link>
+                {/*<Link to='/' className='btn_c btn_c-primary'>*/}
+                {/*    back home*/}
+                {/*</Link>*/}
                 <h2 className='section-title'>{name}</h2>
                 <div className='drink'>
                     <img src={image} alt={name}></img>

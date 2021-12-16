@@ -9,6 +9,9 @@ import {BrowserRouter, useHistory} from "react-router-dom";
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import Button from "@mui/material/Button";
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import Stack from "@mui/material/Stack";
 
 function HomeIcon(props) {
     return (
@@ -30,12 +33,13 @@ export default function Navbar() {
                 <Link to='/'>
                     <img src={logo} alt='Logo' className='logo'/>
                 </Link>
-                <button onClick={() => history.goBack()}>Go Back</button>
+                <div style={{width:'100%',height:'50%'}}>
+                    <Button onClick={() => history.goBack()} style={{height:'100%'}}>Go Back</Button>
+                </div>
             </div>
 
             <div className='nav_c-center'>
                 <ul className='nav_c-links'>
-
                     <li>
                         <NavLink activeClassName='li_active' to='/home'>
                             <div>

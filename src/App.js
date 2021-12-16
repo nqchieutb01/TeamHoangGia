@@ -81,6 +81,7 @@ function App() {
                 </Route>
 
                 <Route path="/location/:id">
+                    <Navbar/>
                     <SingleLocation/>
                 </Route>
                 <Route path="/location">
@@ -103,6 +104,7 @@ function App() {
                     (
                         currentUser.role ==='admin' &&
                         <Route path='/admin'>
+                            <Navbar/>
                             <Admin/>
                         </Route>
                     )

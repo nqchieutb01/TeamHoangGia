@@ -24,20 +24,12 @@ export default function Cocktail({ image, name, id, info, glass }) {
       </div>
 
       <div className='cocktail-footer'>
-        {/*<h3>{name}</h3>*/}
         <h4 className="tour-price">Price: $1000</h4>
         <h6 style={{letterSpacing: "0.05rem"}}>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</h6>
-        {/*<h4>{glass}</h4>*/}
-        {/*<p>{info}</p>*/}
 
         <Link to={`/cocktail/${id}`} className='btn btn-primary btn-details'>
           Details
         </Link>
-          {/*{isModalOpen ? <Modal/> : <></>}*/}
-          {/*{isModalOpen? <ModalCocktail id={id}/> : <></>}*/}
-          {/*<Button variant="contained" color="primary" onClick={openModal}>*/}
-          {/*    Modal*/}
-          {/*</Button>*/}
 
       </div>
 

@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
-
+import SERVICE from '../services/tour.service'
 // const url = 'https://course-api.com/react-tours-project'
 
 // Lấy tạm API để test xóa Tour
@@ -46,6 +46,11 @@ export default function MyTour() {
             const response = await fetch(url)
             const tours = await response.json()
             // console.log(tours)
+            SERVICE.getTourId(1).then(
+                (res)=> {
+                    console.log(res)
+                }
+            )
             setLoading(false)
             setTours(tours)
         } catch (error) {

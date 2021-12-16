@@ -27,7 +27,6 @@ export default function LocationPage() {
     const [locations, setLocations] = useState([])
     const [images, setImages] = React.useState([]);
     const [open, setOpen] = React.useState(false);
-    const [loadImg, setLoadImg] = useState(false)
     const [values, setValues] = useState({
         name: null,
         address: null,
@@ -37,6 +36,8 @@ export default function LocationPage() {
         timeClose: null,
         type: null,
     })
+
+
     const [check, setcheck] = React.useState({
         bool: false,
         message: null,
@@ -104,7 +105,6 @@ export default function LocationPage() {
             const response = await fetch(url)
             const data = await response.json()
             const tmp = await SERVICE.getAllLocations()
-            console.log('dmm', tmp)
             setLoading(false)
             console.log(data)
             setLocations(data)
@@ -119,10 +119,23 @@ export default function LocationPage() {
                 setValues({...values, image: images[0]['data_url']})
                 values.image = images[0]['data_url']
             }
-            console.log(values)
+            // console.log(values)
             // await fetch(add_location, requestOptions)
             await SERVICE.addLocation(values)
             await fetchTours()
+            // setLocations([...locations,values])
+            setImages([])
+            // checkRequired = false
+            // setcheck({bool:false,message: null})
+            // setValues({
+            //     name: null,
+            //     address: null,
+            //     image: '',
+            //     price: 0,
+            //     timeOpen: null,
+            //     timeClose: null,
+            //     type: null,
+            // })
         } catch (e) {
             console.log(e)
         }
@@ -152,6 +165,7 @@ export default function LocationPage() {
         <>
             <div class="row_c">
                 <div className='left_c' style={{marginTop: '1%'}}>
+                    <h6>Add Location</h6>
                     <div className="underline"></div>
                     <div><TextField id="standard-basic" label={"Name"} variant="standard"
                                     onChange={handleChange('name')}/></div>

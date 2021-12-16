@@ -62,7 +62,7 @@ const StyledMenu = styled((props) => (
 export default function AppBar_v1() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
-
+    console.log(currentUser)
     const {openModal} = useGlobalContext()
     const {auth, setAuth} = useGlobalContext()
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -122,10 +122,12 @@ export default function AppBar_v1() {
                     <Stack direction="row" spacing={10}>
                         <div>
                             <Stack direction="row" spacing={2}>
-                                <Avatar>C</Avatar>
+                                <Avatar> {currentUser.name[0]}</Avatar>
                                 <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
-                                    Chieunq1
-                                    <br/>Role: user
+                                    {currentUser.name}
+                                    <br/>
+                                    <p style={{color:'red'}}>Role: {currentUser.role}</p>
+
                                 </h6>
                             </Stack>
                         </div>

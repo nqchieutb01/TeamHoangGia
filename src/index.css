@@ -176,6 +176,7 @@ nav_cbar
   box-shadow: var(--lightShadow);
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 .nav_c-left{
   display: flex;

@@ -41,10 +41,21 @@ export default function Tour() {
 
     useEffect( ()=>{
         SERVICE.getAllTour().then((res)=>{
-            setTours(res.data)
-            // console.log("anh ban ",res.data)
-            // console.log("anh ban ",users)
+            setTours(res.data.map((tourE)=> {
+                    var temp = Object.assign({},tourE.tour)
+                    // console.log(temp)
+                    temp['location'] = tourE.location
+                    return temp ;
+                }
+            ))
+            // console.log(tours)
+            console.log('tour',res.data)
         }).catch((e)=>console.log(e))
+
+        SERVICE.getTourId(1).then((res)=>{
+            console.log('tour id:', res.data)
+        })
+
     },[])
 
 
@@ -104,7 +115,7 @@ export default function Tour() {
         {field: 'star', headerName: 'star', type: 'number', editable: true},
         {field: 'createdAt', headerName: 'CreatedAt', type: 'date', width: 180, editable: true,},
         {field: 'updatedAt', headerName: 'UpdatedAt', type: 'dateTime', width: 180, editable: true,},
-        {field: 'Userid', headerName: 'Userid',  width: 180, editable: true,},
+        {field: 'UserId', headerName: 'Userid',  width: 180, editable: true,},
     ];
 
     return (
@@ -122,6 +133,7 @@ export default function Tour() {
                     components={{
                         Toolbar: CustomToolbar,
                     }}
+                    getRowId={(row) => row.id}
                 />
             </div>
             <Button onClick={handleClick}>Test</Button>

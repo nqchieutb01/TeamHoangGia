@@ -48,9 +48,13 @@ export default function User() {
     useEffect( ()=>{
         SERVICE.getAllUsers().then((res)=>{
             setUsers(res.data)
+            console.log(res.data)
             // console.log("anh ban ",res.data)
             // console.log("anh ban ",users)
         }).catch((e)=>console.log(e))
+        return ()=>{
+            setUsers([])
+        }
     },[])
 
 
@@ -130,6 +134,7 @@ export default function User() {
                     components={{
                         Toolbar: CustomToolbar,
                     }}
+
                 />
             </div>
             <Button onClick={handleClick}>Test</Button>

@@ -94,7 +94,7 @@ export default function Admin() {
                     <TabPanel value={value} index={2} dir={theme.direction}>
                         <Location/>
                     </TabPanel>
-                    <TabPanel value={value} index={2} dir={theme.direction}>
+                    <TabPanel value={value} index={3} dir={theme.direction}>
                         <Tour/>
                     </TabPanel>
                 </SwappableViews>

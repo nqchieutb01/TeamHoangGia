@@ -54,7 +54,9 @@ export default function Location() {
                 console.log(locations)
             }
         ).catch((e) => console.log(e))
-
+        return ()=>{
+            setLocations([])
+        }
     }, [])
 
     const [editRowsModel, setEditRowsModel] = React.useState({});
@@ -109,11 +111,12 @@ export default function Location() {
         },
         {field: 'name', headerName: 'Name', width: 180, editable: true},
         {field: 'address', headerName: 'Address', editable: true},
+        {field: 'description', headerName: 'Address', editable: true},
         {field: 'image', headerName: 'image', width: 120, editable: true,},
-        {field: 'priceMinPerPerson', headerName: 'priceMinPerPerson', type: 'number', width: 120, editable: true,},
-        {field: 'priceMaxPerPerson', headerName: 'priceMaxPerPerson', type: 'dateTime', width: 120, editable: true,},
+        {field: 'price', headerName: 'price', type: 'number', width: 120, editable: true,},
         {field: 'timeOpen', headerName: 'timeOpen', width: 120, editable: true,},
         {field: 'timeClose', headerName: 'timeClose', width: 120, editable: true,},
+        {field: 'type', headerName: 'timeClose', width: 120, editable: true,},
         {field: 'createdAt', headerName: 'createdAt', width: 120, editable: true,},
         {field: 'updatedAt', headerName: 'updatedAt', width: 120, editable: true,},
     ];
@@ -133,6 +136,7 @@ export default function Location() {
                     components={{
                         Toolbar: CustomToolbar,
                     }}
+                    getRowId={(row) => row.id}
                 />
             </div>
             <Button onClick={handleClick}>Test</Button>

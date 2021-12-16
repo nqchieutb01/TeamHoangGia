@@ -7,14 +7,13 @@ const getAllTour = () =>{
     return axios.get(API_URL + "tours", {headers: authHeader()});
 }
 
-const createTour = (rep) => {
-    return axios.post(API_URL + "tours/create", rep, {headers: authHeader()})
-
+const createTour = (req) => {
+    return axios.post(API_URL + "tours/create", req, {headers: authHeader()})
 }
-const addLoction = (rep) => {
+const addLoction = (req) => {
     console.log("asssss")
-    console.log(rep)
-    //return axios.post(API_URL + "tours/add_location", rep, {headers: authHeader()})
+    console.log(req)
+    return axios.post(API_URL + "tours/add_location", req, {headers: authHeader()})
 }
 
 export default {

@@ -33,10 +33,6 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         bool: false,
         message: null,
     });
-    const [rep, setRep] = React.useState({
-        tourId: null,
-        locations: null
-    })
 
     let checkRequired = false
 
@@ -91,10 +87,15 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
     const addTour = async () => {
         let tmp = await TourService.createTour(values, locationsInCart)
         tmp = tmp.data
+        console.log("=====================")
         console.log(tmp)
         console.log(tmp.tourId)
-        setRep({tourId: tmp.tourId, locations: locationsInCart})
-        await TourService.addLoction(rep)
+        console.log(locationsInCart)
+        const xx = locationsInCart.map((ss) => ss.id)
+        console.log(xx)
+        const req = {tourId: tmp.tourId, locations: xx}
+        await TourService.addLoction(req)
+
     }
     
     

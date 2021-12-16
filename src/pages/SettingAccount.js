@@ -106,22 +106,27 @@ export default function SettingAccount() {
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <div className="d-flex flex-row align-items-center back"><i
                                     className="fa fa-long-arrow-left mr-1 mb-1"></i>
-                                    <h6>Back to home</h6>
+                                    <h6>        </h6>
                                 </div>
                                 <button className="btn btn-primary profile-button" >change password</button>
                             </div>
                             <div className="row mt-2">
+                                <div className="col-md-2">
+                                    <div> FIRST NAME: </div>
+                                </div>
                                 <div className="col-md-6">
-                                    <input type="text" className="form-control"
+                                    <input type="text" className="form-control" placeholder="first name"
                                            value={user.firstname}
-                                           onChange={(e) => setUser({...user, firstname: e.target.value})}
+                                              onChange={(e) => setUser({...user, firstname: e.target.value})}
                                     />
                                 </div>
-
                             </div>
                             <div className="row mt-3">
+                                <div className="col-md-2">
+                                    <div> LAST NAME: </div>
+                                </div>
                                 <div className="col-md-6">
-                                    <input type="text" className="form-control"
+                                    <input type="text" className="form-control" placeholder="last name"
                                            value={user.lastname}
                                            onChange={(e) => setUser({...user, lastname: e.target.value})}
                                     />
@@ -129,17 +134,24 @@ export default function SettingAccount() {
 
                             </div>
                             <div className="row mt-3">
+                                <div className="col-md-2">
+                                    <div> PHONENUMBER: </div>
+                                </div>
                                 <div className="col-md-6">
-                                    <input type="text" className="form-control"
+                                    <input type="text" className="form-control" placeholder="0123456789"
                                            value={user.phonenumber}
                                            onChange={(e) => setUser({...user, phonenumber: e.target.value})}
                                     />
                                 </div>
                             </div>
                             <div className="row mt-3">
+
+                                <div className="col-md-2">
+                                    <div> ROLE: </div>
+                                </div>
                                 <div className="col-md-6">
                                     <input type="text"
-                                           className="form-control"
+                                           className="form-control" placeholder="role"
                                            value={user.role}
                                     />
                                 </div>

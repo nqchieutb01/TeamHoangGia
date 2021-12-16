@@ -37,6 +37,8 @@ export default function LocationPage() {
         timeClose: null,
         type: null,
     })
+
+    
     const [check, setcheck] = React.useState({
         bool: false,
         message: null,
@@ -104,9 +106,9 @@ export default function LocationPage() {
             const response = await fetch(url)
             const data = await response.json()
             const tmp = await SERVICE.getAllLocations()
-            console.log('dmm', tmp)
+            //console.log('dmm', tmp)
             setLoading(false)
-            console.log(data)
+            //console.log(data)
             setLocations(data)
         } catch (error) {
             setLoading(false)

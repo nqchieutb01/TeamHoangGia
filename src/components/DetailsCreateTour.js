@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from 'react'
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -9,8 +9,9 @@ import Slide from "@mui/material/Slide";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../pages/Login.css"
 import message from "../reducers/message";
+import TourService from "../services/tour.service"
 
-const addTour = 'http://localhost:8080/tours/create'
+
 const addLocations = 'http://localhost:8080/tours/add_locations'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -24,9 +25,6 @@ const initialValues = {
 };
 
 
-
-
-
 export default function DetailsCreateTour({userId, locationsInCart}) {
     const [values, setValues] = useState(initialValues);
     const [images, setImages] = React.useState([]);
@@ -35,6 +33,11 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         bool: false,
         message: null,
     });
+    const [rep, setRep] = React.useState({
+        tourId: null,
+        locations: null
+    })
+
     let checkRequired = false
 
     // console.log(locationsInCart)
@@ -56,7 +59,7 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
     };
 
     const handleYes = () => {
-        //addLocation()
+        addTour()
         setOpen(false);
     };
 
@@ -84,6 +87,17 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         }
     }
 
+    
+    const addTour = async () => {
+        let tmp = await TourService.createTour(values, locationsInCart)
+        tmp = tmp.data
+        console.log(tmp)
+        console.log(tmp.tourId)
+        setRep({tourId: tmp.tourId, locations: locationsInCart})
+        await TourService.addLoction(rep)
+    }
+    
+    
     return (
         <div className="form-outline">
             <h4>Name of Tour</h4>

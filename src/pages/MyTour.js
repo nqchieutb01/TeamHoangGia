@@ -11,8 +11,8 @@ import Slide from "@mui/material/Slide";
 // const url = 'https://course-api.com/react-tours-project'
 
 // Lấy tạm API để test xóa Tour
-const url = 'http://localhost:8080/locations/'
-const delete_tour = 'http://localhost:8080/locations/delete/'
+const url = 'http://localhost:8080/tours/'
+const delete_tour = 'http://localhost:8080/tours/delete/'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;

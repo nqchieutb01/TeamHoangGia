@@ -7,13 +7,8 @@ import {
     GridToolbarExport,
     GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
-import {
-    randomCreatedDate,
-    randomTraderName,
-    randomUpdatedDate,
-} from '@mui/x-data-grid-generator';
+
 import SERVICE from '../services/user.service'
-import {useDemoData} from '@mui/x-data-grid-generator';
 import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
 import Slide from "@mui/material/Slide";
@@ -23,7 +18,6 @@ import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {useCallback, useEffect, useState} from "react";
-
 function CustomToolbar() {
     return (
         <GridToolbarContainer>
@@ -44,7 +38,12 @@ export default function User() {
     const [users,setUsers] = useState([])
     const [editRowsModel, setEditRowsModel] = React.useState({});
     const [currentID,setCurrentID] = React.useState(-1);
-
+    const editState = {
+        id:null,
+        fistname: null ,
+        lastname :null ,
+        phonenumber : null ,
+    }
     useEffect( ()=>{
         SERVICE.getAllUsers().then((res)=>{
             setUsers(res.data)
@@ -66,6 +65,7 @@ export default function User() {
         console.log(currentID)
         // Không cho phép xóa admin
         if (currentID !== 1) {
+            SERVICE.deleteUser(currentID)
             setUsers([...users.filter((user)=>user.id!==currentID)])
         }
         setOpen(false);
@@ -80,7 +80,17 @@ export default function User() {
     }, []);
 
     const handleClick = ()=>{
-        console.log(editRowsModel)
+        // console.log(editRowsModel)
+        const id = Object.keys(editRowsModel)[0]
+        if (typeof id === 'undefined'){
+            return
+        }
+        const data = editRowsModel[id]
+        editState.id = id ;
+        editState.firstname = data.firstname.value
+        editState.lastname = data.lastname.value
+        editState.phonenumber = data.phonenumber.value
+        SERVICE.editUser(editState)
     }
 
     const handleDeleteUser = (id)=>{
@@ -109,14 +119,14 @@ export default function User() {
                     </div>
                 </strong>
             )},
-        {field: 'username', headerName: 'Name', width: 180, editable: true},
-        {field: 'firstname', headerName: 'First Name', width: 180, editable: true},
+        {field: 'username', headerName: 'username', width: 120, editable: true},
+        {field: 'firstname', headerName: 'Họ', width: 120, editable: true},
         // {field: 'password', headerName: 'Password', width: 180, editable: true},
-        {field: 'lastname', headerName: 'Last Name', editable: true},
-        {field: 'phonenumber', headerName: 'Phone Number', type: 'number', editable: true},
+        {field: 'lastname', headerName: 'Tên', editable: true},
+        {field: 'phonenumber', headerName: 'SĐT', type: 'number', editable: true},
         {field: 'role', headerName: 'Role'},
-        {field: 'createdAt', headerName: 'CreatedAt', type: 'date', width: 180, editable: true,},
-        {field: 'updatedAt', headerName: 'UpdatedAt', type: 'dateTime', width: 220, editable: true,},
+        {field: 'createdAt', headerName: 'CreatedAt', type: 'date', width: 120, editable: true,},
+        {field: 'updatedAt', headerName: 'UpdatedAt', type: 'dateTime', width: 120, editable: true,},
     ];
 
     return (
@@ -137,7 +147,7 @@ export default function User() {
 
                 />
             </div>
-            <Button onClick={handleClick}>Test</Button>
+            <Button onClick={handleClick} variant="contained" style={{background:'red'}}>Chỉnh sửa</Button>
             <Dialog
                 open={open}
                 TransitionComponent={Transition}
@@ -147,7 +157,7 @@ export default function User() {
             >
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Bạn có chắc chắn muốn xóa không ?
+                        Bạn có chắc chắn muốn thay đổi không ?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

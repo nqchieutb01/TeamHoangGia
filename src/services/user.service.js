@@ -12,21 +12,17 @@ const getUserInfo = () => {
     return axios.get(API_URL + "users/info", {headers: authHeader()});
 }
 
-// const deleteUser = (id)=>{
-//     return axios.delete(API_URL + )
-// }
+const deleteUser = (id)=>{
+    return axios.delete(API_URL +"users/delete/"+id,{headers:authHeader()} )
+}
 
-const getModeratorBoard = () => {
-    return axios.get(API_URL + "mod", {headers: authHeader()});
-};
-
-const getAdminBoard = () => {
-    return axios.get(API_URL + "admin", {headers: authHeader()});
-};
+const editUser = (req)=>{
+    return axios.post(API_URL+"users/update" , req,{headers:authHeader()})
+}
 
 export default {
     getAllUsers,
     getUserInfo,
-    getModeratorBoard,
-    getAdminBoard,
+    deleteUser,
+    editUser
 };

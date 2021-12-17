@@ -11,8 +11,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Slide from '@mui/material/Slide';
 import Locations from "../components/Locations";
 import SERVICE from "../services/location.service"
+import {Snackbar} from "@material-ui/core";
+import MuiAlert from '@mui/material/Alert';
 
-// const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -20,8 +24,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function LocationPage() {
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
-    const [images, setImages] = React.useState([]);
-    const [open, setOpen] = React.useState(false);
+    const [images, setImages] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [openSuccess, setOpenSuccess] = useState(false);
     const [values, setValues] = useState({
         name: null,
         address: null,
@@ -32,8 +37,7 @@ export default function LocationPage() {
         type: null,
     })
 
-    // console.log('api :' , as.URL_BACKEND)
-    const [check, setcheck] = React.useState({
+    const [check, setCheck] = React.useState({
         bool: false,
         message: null,
     });
@@ -56,19 +60,19 @@ export default function LocationPage() {
     };
 
     const handleOk = () => {
-        setcheck({bool: false});
+        setCheck({bool: false});
+
     };
-    const handleYes = () => {
-        addLocation()
+    const handleYes = async () => {
+        await addLocation()
         setOpen(false);
+        handleClick()
     };
     const handleNo = () => {
         setOpen(false);
     };
 
     const onChange = (imageList, addUpdateIndex) => {
-        // console.log(imageList, addUpdateIndex);
-        // console.log(imageList[0]['data_url'])
         setImages(imageList);
     };
 
@@ -76,7 +80,7 @@ export default function LocationPage() {
         if (!value) {
             checkRequired = true
             setOpen(false)
-            setcheck({bool: true, message: message})
+            setCheck({bool: true, message: message})
             // console.log(message)
         }
     }
@@ -84,11 +88,16 @@ export default function LocationPage() {
         if (value < 0) {
             checkRequired = true
             setOpen(false)
-            setcheck({bool: true, message: message})
-            // console.log(message)
+            setCheck({bool: true, message: message})
         }
     }
 
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSuccess(false);
+    };
 
     const handleChange = (prop) => (event) => {
         setValues({...values, [prop]: event.target.value});
@@ -112,30 +121,16 @@ export default function LocationPage() {
                 setValues({...values, image: images[0]['data_url']})
                 values.image = images[0]['data_url']
             }
-            // console.log(values)
-            // await fetch(add_location, requestOptions)
             await SERVICE.addLocation(values)
             await fetchLocations()
-            // setLocations([...locations,values])
             setImages([])
-            // checkRequired = false
-            // setcheck({bool:false,message: null})
-            // setValues({
-            //     name: null,
-            //     address: null,
-            //     image: '',
-            //     price: 0,
-            //     timeOpen: null,
-            //     timeClose: null,
-            //     type: null,
-            // })
         } catch (e) {
             console.log(e)
         }
     }
 
-    useEffect(() => {
-        fetchLocations()
+    useEffect(async () => {
+        await fetchLocations()
     }, [])
 
     if (loading) {
@@ -145,6 +140,9 @@ export default function LocationPage() {
             </main>
         )
     }
+    const handleClick = () => {
+        setOpenSuccess(true);
+    };
     // if (locations.length === 0) {
     //     return (
     //         <main>
@@ -156,11 +154,14 @@ export default function LocationPage() {
     // }
     return (
         <>
+
             <div class="row_c">
+
                 <div className='left_c' style={{marginTop: '1%'}}>
+
                     <h6>Add Location</h6>
                     <div className="underline"></div>
-                    <div><TextField id="standard-basic" label={"Name"} variant="standard"
+                    <div><TextField label={"Name"} variant="standard"
                                     onChange={handleChange('name')}/></div>
                     <div><TextField id="standard-basic" label={"Address"} variant="standard"
                                     onChange={handleChange('address')}/></div>
@@ -170,6 +171,7 @@ export default function LocationPage() {
 
                     <div><TextField id="standard-basic" label={"TimeOpen"} variant="standard"
                                     onChange={handleChange('timeOpen')}/></div>
+
                     <div><TextField id="standard-basic" label={"TimeClose"} variant="standard"
                                     onChange={handleChange('timeClose')}/></div>
                     <div><TextField id="standard-basic" label={"Type"} variant="standard"
@@ -263,11 +265,24 @@ export default function LocationPage() {
                 </div>
 
                 <div className='main_c' style={{background: 'white', marginTop: '1%'}}>
-                    <main className='main-tour'>
-                        <Locations locations={locations}></Locations>
-                    </main>
-
+                    {
+                        locations.length === 0 ? (
+                            <main>
+                                <div className='title'>
+                                    <h2>Chưa có Location nào</h2>
+                                </div>
+                            </main>) : (
+                            <main className='main-tour'>
+                                <Locations locations={locations}></Locations>
+                            </main>)
+                    }
                 </div>
+
+                <Snackbar open={openSuccess} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{width: '150%'}}>
+                        This is a success message!
+                    </Alert>
+                </Snackbar>
             </div>
         </>
     )

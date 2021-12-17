@@ -15,13 +15,16 @@ const createTour = (rep) => {
     return axios.post(API_URL + "tours/create", rep, {headers: authHeader()})
 
 }
+const editTour = (req) =>{
+    return axios.post(API_URL+"tours/update",req , {headers:authHeader()})
+}
 const addLoction = (req) => {
-    console.log(req)
     return axios.post(API_URL + "tours/add_location", req, {headers: authHeader()})
 }
 export default {
     getAllTour,
     getTourId,
     createTour,
+    editTour,
     addLoction
 }

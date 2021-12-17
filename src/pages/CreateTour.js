@@ -3,14 +3,9 @@ import Loading from "./Loading";
 import Locations from "../components/Locations";
 import LocationsInCart from "../components/LocationsInCart";
 import DetailsCreateTour from "../components/DetailsCreateTour";
-import Search_element from "../search/monoSearch";
-import LocatioService from '../services/location.service'
+import LocationService from '../services/location.service'
 
-import {useSelector} from "react-redux";
-
-// const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
-
-export default function CreateTour({userId }) {
+export default function CreateTour({userId}) {
 
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
@@ -18,13 +13,12 @@ export default function CreateTour({userId }) {
     const [search, setSearch] = useState([])
 
     const addToCart = (id) => {
-        // console.log(locations)
         const removeLocation = locations.filter((location) => location.id === id)
         //const newLocations = locations.filter((location) => location.id !== id)
         const check = LocationInCart.filter((location) => location.id === id)
         //setLocations(newLocations)
-       // console.log(removeLocation)
-        if (check.length == 0){
+        // console.log(removeLocation)
+        if (check.length == 0) {
             setLocationsInCart(LocationInCart.concat(removeLocation))
         }
     }
@@ -37,33 +31,34 @@ export default function CreateTour({userId }) {
     }
 
     const fetchLocations = async () => {
-         setLoading(true)
-         try {
+        setLoading(true)
+        try {
 
-             const response = await LocatioService.getAllLocations()
-             setLoading(false)
-             setLocations(response.data)
-         } catch (error) {
-             setLoading(false)
-             console.log(error)
-         }
-     }
-     const searchLocation = async () => {
-         setLoading(true)
-         try {
+            const response = await LocationService.getAllLocations()
+            setLoading(false)
+            setLocations(response.data)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
+    }
+    const searchLocation = async () => {
+        setLoading(true)
+        try {
 
-             const response = await LocatioService.searchLocation(search)
-             setLoading(false)
-             setLocations(response.data)
-         } catch (error) {
-             setLoading(false)
-             console.log(error)
-         }
-     }
+            const response = await LocationService.searchLocation(search)
+            setLoading(false)
+            setLocations(response.data)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
+    }
 
     useEffect(() => {
-         fetchLocations()
+        fetchLocations()
     }, [])
+
 
     if (loading) {
         return (
@@ -75,47 +70,47 @@ export default function CreateTour({userId }) {
 
     return (
         <div className="row_c">
-            <div className="left_c"  >
+            <div className="left_c">
                 <LocationsInCart items={LocationInCart} removeItem={removeItemInCart}/>
             </div>
             <div className="main_c">
                 <section className='section-center_c'>
-                {locations.length === 0 ?
-                    <div className='title'>
+                    {locations.length === 0 ?
+                        <div className='title'>
 
-                        <div className='form-control_c'>
-                            <input
-                                type='text'
-                                className='grocery_c'
-                                placeholder={search}
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                            />
-                            <button type='submit' className='submit-btn_c' onClick={searchLocation}>
-                                submit
-                            </button>
-                        </div>
-                        <h2>no locations left</h2>
+                            <div className='form-control_c'>
+                                <input
+                                    type='text'
+                                    className='grocery_c'
+                                    placeholder={search}
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                />
+                                <button type='submit' className='submit-btn_c' onClick={searchLocation}>
+                                    submit
+                                </button>
+                            </div>
+                            <h2>no locations left</h2>
 
-                    </div> :
-                    <main className='main-tour'>
+                        </div> :
+                        <main className='main-tour'>
 
-                        <div className='form-control_c'>
-                            <input
-                                type='text'
-                                className='grocery_c'
-                                placeholder={search}
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                            />
-                            <button type='submit' className='submit-btn_c' onClick={searchLocation}>
-                                submit
-                            </button>
-                        </div>
+                            <div className='form-control_c'>
+                                <input
+                                    type='text'
+                                    className='grocery_c'
+                                    placeholder={search}
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)}
+                                />
+                                <button type='submit' className='submit-btn_c' onClick={searchLocation}>
+                                    submit
+                                </button>
+                            </div>
 
-                        <Locations locations={locations} removeLocation={addToCart}/>
-                    </main>
-                }
+                            <Locations locations={locations} removeLocation={addToCart}/>
+                        </main>
+                    }
                 </section>
             </div>
             <div className="right_c">

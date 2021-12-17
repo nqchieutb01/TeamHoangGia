@@ -8,35 +8,33 @@ import DialogActions from "@mui/material/DialogActions";
 import Slide from "@mui/material/Slide";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../pages/Login.css"
-import message from "../reducers/message";
 import TourService from "../services/tour.service"
+import {Snackbar} from "@material-ui/core";
+import MuiAlert from '@mui/material/Alert';
 
-
-const addLocations = 'http://localhost:8080/tours/add_locations'
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-
-const initialValues = {
-    name: null,
-    price: null,
-    description: null,
-};
-
-
-export default function DetailsCreateTour({userId, locationsInCart}) {
+export default function DetailsCreateTour({userId, locationsInCart }) {
+    // console.log(currentUser)
+    const initialValues = {
+        name: null,
+        price: null,
+        description: null,
+    };
     const [values, setValues] = useState(initialValues);
-    const [images, setImages] = React.useState([]);
+    const [openSuccess, setOpenSuccess] = useState(false);
     const [open, setOpen] = React.useState(false);
-    const [check, setcheck] = React.useState({
+    const [check, setCheck] = React.useState({
         bool: false,
         message: null,
     });
 
     let checkRequired = false
-
-    // console.log(locationsInCart)
 
     const handleClickOpen = () => {
         // console.log("test submit")
@@ -51,7 +49,7 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         }
     };
     const handleOk = () => {
-        setcheck({bool: false});
+        setCheck({bool: false});
     };
 
     const handleYes = () => {
@@ -78,11 +76,19 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         if (!value) {
             checkRequired = true
             setOpen(false)
-            setcheck({bool: true, message: message})
+            setCheck({bool: true, message: message})
             // console.log(message)
         }
     }
-
+    const handleClick = () => {
+        setOpenSuccess(true);
+    };
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSuccess(false);
+    };
 
     const addTour = async () => {
         let tmp = await TourService.createTour(values, locationsInCart)
@@ -95,6 +101,7 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
         // console.log(xx)
         const req = {tourId: tmp.tourId, locations: xx}
         await TourService.addLoction(req)
+        handleClick()
         window.location.reload();
     }
 
@@ -156,7 +163,11 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
                         <Button onClick={handleOk}> OK </Button>
                     </DialogActions>
                 </Dialog>
-
+                <Snackbar open={openSuccess} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{width: '150%'}}>
+                        This is a success message!
+                    </Alert>
+                </Snackbar>
             </div>
 
 

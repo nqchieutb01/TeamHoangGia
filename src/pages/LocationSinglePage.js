@@ -69,7 +69,7 @@ export default function SingleLocation() {
             image,
             price,
             timeOpen,
-            TimeClose,
+            timeClose,
             createdAt,
             updatedAt
         } = location
@@ -96,7 +96,7 @@ export default function SingleLocation() {
                             <span className='drink-data'>timeOpen :</span> {timeOpen}
                         </p>
                         <p style={{textAlign:'left'}}>
-                            <span className='drink-data'>TimeClose :</span> {TimeClose}
+                            <span className='drink-data'>TimeClose :</span> {timeClose}
                         </p>
                     </div>
                 </div>

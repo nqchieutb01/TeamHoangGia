@@ -44,7 +44,16 @@ export default function Location() {
     const [locations, setLocations] = useState([])
     const [currentLocationID, setCurrentLocationID] = useState(-1);
     const [open, setOpen] = React.useState(false);
-
+    const editState = {
+        id:null,
+        name: null,
+        address: null ,
+        description :null ,
+        price : null ,
+        timeOpen : null ,
+        timeClose : null ,
+        type: null
+    }
     useEffect(() => {
 
         SERVICE.getAllLocations().then(
@@ -79,7 +88,22 @@ export default function Location() {
     }, []);
 
     const handleClick = () => {
-        console.log(editRowsModel)
+        // console.log(editRowsModel)
+        const id = Object.keys(editRowsModel)[0]
+        if (typeof id === 'undefined'){
+            return
+        }
+        const data = editRowsModel[id]
+        editState.id = id ;
+        editState.name = data.name.value
+        editState.address = data.address.value
+        editState.description = data.description.value
+        editState.price = data.price.value
+        editState.timeOpen = data.timeOpen.value
+        editState.timeClose = data.timeClose.value
+        editState.type = data.type.value
+        // console.log(editState)
+        SERVICE.editLocation(editState)
     }
 
     const handleDeleteLocation = (id) => {
@@ -90,7 +114,7 @@ export default function Location() {
 
     const columns = [
         {
-            field: 'id', headerName: 'Delete', width: 100,
+            field: 'id', headerName: 'Xóa', width: 100,
             renderCell: (params) => (
                 <strong>
                     {/*{params.value}*/}
@@ -109,16 +133,16 @@ export default function Location() {
                 </strong>
             )
         },
-        {field: 'name', headerName: 'Name', width: 180, editable: true},
-        {field: 'address', headerName: 'Address', editable: true},
-        {field: 'description', headerName: 'Address', editable: true},
-        {field: 'image', headerName: 'image', width: 120, editable: true,},
-        {field: 'price', headerName: 'price', type: 'number', width: 120, editable: true,},
-        {field: 'timeOpen', headerName: 'timeOpen', width: 120, editable: true,},
-        {field: 'timeClose', headerName: 'timeClose', width: 120, editable: true,},
-        {field: 'type', headerName: 'timeClose', width: 120, editable: true,},
-        {field: 'createdAt', headerName: 'createdAt', width: 120, editable: true,},
-        {field: 'updatedAt', headerName: 'updatedAt', width: 120, editable: true,},
+        {field: 'name', headerName: 'Tên', width: 120, editable: true},
+        {field: 'address', headerName: 'Địa Chỉ', editable: true},
+        {field: 'description', headerName: 'Mô tả', editable: true},
+        // {field: 'image', headerName: 'image', width: 120, editable: true,},
+        {field: 'price', headerName: 'Giá', type: 'number', width: 120, editable: true,},
+        {field: 'timeOpen', headerName: 'Mở cửa', width: 120, editable: true,},
+        {field: 'timeClose', headerName: 'Đóng của', width: 120, editable: true,},
+        {field: 'type', headerName: 'Loại', width: 120, editable: true,},
+        {field: 'createdAt', headerName: 'createdAt', width: 120},
+        {field: 'updatedAt', headerName: 'updatedAt', width: 120},
     ];
 
     return (
@@ -139,7 +163,7 @@ export default function Location() {
                     getRowId={(row) => row.id}
                 />
             </div>
-            <Button onClick={handleClick}>Test</Button>
+            <Button onClick={handleClick} variant="contained" style={{background:'red'}}>Chỉnh sửa</Button>
             <Dialog
                 open={open}
                 TransitionComponent={Transition}
@@ -149,7 +173,7 @@ export default function Location() {
             >
                 <DialogContent>
                     <DialogContentText id="alert-dialog-slide-description">
-                        Bạn có chắc chắn muốn xóa không ?
+                        Bạn có chắc chắn muốn thay đổi không ?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
@@ -160,41 +184,3 @@ export default function Location() {
         </div>
     );
 }
-
-const rows = [
-    {
-        id: 1,
-        name: randomTraderName(),
-        age: 25,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 2,
-        name: randomTraderName(),
-        age: 36,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 3,
-        name: randomTraderName(),
-        age: 19,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 4,
-        name: randomTraderName(),
-        age: 28,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-    {
-        id: 5,
-        name: randomTraderName(),
-        age: 23,
-        dateCreated: randomCreatedDate(),
-        lastLogin: randomUpdatedDate(),
-    },
-];

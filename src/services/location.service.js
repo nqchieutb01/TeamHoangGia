@@ -21,11 +21,15 @@ const addLocation = (req) => {
 const getLocationId = (id) =>{
     return axios.get(API_URL + "locations/"+id, {headers: authHeader()});
 }
+const editLocation = (req)=>{
+    return axios.post(API_URL +"locations/update/" , req , {headers:authHeader()})
+}
 
 export default {
     searchLocation,
     getAllLocations,
     deleteLocation,
     addLocation,
-    getLocationId
+    getLocationId,
+    editLocation
 }

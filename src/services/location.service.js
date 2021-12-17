@@ -1,8 +1,8 @@
 import axios from "axios";
 import authHeader from './auth.header';
 
-const API_URL = "http://localhost:8080/";
-//http://localhost:8080/locations?name=đại học công nghệ
+import URL from '../config'
+const API_URL = URL.URL_BACKEND
 
 const searchLocation = (name) =>{
     return axios.get(API_URL + "locations?name="+name, {headers: authHeader()});

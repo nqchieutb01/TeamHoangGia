@@ -1,9 +1,11 @@
 import axios from "axios";
 import authHeader from './auth.header';
 
-const API_URL = "http://localhost:8080/";
+import URL from '../config'
+const API_URL = URL.URL_BACKEND
 
 const getAllTour = () =>{
+    console.log('api: ',API_URL)
     return axios.get(API_URL + "tours", {headers: authHeader()});
 }
 const getTourId = (id) =>{
@@ -14,7 +16,6 @@ const createTour = (rep) => {
 
 }
 const addLoction = (req) => {
-    console.log("asssss")
     console.log(req)
     return axios.post(API_URL + "tours/add_location", req, {headers: authHeader()})
 }

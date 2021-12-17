@@ -1,16 +1,18 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/users/";
+// const API_URL = "http://localhost:8080/users/";
+import URL from '../config'
+const API_URL = URL.URL_BACKEND
 
 const register = (username, password) => {
     console.log({username,password})
-    return axios.post(API_URL + "register", {
+    return axios.post(API_URL + "users/register", {
         username,
         password,
     });
 };
 const register_v1= (username, password) => {
-    return axios.post(API_URL + "register", JSON.stringify({
+    return axios.post(API_URL + "users/register", JSON.stringify({
         username:username,
         password:password
     }));
@@ -18,7 +20,7 @@ const register_v1= (username, password) => {
 const login = (username, password) => {
     // console.log('client' , username,password)
     return axios
-        .post(API_URL + "login", {
+        .post(API_URL + "users/login", {
             username,
             password
         })

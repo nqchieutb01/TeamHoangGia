@@ -12,12 +12,7 @@ import Slide from '@mui/material/Slide';
 import Locations from "../components/Locations";
 import SERVICE from "../services/location.service"
 
-const url = 'http://localhost:8080/locations/'
 // const url = 'https://61af70223e2aba0017c49342.mockapi.io/getlocations'
-
-const delete_location = 'http://localhost:8080/locations/delete/'
-const add_location = 'http://localhost:8080/locations/add'
-
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -37,7 +32,7 @@ export default function LocationPage() {
         type: null,
     })
 
-
+    // console.log('api :' , as.URL_BACKEND)
     const [check, setcheck] = React.useState({
         bool: false,
         message: null,
@@ -99,15 +94,13 @@ export default function LocationPage() {
         setValues({...values, [prop]: event.target.value});
     };
 
-    const fetchTours = async () => {
+    const fetchLocations = async () => {
         setLoading(true)
         try {
-            const response = await fetch(url)
-            const data = await response.json()
-            const tmp = await SERVICE.getAllLocations()
+            const data = await SERVICE.getAllLocations()
             setLoading(false)
-            console.log(data)
-            setLocations(data)
+            console.log(data.data)
+            setLocations(data.data)
         } catch (error) {
             setLoading(false)
             console.log(error)
@@ -122,7 +115,7 @@ export default function LocationPage() {
             // console.log(values)
             // await fetch(add_location, requestOptions)
             await SERVICE.addLocation(values)
-            await fetchTours()
+            await fetchLocations()
             // setLocations([...locations,values])
             setImages([])
             // checkRequired = false
@@ -142,7 +135,7 @@ export default function LocationPage() {
     }
 
     useEffect(() => {
-        fetchTours()
+        fetchLocations()
     }, [])
 
     if (loading) {

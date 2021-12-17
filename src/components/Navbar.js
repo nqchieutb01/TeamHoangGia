@@ -33,9 +33,8 @@ export default function Navbar() {
                 <Link to='/'>
                     <img src={logo} alt='Logo' className='logo'/>
                 </Link>
-                <div style={{width:'100%',height:'50%'}}>
-                    <Button onClick={() => history.goBack()} style={{height:'100%'}}>Go Back</Button>
-                </div>
+
+                    <Button onClick={() => history.goBack()} >Go Back</Button>
             </div>
 
             <div className='nav_c-center'>

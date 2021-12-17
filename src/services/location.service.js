@@ -18,10 +18,14 @@ const deleteLocation = (id) => {
 const addLocation = (req) => {
     return axios.post(API_URL + "locations/add", req, {headers: authHeader()});
 }
+const getLocationId = (id) =>{
+    return axios.get(API_URL + "locations/"+id, {headers: authHeader()});
+}
 
 export default {
     searchLocation,
     getAllLocations,
     deleteLocation,
     addLocation,
+    getLocationId
 }

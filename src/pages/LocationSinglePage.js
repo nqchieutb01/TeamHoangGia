@@ -1,7 +1,7 @@
 import React from 'react'
 import Loading from './Loading'
 import {useParams, Link} from 'react-router-dom'
-
+import SERVICE from '../services/location.service'
 export default function SingleLocation() {
     const {id} = useParams()
     // console.log(id)
@@ -12,34 +12,37 @@ export default function SingleLocation() {
 
     React.useEffect(() => {
         setLoading(true)
-
         async function getLocation() {
             try {
-                const response = await fetch(
-                    `https://61af70223e2aba0017c49342.mockapi.io/getlocations/${id}`
-                )
-                const data = await response.json()
-                // console.log(data)
-
+                const res = await SERVICE.getLocationId(id)
+                // console.log('location:' ,res.data[0])
+                const data = res.data[0]
                 if (data) {
                     const {
+                        id:id,
                         name: name,
                         city: city,
                         address: address,
                         image: image,
                         price: price,
                         timeOpen: timeOpen,
-                        TimeClose: TimeClose,
+                        timeClose: timeClose,
+                        createdAt:createdAt,
+                        updatedAt:updatedAt
 
                     } = data
                     const newLocation = {
+                        id,
                         name,
                         address,
                         image,
                         price,
                         timeOpen,
-                        TimeClose,
+                        timeClose,
+                        createdAt,
+                        updatedAt
                     }
+                    console.log(newLocation)
                     setLocation(newLocation)
                 } else {
                     setLocation(null)
@@ -51,48 +54,48 @@ export default function SingleLocation() {
         }
 
         getLocation()
-    }, [id])
+    }, [])
+
     if (loading) {
-        console.log("ssss")
         return <Loading/>
     }
     if (!location) {
-        console.log("aaaa")
         return <h2 className='section-title'>no location to display</h2>
     } else {
-        console.log("bbbb")
-
         const {
+            id,
             name,
             address,
             image,
             price,
-            priceMaxPerson,
             timeOpen,
             TimeClose,
+            createdAt,
+            updatedAt
         } = location
         return (
-            <section className='section location-section'>
+            <section className='cocktail-section'>
                 {/*<Link to='/' className='btn_c btn_c-primary'>*/}
                 {/*    back home*/}
                 {/*</Link>*/}
-                <h2 className='section-title'>{name}</h2>
+                <br/><br/><br/>
+                <h2 className='section_c-title'>{name}</h2>
                 <div className='drink'>
                     <img src={image} alt={name}></img>
                     <div className='drink-info'>
-                        <p>
-                            <span className='drink-data'>name :</span> {name}
+                        <p style={{textAlign:'left'}}>
+                            <span className='drink-data'>name : </span> {name}
                         </p>
-                        <p>
+                        <p style={{textAlign:'left'}}>
                             <span className='drink-data'>address :</span> {address}
-                        </p>
-                        <p>
+                        </p >
+                        <p style={{textAlign:'left'}}>
                             <span className='drink-data'>price :</span> {price}
                         </p>
-                        <p>
+                        <p style={{textAlign:'left'}}>
                             <span className='drink-data'>timeOpen :</span> {timeOpen}
                         </p>
-                        <p>
+                        <p style={{textAlign:'left'}}>
                             <span className='drink-data'>TimeClose :</span> {TimeClose}
                         </p>
                     </div>

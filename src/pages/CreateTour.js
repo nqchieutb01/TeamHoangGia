@@ -18,14 +18,15 @@ export default function CreateTour({userId }) {
     const [search, setSearch] = useState([])
 
     const addToCart = (id) => {
-        console.log(locations)
+        // console.log(locations)
         const removeLocation = locations.filter((location) => location.id === id)
         //const newLocations = locations.filter((location) => location.id !== id)
         const check = LocationInCart.filter((location) => location.id === id)
         //setLocations(newLocations)
        // console.log(removeLocation)
-        if (check.length == 0)
+        if (check.length == 0){
             setLocationsInCart(LocationInCart.concat(removeLocation))
+        }
     }
 
     const removeItemInCart = (id) => {

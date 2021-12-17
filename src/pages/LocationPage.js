@@ -77,7 +77,7 @@ export default function LocationPage() {
             checkRequired = true
             setOpen(false)
             setcheck({bool: true, message: message})
-            console.log(message)
+            // console.log(message)
         }
     }
     const validPrice = (value, message) => {
@@ -85,7 +85,7 @@ export default function LocationPage() {
             checkRequired = true
             setOpen(false)
             setcheck({bool: true, message: message})
-            console.log(message)
+            // console.log(message)
         }
     }
 
@@ -99,7 +99,7 @@ export default function LocationPage() {
         try {
             const data = await SERVICE.getAllLocations()
             setLoading(false)
-            console.log(data.data)
+            // console.log(data.data)
             setLocations(data.data)
         } catch (error) {
             setLoading(false)

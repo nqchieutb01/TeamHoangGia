@@ -39,7 +39,7 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
     // console.log(locationsInCart)
 
     const handleClickOpen = () => {
-        console.log("test submit")
+        // console.log("test submit")
         checkRequired = false
         required(values.description, "Description of Tour must be not null")
         validPrice(values.price,"Price  of Tour must be number" )
@@ -79,7 +79,7 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
             checkRequired = true
             setOpen(false)
             setcheck({bool: true, message: message})
-            console.log(message)
+            // console.log(message)
         }
     }
 
@@ -87,15 +87,15 @@ export default function DetailsCreateTour({userId, locationsInCart}) {
     const addTour = async () => {
         let tmp = await TourService.createTour(values, locationsInCart)
         tmp = tmp.data
-        console.log("=====================")
-        console.log(tmp)
-        console.log(tmp.tourId)
-        console.log(locationsInCart)
+        // console.log("=====================")
+        // console.log(tmp)
+        // console.log(tmp.tourId)
+        // console.log(locationsInCart)
         const xx = locationsInCart.map((ss) => ss.id)
-        console.log(xx)
+        // console.log(xx)
         const req = {tourId: tmp.tourId, locations: xx}
         await TourService.addLoction(req)
-
+        window.location.reload();
     }
 
 

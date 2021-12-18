@@ -161,24 +161,24 @@ export default function LocationPage() {
 
                     <h6>Add Location</h6>
                     <div className="underline"></div>
-                    <div><TextField label={"Name"} variant="standard"
+                    <div><TextField label={"Tên"} variant="standard"
                                     onChange={handleChange('name')}/></div>
-                    <div><TextField id="standard-basic" label={"Address"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Địa chỉ"} variant="standard"
                                     onChange={handleChange('address')}/></div>
                     <div><TextField type="number" min="0" step={1000} id="standard-basic" label={"price"}
                                     variant="standard"
-                                    onChange={handleChange('price')}/></div>
+                                    onChange={handleChange('Giá')}/></div>
 
-                    <div><TextField id="standard-basic" label={"TimeOpen"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Thời gian mở cửa"} variant="standard"
                                     onChange={handleChange('timeOpen')}/></div>
 
-                    <div><TextField id="standard-basic" label={"TimeClose"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Thời gian đóng cửa"} variant="standard"
                                     onChange={handleChange('timeClose')}/></div>
-                    <div><TextField id="standard-basic" label={"Type"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Thể loại"} variant="standard"
                                     onChange={handleChange('type')}/></div>
                     <br/>
 
-                    <h6>Upload Image</h6>
+                    <h6>Tải ảnh</h6>
                     <ImageUploading
                         multiple
                         value={images}
@@ -202,7 +202,7 @@ export default function LocationPage() {
                                     onClick={onImageUpload}
                                     {...dragProps}
                                 >
-                                    Click or Drop here
+                                    Bấm hoặc thả tại đây !!
                                 </Button>
                                 &nbsp;
                                 <br/>
@@ -225,7 +225,7 @@ export default function LocationPage() {
 
                     <div>
                         <Button variant="contained" onClick={handleClickOpen}>
-                            Add Location
+                            Thêm địa điểm
                         </Button>
 
                         <Dialog

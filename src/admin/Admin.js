@@ -62,7 +62,7 @@ export default function Admin() {
     };
 
     return (
-        <div style={{marginTop: '3%'}}>
+        <div style={{marginTop: '1%'}}>
             <Box sx={{bgcolor: 'background.paper', width: '50%'}} style={{marginLeft: 'auto', marginRight: 'auto'}}>
                 <AppBar position="static">
                     <Tabs

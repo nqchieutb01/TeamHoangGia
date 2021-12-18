@@ -34,7 +34,7 @@ export default function Navbar() {
                     <img src={logo} alt='Logo' className='logo'/>
                 </Link>
 
-                    <Button onClick={() => history.goBack()} >Go Back</Button>
+                    <Button onClick={() => history.goBack()} >Quay về</Button>
             </div>
 
             <div className='nav_c-center'>
@@ -44,7 +44,7 @@ export default function Navbar() {
                             <div>
                                 <HomeIcon color="primary" style={{color: "#1C1C1E"}}/>
                             </div>
-                            home
+                            Nhà của tôi
                         </NavLink>
                     </li>
                     <li>
@@ -52,7 +52,7 @@ export default function Navbar() {
                             <div>
                                 <GpsFixedIcon color="primary" style={{color: "#1C1C1E"}}/>
                             </div>
-                            Location
+                            Địa điểm
                         </NavLink>
                     </li>
                     {/*<li>*/}
@@ -66,24 +66,19 @@ export default function Navbar() {
                                     <div>
                                         <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
                                     </div>
-                                    Create Tour
+                                    Tạo Tour
                                 </NavLink>
                             </li>
-                            <li>
-                                <NavLink activeClassName='li_active' to='/my-tour'>
-                                    <div>
-                                        <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
-                                    </div>
-                                    My Tour
-                                </NavLink>
-                            </li>
+                            {/*<li>*/}
+                            {/*    <NavLink activeClassName='li_active' to='/my-tour'>*/}
+                            {/*        <div>*/}
+                            {/*            <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>*/}
+                            {/*        </div>*/}
+                            {/*        My Tour*/}
+                            {/*    </NavLink>*/}
+                            {/*</li>*/}
                         </>
                     }
-
-                    {/*<li>*/}
-                    {/*    <NavLink activeClassName='li_active' to='/login'>Login</NavLink>*/}
-                    {/*</li>*/}
-
                 </ul>
 
             </div>

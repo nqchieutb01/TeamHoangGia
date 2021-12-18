@@ -19,10 +19,10 @@ export default function Home() {
         return (
             <main>
                 <div class="row_c">
-                    <div class="left_c">
-                        <SearchForm/>
-                    </div>
-                    <div class="main_c">
+                    {/*<div class="left_c">*/}
+                    {/*    /!*<SearchForm/>*!/*/}
+                    {/*</div>*/}
+                    <div class="main_c_home">
                         {/*<MessageSender/>*/}
                         <CocktailList/>
                     </div>
@@ -32,10 +32,10 @@ export default function Home() {
                             <br/>
                             <Search_element input={'Location'}/>
                             <br/>
-                            <h3>Price</h3>
+                            <h3>Giá</h3>
                             <RangeSlider/>
                             <br/>
-                            <h3>Rating</h3>
+                            <h3>Đánh giá</h3>
                             <HoverRating />
                         </section>
                     </div>

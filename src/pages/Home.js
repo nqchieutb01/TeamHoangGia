@@ -5,6 +5,7 @@ import Search_element from "../search/monoSearch";
 import {useGlobalContext} from "../context";
 import RangeSlider from "../search/RangeSlider";
 import HoverRating from "../search/Rating";
+import Tours from "../components/Tours";
 
 export default function Home() {
     const auth = useGlobalContext()
@@ -19,12 +20,12 @@ export default function Home() {
         return (
             <main>
                 <div class="row_c">
-                    {/*<div class="left_c">*/}
-                    {/*    /!*<SearchForm/>*!/*/}
-                    {/*</div>*/}
-                    <div class="main_c_home">
-                        {/*<MessageSender/>*/}
-                        <CocktailList/>
+                    <div class="left_c">
+                        <SearchForm/>
+                    </div>
+                    <div class="main_c">
+                        {/*<CocktailList/>*/}
+                        <Tours/>
                     </div>
                     <div class="right_c">
                         <section className='section-center_c'>

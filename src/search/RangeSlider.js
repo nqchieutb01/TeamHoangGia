@@ -1,34 +1,32 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Slider from '@mui/material/Slider';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
+
+const useStyles = makeStyles({
+    root: {
+        width: 400,
+    },
+});
 
 function valuetext(value) {
     return `${value}°C`;
 }
 
 export default function RangeSlider() {
-    const [value, setValue] = React.useState([0, 1000]);
-
-    const handleChange = (event, newValue) => {
-        console.log(newValue)
-        setValue(newValue);
-    };
+    const classes = useStyles();
 
     return (
-      // <section className='section-center_c'>
-          <>
-          <Box sx={{ width: "100 %" }}>
-              <Slider
-                  getAriaLabel={() => 'Temperature range'}
-                  value={value}
-                  onChange={handleChange}
-                  valueLabelDisplay="auto"
-                  getAriaValueText={valuetext}
-              />
-          </Box>
-          </>
-      // {/*</section>*/}
-
-
+        <div className={classes.root} style={{width:'100%'}}>
+            <Slider
+                defaultValue={1000000}
+                getAriaValueText={valuetext}
+                // aria-labelledby="discrete-slider-small-steps"
+                step={100000}
+                marks
+                min={0}
+                max={1000000}
+                valueLabelDisplay="auto"
+            />
+        </div>
     );
 }

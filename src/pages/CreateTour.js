@@ -88,7 +88,9 @@ export default function CreateTour({userId}) {
                 <LocationsInCart items={LocationInCart} removeItem={removeItemInCart}/>
             </div>
             <div className="main_c">
+
                 <section className='section-center_c'>
+
                     {locations.length === 0 ?
                         <div className='title'>
 
@@ -108,7 +110,8 @@ export default function CreateTour({userId}) {
 
                         </div> :
                         <main className='main-tour'>
-
+                            <h6> Tìm kiếm</h6>
+                            <div className='underline'></div>
                             <div className='form-control_c'>
                                 <input
                                     type='text'
@@ -129,8 +132,7 @@ export default function CreateTour({userId}) {
             </div>
             <div className="right_c">
                 <section className='section-center_c'>
-                    <h6> Tìm kiếm</h6>
-                    <div className='underline'></div>
+
                     <br/>
                     <DetailsCreateTour userId={userId} locationsInCart={LocationInCart}/>
                 </section>

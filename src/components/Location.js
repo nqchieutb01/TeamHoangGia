@@ -11,14 +11,13 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 1000,
+    width: 1200,
     bgcolor: 'background.paper',
     border: '1px solid #000',
     borderRadius:'10px',
@@ -69,7 +68,6 @@ export default function Location ({ id, name, address,description ,image, price,
                                         {/*<Link to='/' className='btn_c btn_c-primary'>*/}
                                         {/*    back home*/}
                                         {/*</Link>*/}
-                                        <br/><br/><br/>
                                         <h2 className='section_c-title'>{name}</h2>
                                         <div className='drink'>
                                             {
@@ -83,9 +81,7 @@ export default function Location ({ id, name, address,description ,image, price,
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Địa chỉ :</span> {address}
                                                 </p >
-                                                <p style={{textAlign:'left'}}>
-                                                    <span className='drink-data'>Mô tả :</span> {description+" "}
-                                                </p >
+
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Giá :</span> {price} VNĐ
                                                 </p>
@@ -95,6 +91,9 @@ export default function Location ({ id, name, address,description ,image, price,
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Thời gian đóng cửa :</span> {timeClose}h
                                                 </p>
+                                                <p style={{textAlign:'left'}}>
+                                                    <span className='drink-data'>Mô tả :</span> {description+" "}
+                                                </p >
                                             </div>
                                         </div>
                                     </section>
@@ -169,9 +168,7 @@ export default function Location ({ id, name, address,description ,image, price,
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Địa chỉ :</span> {address}
                                                 </p >
-                                                <p style={{textAlign:'left'}}>
-                                                    <span className='drink-data'>Mô tả :</span> {description+" "}
-                                                </p >
+
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Giá :</span> {price} VNĐ
                                                 </p>
@@ -181,6 +178,9 @@ export default function Location ({ id, name, address,description ,image, price,
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Thời gian đóng cửa :</span> {timeClose}h
                                                 </p>
+                                                <p style={{textAlign:'left'}}>
+                                                    <span className='drink-data'>Mô tả :</span> {description+" "}
+                                                </p >
                                             </div>
                                         </div>
                                     </section>

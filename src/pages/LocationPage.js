@@ -13,6 +13,7 @@ import Locations from "../components/Locations";
 import SERVICE from "../services/location.service"
 import {Snackbar} from "@material-ui/core";
 import MuiAlert from '@mui/material/Alert';
+import imageDefault from "../imageDefault"
 
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -22,6 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function LocationPage() {
+    // console.log(imageDefault.imageDefault)
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
     const [images, setImages] = useState([]);
@@ -30,7 +32,7 @@ export default function LocationPage() {
     const [values, setValues] = useState({
         name: null,
         address: null,
-        image: '',
+        image:imageDefault.imageDefault ,
         price: 0,
         timeOpen: null,
         timeClose: null,
@@ -161,20 +163,19 @@ export default function LocationPage() {
 
                     <h6>Add Location</h6>
                     <div className="underline"></div>
-                    <div><TextField label={"Tên"} variant="standard"
+                    <div><TextField label={"Name"} variant="standard"
                                     onChange={handleChange('name')}/></div>
-                    <div><TextField id="standard-basic" label={"Địa chỉ"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Address"} variant="standard"
                                     onChange={handleChange('address')}/></div>
                     <div><TextField type="number" min="0" step={1000} id="standard-basic" label={"price"}
                                     variant="standard"
-                                    onChange={handleChange('Giá')}/></div>
+                                    onChange={handleChange('price')}/></div>
 
-                    <div><TextField id="standard-basic" label={"Thời gian mở cửa"} variant="standard"
+                    <div><TextField id="standard-basic" label={"TimeOpen"} variant="standard"
                                     onChange={handleChange('timeOpen')}/></div>
-
-                    <div><TextField id="standard-basic" label={"Thời gian đóng cửa"} variant="standard"
+                    <div><TextField id="standard-basic" label={"TimeClose"} variant="standard"
                                     onChange={handleChange('timeClose')}/></div>
-                    <div><TextField id="standard-basic" label={"Thể loại"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Type"} variant="standard"
                                     onChange={handleChange('type')}/></div>
                     <br/>
 

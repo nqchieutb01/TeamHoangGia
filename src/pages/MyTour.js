@@ -97,6 +97,7 @@ export default function MyTour() {
                 {tours.map((tour) => {
                     return <article className="single-tour" key={tour.id}>
                         <h5>{tour.name}</h5>
+                        <h6>{tour.id}</h6>
                         <div>
                             <Button style={{color: 'red'}} onClick={()=>handleClickOpen(tour.id)}>Delete <DeleteIcon/></Button>
                         </div>

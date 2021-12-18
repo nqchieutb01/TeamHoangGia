@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
 import {useCallback} from 'react'
-
+import SERVICE from './services/tour.service'
+import {element} from "prop-types";
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 const AppContext = React.createContext()
 const AppProvider = ({children}) => {
@@ -9,14 +10,7 @@ const AppProvider = ({children}) => {
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearchTerm] = useState('a')
     const [cocktails, setCocktails] = useState([])
-    const [isModalOpen, setIsmodalOpen] = useState(false);
-
-    const openModal = () => {
-        setIsmodalOpen(true);
-    }
-    const closeModal = () => {
-        setIsmodalOpen(false);
-    }
+    const [tours , setTours] = useState([])
 
     const fetchDrinks = useCallback(async () => {
         setLoading(true)
@@ -54,16 +48,40 @@ const AppProvider = ({children}) => {
         }
     }, [searchTerm])
 
-    useEffect(() => {
-        fetchDrinks()
-    }, [searchTerm, fetchDrinks])
+    const fetchTour = async ()=>{
+        await SERVICE.getAllTour().then((res) => {
 
+            setTours(res.data.map((tourE) => {
+                    const temp = Object.assign({}, tourE.tour);
+                    // console.log(temp)
+                    const listImage = []
+                    tourE.location.forEach(element=>{
+                        listImage.push(element.image)
+                    })
+                    temp['listImage'] =listImage
+                    return temp;
+                }
+            ))
+        }).catch((e) => console.log(e))
+    }
+
+    // useEffect(async () => {
+    //     await fetchDrinks()
+    //     await fetchTour()
+    //     console.log('tour 2',tours)
+    // }, [searchTerm, fetchDrinks])
+
+    useEffect(async () => {
+        await fetchDrinks()
+        setLoading(false)
+        await fetchTour()
+    }, [])
+    // console.log('tours 2',tours)
 
     return (
         <AppContext.Provider
             value={{
-                loading, cocktails, searchTerm, setSearchTerm, auth, setAuth
-                , isModalOpen, openModal, closeModal
+                loading, cocktails, searchTerm, setSearchTerm, auth, setAuth , tours , setTours
             }}
         >
             {children}

@@ -125,10 +125,9 @@ export default function AppBar_v1() {
                             <Stack direction="row" spacing={2}>
                                 <Avatar> {currentUser.name[0].toUpperCase()}</Avatar>
                                 <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
-                                    {currentUser.name}
+                                    {currentUser.name !== 'null null' ? currentUser.name : 'Người dùng'}
                                     <br/>
                                     <p style={{color:'red'}}>Role: {currentUser.role}</p>
-
                                 </h6>
                             </Stack>
                         </div>

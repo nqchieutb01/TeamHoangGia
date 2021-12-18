@@ -57,9 +57,9 @@ export default function Tour() {
             console.log('tour', res.data)
         }).catch((e) => console.log(e))
 
-        SERVICE.getTourId(1).then((res) => {
-            console.log('tour id:', res.data)
-        })
+        // SERVICE.getTourId(1).then((res) => {
+        //     console.log('tour id:', res.data)
+        // })
 
     }, [])
 
@@ -68,8 +68,10 @@ export default function Tour() {
         setOpen(true);
     };
 
-    const handleYes = () => {
-            setTours([...tours.filter((user) => user.id !== currentID)])
+    const handleYes = async () => {
+            setTours([...tours.filter((tour) => tour.id !== currentID)])
+            console.log(currentID)
+            await SERVICE.deleteTour(currentID)
             setOpen(false);
     };
     const handleNo = () => {

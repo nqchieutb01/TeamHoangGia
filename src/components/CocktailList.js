@@ -2,11 +2,11 @@ import React from 'react'
 import Cocktail from './Cocktail'
 import Loading from '../pages/Loading'
 import { useGlobalContext } from '../context'
-// import "../cloneIndex.css"
 import "../index.css"
 
 export default function CocktailList() {
-  const { cocktails, loading } = useGlobalContext()
+  const { cocktails, loading ,tours} = useGlobalContext()
+    console.log('2-> ',tours)
   if (loading) {
     return <Loading/>
   }

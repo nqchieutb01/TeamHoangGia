@@ -21,10 +21,14 @@ const editTour = (req) =>{
 const addLoction = (req) => {
     return axios.post(API_URL + "tours/add_location", req, {headers: authHeader()})
 }
+const deleteTour = (id)=>{
+    return axios.delete(API_URL + "tours/delete/" + id, {headers: authHeader()});
+}
 export default {
     getAllTour,
     getTourId,
     createTour,
     editTour,
-    addLoction
+    addLoction,
+    deleteTour
 }

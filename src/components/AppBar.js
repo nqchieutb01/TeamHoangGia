@@ -105,6 +105,7 @@ export default function AppBar_v1() {
     const logOut = useCallback(() => {
         dispatch(logout());
         setAnchorEl(null);
+        history.push('/home')
     }, [dispatch]);
     return (
         <Toolbar style={{background: "white"}}>
@@ -156,7 +157,7 @@ export default function AppBar_v1() {
                         >
                             <MenuItem onClick={routeSettingAccount}>
                                 <ContactPageIcon/>
-                                My account
+                                Tài khoản của tôi
                             </MenuItem>
                             <MenuItem onClick={routeAdmin} disableRipple>
                                 <AdminPanelSettingsIcon/>
@@ -166,7 +167,7 @@ export default function AppBar_v1() {
 
                             <MenuItem onClick={logOut}>
                                 <LogoutIcon/>
-                                Log out
+                                Đăng Xuất
                             </MenuItem>
                             {/*<MenuItem onClick={handleClose} disableRipple>*/}
                             {/*    <MoreHorizIcon/>*/}
@@ -181,7 +182,7 @@ export default function AppBar_v1() {
             {
                 !currentUser &&
                 (<NavLink to='/login'>
-                    <Button variant="contained" style={{marginRight: '0%'}}>Login</Button>
+                    <Button variant="contained" style={{marginRight: '0%'}}>Đăng nhập</Button>
                 </NavLink>)
             }
         </Toolbar>

@@ -15,14 +15,10 @@ export default function Register() {
 
     const validationSchema = () => {
         return Yup.object().shape({
-            fullname: Yup.string().required('Fullname is required'),
             username: Yup.string()
                 .required('Username is required')
                 .min(3, 'Username must be at least 3 characters')
                 .max(20, 'Username must not exceed 20 characters'),
-            email: Yup.string()
-                .required('Email is required')
-                .email('Email is invalid'),
             password: Yup.string()
                 .required('Password is required')
                 .min(6, 'Password must be at least 6 characters')
@@ -30,11 +26,12 @@ export default function Register() {
             confirmPassword: Yup.string()
                 .required('Confirm Password is required')
                 .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
-            acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
+            // acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
         });
     }
 
     const handleSubmit = (data) => {
+        console.log(data)
         setSuccessful(false);
         dispatch(register(data.username, data.password))
             .then(() => {
@@ -47,12 +44,9 @@ export default function Register() {
     }
 
     const initialValues = {
-        fullname: '',
         username: '',
-        email: '',
         password: '',
         confirmPassword: '',
-        acceptTerms: false,
     };
 
     return (
@@ -84,20 +78,13 @@ export default function Register() {
                                                         {({resetForm}) => (
                                                             <Form>
                                                                 <div className="form-group">
-                                                                    <label>Full Name</label>
-                                                                    <Field name="fullname" type="text"
-                                                                           className="form-control"/>
-                                                                    <ErrorMessage
-                                                                        name="fullname"
-                                                                        component="div"
-                                                                        className="text-danger"
-                                                                    />
-                                                                </div>
-
-                                                                <div className="form-group">
-                                                                    <label htmlFor="username"> Username </label>
+                                                                    <label htmlFor="username"><h6
+                                                                        style={{letterSpacing: '0.1rem'}}>Tên đăng nhập</h6>
+                                                                    </label>
                                                                     <Field name="username" type="text"
-                                                                           className="form-control"/>
+                                                                           className="form-control"
+                                                                           placeholder="Tên đăng nhập"
+                                                                    />
                                                                     <ErrorMessage
                                                                         name="username"
                                                                         component="div"
@@ -106,65 +93,50 @@ export default function Register() {
                                                                 </div>
 
                                                                 <div className="form-group">
-                                                                    <label htmlFor="email"> Email </label>
-                                                                    <Field name="email" type="email"
-                                                                           className="form-control"/>
-                                                                    <ErrorMessage
-                                                                        name="email"
-                                                                        component="div"
-                                                                        className="text-danger"
-                                                                    />
-                                                                </div>
-
-                                                                <div className="form-group">
-                                                                    <label htmlFor="password"> Password </label>
-                                                                    <Field
-                                                                        name="password"
-                                                                        type="password"
-                                                                        className="form-control"
-                                                                    />
-                                                                    <ErrorMessage
-                                                                        name="password"
-                                                                        component="div"
-                                                                        className="text-danger"
-                                                                    />
-                                                                </div>
-
-                                                                <div className="form-group">
-                                                                    <label htmlFor="confirmPassword"> Confirm
-                                                                        Password </label>
-                                                                    <Field
-                                                                        name="confirmPassword"
-                                                                        type="password"
-                                                                        className="form-control"
-                                                                    />
-                                                                    <ErrorMessage
-                                                                        name="confirmPassword"
-                                                                        component="div"
-                                                                        className="text-danger"
-                                                                    />
-                                                                </div>
-
-                                                                <div className="form-group form-check">
-                                                                    <Field
-                                                                        name="acceptTerms"
-                                                                        type="checkbox"
-                                                                        className="form-check-input"
-                                                                    />
-                                                                    <label htmlFor="acceptTerms"
-                                                                           className="form-check-label">
-                                                                        I have read and agree to the Terms
+                                                                    <label htmlFor="password"><h6
+                                                                        style={{letterSpacing: '0.1rem'}}> Mật khẩu</h6>
                                                                     </label>
+                                                                    <Field
+                                                                        name="password"
+                                                                        type="password"
+                                                                        className="form-control"
+                                                                        placeholder="Mật khẩu"
+                                                                    />
                                                                     <ErrorMessage
-                                                                        name="acceptTerms"
+                                                                        name="password"
                                                                         component="div"
                                                                         className="text-danger"
                                                                     />
                                                                 </div>
 
                                                                 <div className="form-group">
-                                                                    <button type="submit" className="btn btn-primary">Register</button>
-                                                                    <button type="button" onClick={resetForm} className="btn btn-warning float-right">Reset</button>
+                                                                    <label htmlFor="confirmPassword"><h6
+                                                                        style={{letterSpacing: '0.1rem'}}>Xác nhận mật
+                                                                        khẩu</h6>
+                                                                    </label>
+                                                                    <Field
+                                                                        name="confirmPassword"
+                                                                        type="password"
+                                                                        className="form-control"
+                                                                        placeholder="Xác nhận mật khẩu"
+                                                                    />
+                                                                    <ErrorMessage
+                                                                        name="confirmPassword"
+                                                                        component="div"
+                                                                        className="text-danger"
+                                                                    />
+                                                                </div>
+
+                                                                <br/>
+                                                                <div className="form-group">
+                                                                    <button type="submit" className="btn btn-primary"
+                                                                            style={{width: '30%'}}>Register
+                                                                    </button>
+                                                                    <br/><br/>
+                                                                    <button type="button" onClick={resetForm}
+                                                                            className="btn btn-warning float-right"
+                                                                            style={{width: '30%'}}>Reset
+                                                                    </button>
                                                                 </div>
                                                             </Form>
                                                         )}
@@ -184,8 +156,8 @@ export default function Register() {
                                         )}
 
                                         <br/>
-                                        <a href="/login" className="btn btn-outline-danger">
-                                            Login
+                                        <a href="/login" className="btn btn-outline-danger" style={{width: '30%'}}>
+                                            Đăng kí
                                         </a>
                                     </div>
                                 </div>

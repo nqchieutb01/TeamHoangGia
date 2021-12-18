@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
-import SERVICE from '../services/tour.service'
+import SERVICE from '../services/user.service'
 
 // const url = 'https://course-api.com/react-tours-project'
 
@@ -44,16 +44,15 @@ export default function MyTour() {
     const fetchTours = async () => {
         setLoading(true)
         try {
-            const response = await fetch(url)
-            const tours = await response.json()
-            // console.log(tours)
-            SERVICE.getTourId(1).then(
-                (res)=> {
-                    console.log(res)
-                }
-            )
+            // const response = await fetch(url)
+            const response =await SERVICE.getTours()
+            const data = response.data
+            console.log('tours: ',data)
+            const tmp_tour = data.map(o=>o.tour)
+            console.log(tmp_tour)
+            setTours(data.map(o=>o.tour))
             setLoading(false)
-            setTours(tours)
+            setTours(tmp_tour)
         } catch (error) {
             setLoading(false)
             console.log(error)
@@ -62,9 +61,10 @@ export default function MyTour() {
 
     const deleteTour = async ()=> {
         try {
+            await SERVICE.deleteTour(deleteId)
             setOpen(true)
-            console.log(deleteId)
-            await fetch(delete_tour + deleteId, {method: "DELETE"})
+            // console.log(deleteId)
+            // await fetch(delete_tour + deleteId, {method: "DELETE"})
             setTours([...tours.filter((tour)=>tour.id!==deleteId)])
         } catch (e) {
             console.log(e)

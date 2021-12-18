@@ -90,7 +90,7 @@ export default function SingleLocation() {
                             <span className='drink-data'>address :</span> {address}
                         </p >
                         <p style={{textAlign:'left'}}>
-                            <span className='drink-data'>price :</span> {price}
+                            <span className='drink-data'>price :</span> {price} VNĐ
                         </p>
                         <p style={{textAlign:'left'}}>
                             <span className='drink-data'>timeOpen :</span> {timeOpen}

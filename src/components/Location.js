@@ -87,7 +87,7 @@ export default function Location ({ id, name, address,description ,image, price,
                                                     <span className='drink-data'>Mô tả :</span> {description+" "}
                                                 </p >
                                                 <p style={{textAlign:'left'}}>
-                                                    <span className='drink-data'>Giá :</span> {price}
+                                                    <span className='drink-data'>Giá :</span> {price} VNĐ
                                                 </p>
                                                 <p style={{textAlign:'left'}}>
                                                     <span className='drink-data'>Thời gian mở cửa :</span> {timeOpen}h
@@ -173,13 +173,13 @@ export default function Location ({ id, name, address,description ,image, price,
                                                     <span className='drink-data'>Mô tả :</span> {description+" "}
                                                 </p >
                                                 <p style={{textAlign:'left'}}>
-                                                    <span className='drink-data'>Giá :</span> {price}
+                                                    <span className='drink-data'>Giá :</span> {price} VNĐ
                                                 </p>
                                                 <p style={{textAlign:'left'}}>
-                                                    <span className='drink-data'>Thời gian mở cửa :</span> {timeOpen}
+                                                    <span className='drink-data'>Thời gian mở cửa :</span> {timeOpen}h
                                                 </p>
                                                 <p style={{textAlign:'left'}}>
-                                                    <span className='drink-data'>Thời gian đóng cửa :</span> {timeClose}
+                                                    <span className='drink-data'>Thời gian đóng cửa :</span> {timeClose}h
                                                 </p>
                                             </div>
                                         </div>

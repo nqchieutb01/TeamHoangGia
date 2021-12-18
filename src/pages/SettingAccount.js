@@ -36,9 +36,8 @@ export default function SettingAccount() {
         try {
             const tmp = await service.getUserInfo()
             setUser(tmp.data)
-            console.log(tmp.data)
-            console.log("ssss")
-            console.log(user)
+            // console.log(tmp.data)
+            // console.log(user)
         } catch (error) {
             console.log(error)
         }

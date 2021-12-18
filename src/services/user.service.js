@@ -19,10 +19,17 @@ const deleteUser = (id)=>{
 const editUser = (req)=>{
     return axios.post(API_URL+"users/update" , req,{headers:authHeader()})
 }
-
+const getTours = ()=>{
+    return axios.get(API_URL + "users/tours/", {headers: authHeader()});
+}
+const deleteTour = (id)=>{
+    return axios.delete(API_URL + "tours/delete/" + id, {headers: authHeader()});
+}
 export default {
     getAllUsers,
     getUserInfo,
     deleteUser,
-    editUser
+    editUser,
+    getTours,
+    deleteTour
 };

@@ -12,6 +12,7 @@ import Form from "react-validation/build/form";
 import CheckButton from "react-validation/build/button";
 
 import {login} from "../actions/auth";
+import {TextField} from "@material-ui/core";
 
 const required = (value) => {
     if (!value) {
@@ -91,32 +92,56 @@ const Login = (props) => {
                                         </div>
 
                                         <Form onSubmit={handleLogin} ref={form}>
-                                            <p>Please login to your account</p>
-
+                                            {/*<p>Please login to your account</p>*/}
                                             <div className="form-outline mb-4">
                                                 {/*<input type="email" id="form2Example11" className="form-control"*/}
                                                 {/*       placeholder="Phone number or email address"/>*/}
-                                                <Input
-                                                    type="text"
-                                                    className="form-control"
+                                                {/*<Input*/}
+                                                {/*    type="text"*/}
+                                                {/*    className="form-control"*/}
+                                                {/*    name="username"*/}
+                                                {/*    value={username}*/}
+                                                {/*    onChange={onChangeUsername}*/}
+                                                {/*    validations={[required]}*/}
+                                                {/*/>*/}
+                                                <TextField
+                                                    id="standard-textarea"
+                                                    label="Tên đăng nhập"
+                                                    placeholder="Tên đăng nhập"
+                                                    variant="standard"
                                                     name="username"
                                                     value={username}
                                                     onChange={onChangeUsername}
-                                                    validations={[required]}
+                                                    // validations={[required]}
+                                                    required
+                                                    style={{width:'100%'}}
                                                 />
-                                                <label className="form-label" htmlFor="username">Username</label>
+                                                {/*<label className="form-label" htmlFor="username">Username</label>*/}
                                             </div>
 
                                             <div className="form-outline mb-4">
-                                                <Input
-                                                    type="password"
-                                                    className="form-control"
+                                                {/*<Input*/}
+                                                {/*    type="password"*/}
+                                                {/*    className="form-control"*/}
+                                                {/*    name="password"*/}
+                                                {/*    value={password}*/}
+                                                {/*    onChange={onChangePassword}*/}
+                                                {/*    validations={[required]}*/}
+                                                {/*/>*/}
+                                                {/*<label className="form-label" htmlFor="password">Password</label>*/}
+                                                <TextField
+                                                    id="standard-textarea1sss"
+                                                    label="Mật khẩu"
+                                                    placeholder="Mật khẩu"
+                                                    variant="standard"
                                                     name="password"
                                                     value={password}
+                                                    type="password"
                                                     onChange={onChangePassword}
-                                                    validations={[required]}
+                                                    // validations={[required]}
+                                                    required
+                                                    style={{width:'100%'}}
                                                 />
-                                                <label className="form-label" htmlFor="password">Password</label>
                                             </div>
 
                                             <div className="text-center pt-1 mb-5 pb-1">
@@ -131,15 +156,12 @@ const Login = (props) => {
                                                     {loading && (
                                                         <span className="spinner-border spinner-border-sm"></span>
                                                     )}
-                                                    Login
+                                                    Đăng nhập
                                                 </button>
                                             </div>
                                             <CheckButton style={{display: "none"}} ref={checkBtn}/>
                                             <div className="d-flex align-items-center justify-content-center pb-4">
-                                                <p className="mb-0 me-2">Don't have an account?</p>
-                                                {/*<button type="button" className="btn btn-outline-danger">*/}
-                                                {/*    Create new*/}
-                                                {/*</button>*/}
+                                                <p className="mb-0 me-2">Nếu chưa có tài khoản?</p>
                                             </div>
 
                                         </Form>
@@ -151,7 +173,7 @@ const Login = (props) => {
                                             </div>
                                         )}
                                         <a href="/register" className="btn btn-outline-danger">
-                                            Register
+                                            Đăng kí
                                         </a>
                                         {/*<Link activeClassName='li_active' className="btn btn-outline-danger"*/}
                                         {/*         to='/register'>Register</Link>*/}

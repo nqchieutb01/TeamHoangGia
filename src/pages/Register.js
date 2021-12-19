@@ -78,8 +78,7 @@ export default function Register() {
                                                 <div className="register-form">
                                                     <Formik
                                                         initialValues={initialValues}
-                                                        validationSchema={validationSchema}
-                                                        onSubmit={handleSubmit}
+                                                        validationSchema={validationSchema} onSubmit={handleSubmit}
                                                     >
                                                         {({resetForm}) => (
                                                             <Form>

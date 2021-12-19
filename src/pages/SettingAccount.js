@@ -10,14 +10,18 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Slide from "@mui/material/Slide";
 import MyTour from "./MyTour";
+import ChangePassword from "../components/ChangePassword"
 
+const bcrypt = require('bcryptjs')
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
+// const match = await bcrypt.compare(password, user.passwordHash);
 
 export default function SettingAccount() {
-    const [test, setTest] = useState("tessst")
     const [open, setOpen] = React.useState(false);
+    const [changePassword, setChangePassword] = React.useState(false);
+    const [password, setPassword] = React.useState(false);
     const [check, setcheck] = React.useState({
         bool: false,
         message: null,
@@ -29,16 +33,12 @@ export default function SettingAccount() {
         phonenumber: null,
         role: null,
     })
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const {user: currentUser} = useSelector((state) => state.auth);
 
     const fetchUser = async () => {
         try {
             const tmp = await service.getUserInfo()
             setUser(tmp.data)
-            console.log(tmp.data)
-            console.log("ssss")
-            console.log(user)
+            setPassword(tmp.data.password)
         } catch (error) {
             console.log(error)
         }
@@ -48,7 +48,6 @@ export default function SettingAccount() {
     }, [])
 
     const handleClickOpen = () => {
-        console.log("test submit")
         checkRequired = false
         required(user.phonenumber, "phonenumber must be not null")
         required(user.lastname, "lastname must be not null")
@@ -57,15 +56,13 @@ export default function SettingAccount() {
             setOpen(true);
 
         }
-
-
     };
     const handleOk = () => {
         setcheck({bool: false});
     };
 
     const handleYes = () => {
-        //changeProfile
+        handleChangeProfile()
         setOpen(false);
     };
 
@@ -80,11 +77,16 @@ export default function SettingAccount() {
             console.log(message)
         }
     }
-    const changeProfile = () => {
-
+    const handleChangeProfile = async () => {
+        // const match = bcrypt.compareSync("admin", password);
+        // console.log(match)
+        //console.log(user)
+        await service.updateInfo(user)
     }
 
-
+    const handleClickChangePassword = () => {
+        setChangePassword(!changePassword)
+    }
 
     return (
         <div className="bootstrap-inside">
@@ -107,24 +109,23 @@ export default function SettingAccount() {
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <div className="d-flex flex-row align-items-center back"><i
                                     className="fa fa-long-arrow-left mr-1 mb-1"></i>
-                                    <h6>        </h6>
+                                    <h6></h6>
                                 </div>
-                                <button className="btn btn-primary profile-button" >change password</button>
                             </div>
                             <div className="row mt-2">
                                 <div className="col-md-2">
-                                    <div> FIRST NAME: </div>
+                                    <div> FIRST NAME:</div>
                                 </div>
                                 <div className="col-md-6">
                                     <input type="text" className="form-control" placeholder="first name"
                                            value={user.firstname}
-                                              onChange={(e) => setUser({...user, firstname: e.target.value})}
+                                           onChange={(e) => setUser({...user, firstname: e.target.value})}
                                     />
                                 </div>
                             </div>
                             <div className="row mt-3">
                                 <div className="col-md-2">
-                                    <div> LAST NAME: </div>
+                                    <div> LAST NAME:</div>
                                 </div>
                                 <div className="col-md-6">
                                     <input type="text" className="form-control" placeholder="last name"
@@ -136,7 +137,7 @@ export default function SettingAccount() {
                             </div>
                             <div className="row mt-3">
                                 <div className="col-md-2">
-                                    <div> PHONENUMBER: </div>
+                                    <div> PHONENUMBER:</div>
                                 </div>
                                 <div className="col-md-6">
                                     <input type="text" className="form-control" placeholder="0123456789"
@@ -148,7 +149,7 @@ export default function SettingAccount() {
                             <div className="row mt-3">
 
                                 <div className="col-md-2">
-                                    <div> ROLE: </div>
+                                    <div> ROLE:</div>
                                 </div>
                                 <div className="col-md-6">
                                     <input type="text"
@@ -158,19 +159,38 @@ export default function SettingAccount() {
                                 </div>
                             </div>
 
+
                             <div className="mt-5 text-right">
-                                <button className="btn btn-primary profile-button" type="button"  onClick={handleClickOpen} >Save Profile</button>
+                                <button className="btn btn-primary profile-button" type="button"
+                                        onClick={handleClickOpen}>Save Profile
+                                </button>
 
                             </div>
+
+                            <div className="mt-5 text-right">
+                                <button className="btn btn-primary profile-button"
+                                        onClick={handleClickChangePassword}>change password
+                                </button>
+                                <br/><br/><br/>
+                            </div>
+
+                            {
+                                changePassword && (
+                                    <ChangePassword oldPassword={password}/>
+                                )
+                            }
 
                         </div>
 
                     </div>
                 </div>
+
+
                 <br/> <br/> <br/> <br/>
                 <h1>My Tour</h1>
                 <div className="underline"></div>
                 <MyTour/>
+
             </div>
 
             <Dialog

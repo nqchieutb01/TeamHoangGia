@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react'
-import CocktailList from '../components/CocktailList'
-import SearchForm from '../components/SearchForm'
-import Search_element from "../search/monoSearch";
+import SearchElement from "../search/monoSearch";
 import {useGlobalContext} from "../context";
 import RangeSlider from "../search/RangeSlider";
 import HoverRating from "../search/Rating";
 import Tours from "../components/Tours";
-import Search_v1 from "../components/Search";
+import SearchV1 from "../components/Search";
 
 export default function Home() {
     const auth = useGlobalContext()
@@ -23,7 +21,7 @@ export default function Home() {
                 <div class="row_c">
                     <div class="left_c">
                         <section className='section-center_c'>
-                              <Search_v1/>
+                              <SearchV1/>
                         </section>
                     </div>
                     <div class="main_c">
@@ -32,9 +30,9 @@ export default function Home() {
                     </div>
                     <div class="right_c">
                         <section className='section-center_c'>
-                            <Search_element input={'Name'}/>
+                            <SearchElement input={'Name'}/>
                             <br/>
-                            <Search_element input={'Location'}/>
+                            <SearchElement input={'Location'}/>
                             <br/>
                             <h3>Giá</h3>
                             <RangeSlider/>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Loading from './Loading'
-import {useParams, Link} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import SERVICE from '../services/location.service'
 export default function SingleLocation() {
     const {id} = useParams()
@@ -18,30 +18,7 @@ export default function SingleLocation() {
                 // console.log('location:' ,res.data[0])
                 const data = res.data[0]
                 if (data) {
-                    const {
-                        id:id,
-                        name: name,
-                        city: city,
-                        address: address,
-                        image: image,
-                        price: price,
-                        timeOpen: timeOpen,
-                        timeClose: timeClose,
-                        createdAt:createdAt,
-                        updatedAt:updatedAt
-
-                    } = data
-                    const newLocation = {
-                        id,
-                        name,
-                        address,
-                        image,
-                        price,
-                        timeOpen,
-                        timeClose,
-                        createdAt,
-                        updatedAt
-                    }
+                    const newLocation = data
                     console.log(newLocation)
                     setLocation(newLocation)
                 } else {
@@ -52,9 +29,8 @@ export default function SingleLocation() {
             }
             setLoading(false)
         }
-
-        getLocation()
-    }, [])
+        getLocation().then().catch((e)=>console.log(e))
+    })
 
     if (loading) {
         return <Loading/>
@@ -63,21 +39,18 @@ export default function SingleLocation() {
         return <h2 className='section-title'>no location to display</h2>
     } else {
         const {
-            id,
+            // id,
             name,
             address,
             image,
             price,
             timeOpen,
             timeClose,
-            createdAt,
-            updatedAt
+            // createdAt,
+            // updatedAt
         } = location
         return (
             <section className='cocktail-section'>
-                {/*<Link to='/' className='btn_c btn_c-primary'>*/}
-                {/*    back home*/}
-                {/*</Link>*/}
                 <br/><br/><br/>
                 <h2 className='section_c-title'>{name}</h2>
                 <div className='drink'>

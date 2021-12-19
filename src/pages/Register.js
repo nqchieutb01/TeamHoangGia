@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 import logo from '../logo.svg'
 import background from '../img/background.png'
-import React, {useState, useRef} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import * as Yup from 'yup';
 import {register} from "../actions/auth";
@@ -65,7 +65,7 @@ export default function Register() {
                                                     display: "block", marginLeft: "35%",
                                                     width: "70%"
                                                 }} alt="logo"/>
-                                            <h4 className="mt-1 mb-5 pb-1">We are Hoang Gia Team</h4>
+                                            <h4 className="mt-1 mb-5 pb-1">Việt Nam Tour</h4>
                                         </div>
                                         {
                                             !successful && (
@@ -130,7 +130,7 @@ export default function Register() {
                                                                 <br/>
                                                                 <div className="form-group">
                                                                     <button type="submit" className="btn btn-primary"
-                                                                            style={{width: '30%'}}>Register
+                                                                            style={{width: '30%'}}>Đăng kí
                                                                     </button>
                                                                     <br/><br/>
                                                                     <button type="button" onClick={resetForm}
@@ -157,7 +157,7 @@ export default function Register() {
 
                                         <br/>
                                         <a href="/login" className="btn btn-outline-danger" style={{width: '30%'}}>
-                                            Đăng kí
+                                            Đăng nhập
                                         </a>
                                     </div>
                                 </div>

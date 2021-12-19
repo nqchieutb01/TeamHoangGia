@@ -1,32 +1,27 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {useGlobalContext} from '../context'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "@mui/material/Button";
 import SearchIcon from '@mui/icons-material/Search';
-const {createSliderWithTooltip} = Slider;
-const Range = createSliderWithTooltip(Slider.Range);
 
-export default function Search_v1() {
-    const {initValue,search,setSearch} = useGlobalContext()
-    const {isClick,setIsClick} = useGlobalContext()
+export default function SearchV1() {
+    const {initValue, search, setSearch} = useGlobalContext()
+    const {isClick, setIsClick} = useGlobalContext()
     const handleChange = (prop) => (event) => {
         //console.log("test change")
         setSearch({...search, [prop]: event.target.value});
         //console.log(values)
     };
+
     function handleSubmit(e) {
-        // console.log(search)
         setIsClick(!isClick)
-        // console.log('as',isClick)
         e.preventDefault()
     }
-    const handleDeleteFilter = ()=>{
+
+    const handleDeleteFilter = () => {
         setSearch(initValue)
         console.log('asss')
         setIsClick(!isClick)
@@ -35,7 +30,7 @@ export default function Search_v1() {
     return (
         <>
             <form className='grocery_c-form' onSubmit={handleSubmit}>
-                <h3> <SearchIcon/>  Tìm kiếm</h3>
+                <h3><SearchIcon/> Tìm kiếm</h3>
                 <div className={"underline"}></div>
                 <br/>
                 <div className='form-control_c'>
@@ -57,9 +52,6 @@ export default function Search_v1() {
                         value={search.location}
                         onChange={handleChange('locationName')}
                     />
-                    {/*<button type='submit' className='submit-btn_c'>*/}
-                    {/*    {isEditingName ? 'edit' : 'submit'}*/}
-                    {/*</button>*/}
                 </div>
                 <br/>
                 <h6>Giá </h6>
@@ -92,7 +84,7 @@ export default function Search_v1() {
                     <h6>Đánh giá </h6>
                     {/* eslint-disable-next-line react/jsx-no-undef */}
                     <FormControl sx={{m: 1, width: '100%'}} style={{width: '80%'}}>
-                        <InputLabel id="demo-simple-select-helper-label">Star</InputLabel>
+                        <InputLabel id="demo-simple-select-helper-label">Sao</InputLabel>
                         <Select
                             labelId="demo-simple-select-helper-label"
                             id="demo-simple-select-helper"
@@ -109,11 +101,12 @@ export default function Search_v1() {
                     </FormControl>
 
                 </div>
-                <Button variant="outlined" color="error" onClick={handleDeleteFilter} style={{marginRight:'10%'}} >
+                <br/>
+                <Button variant="outlined" color="error" onClick={handleDeleteFilter} style={{marginRight: '10%'}}>
                     Xóa bộ lọc
                 </Button>
-                <Button variant="contained" onClick={handleSubmit} style={{width:'30%'}}>
-                   Tìm
+                <Button variant="contained" onClick={handleSubmit} style={{width: '30%'}}>
+                    Tìm
                 </Button>
             </form>
         </>

@@ -5,13 +5,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {NavLink, useHistory} from "react-router-dom";
 import Button from '@mui/material/Button';
-import {useGlobalContext} from "../context";
 import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../actions/auth";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Divider from '@mui/material/Divider';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import {styled, alpha} from '@mui/material/styles';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
@@ -59,23 +57,14 @@ const StyledMenu = styled((props) => (
         },
     },
 }));
-export default function AppBar_v1() {
+export default function NavBarLeft() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
     // console.log(currentUser)
-    const {openModal} = useGlobalContext()
-    const {auth, setAuth} = useGlobalContext()
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const handleChange = (event) => {
-        setAuth(event.target.checked);
-    };
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleMenu = (event) => {
-        // console.log(currentUser)
         setAnchorEl(event.currentTarget);
     };
 
@@ -109,7 +98,6 @@ export default function AppBar_v1() {
     }, [dispatch]);
     return (
         <Toolbar style={{background: "white"}}>
-            {/*<BasicModal/>*/}
             <IconButton
                 size="large"
                 edge="start"
@@ -127,7 +115,7 @@ export default function AppBar_v1() {
                                 <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
                                     {currentUser.name !== 'null null' ? currentUser.name : 'Người dùng'}
                                     <br/>
-                                    <p style={{color:'red'}}>Role: {currentUser.role}</p>
+                                    <p style={{color: 'red'}}>Role: {currentUser.role}</p>
                                 </h6>
                             </Stack>
                         </div>
@@ -168,10 +156,6 @@ export default function AppBar_v1() {
                                 <LogoutIcon/>
                                 Đăng Xuất
                             </MenuItem>
-                            {/*<MenuItem onClick={handleClose} disableRipple>*/}
-                            {/*    <MoreHorizIcon/>*/}
-                            {/*    More*/}
-                            {/*</MenuItem>*/}
                         </StyledMenu>
                     </Stack>
 

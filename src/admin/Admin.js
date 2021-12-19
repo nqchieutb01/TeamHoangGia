@@ -9,7 +9,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import User from "./User";
 import {useSelector} from "react-redux";
-import ChartsPage from "./LocationChart";
 import Location from "./Location";
 import Tour from './Tour';
 
@@ -74,8 +73,7 @@ export default function Admin() {
                         aria-label="full width tabs example"
                     >
                         <Tab label="Users Table" {...a11yProps(0)} />
-                        <Tab label="Locations Statistics" {...a11yProps(1)} />
-                        <Tab label="Locations Table" {...a11yProps(2)} />
+                        <Tab label="Locations Table" {...a11yProps(1)} />
                         <Tab label="Tour Table" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
@@ -88,13 +86,9 @@ export default function Admin() {
                         <User/>
                     </TabPanel>
                     <TabPanel value={value} index={1} dir={theme.direction}>
-                        {/*<LocationChart/>*/}
-                        <ChartsPage/>
-                    </TabPanel>
-                    <TabPanel value={value} index={2} dir={theme.direction}>
                         <Location/>
                     </TabPanel>
-                    <TabPanel value={value} index={3} dir={theme.direction}>
+                    <TabPanel value={value} index={2} dir={theme.direction}>
                         <Tour/>
                     </TabPanel>
                 </SwappableViews>

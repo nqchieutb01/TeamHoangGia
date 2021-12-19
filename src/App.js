@@ -1,13 +1,11 @@
-import React, {useCallback, useState} from "react";
+import React, {useCallback} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-// import pages
 import Home from "./pages/Home";
 import About from "./pages/About";
 import SingleCocktail from "./pages/SingleCocktail";
 import CreateTour from "./pages/CreateTour";
 import Error from "./pages/Error";
 
-// import components
 import Navbar from "./components/Navbar";
 import SettingAccount from "./pages/SettingAccount";
 import LocationPage from "./pages/LocationPage";
@@ -24,8 +22,6 @@ import EventBus from "./common/EventBus";
 import SingleLocation from "./pages/LocationSinglePage";
 
 function App() {
-    // const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-    // const [showAdminBoard, setShowAdminBoard] = useState(false);
 
     const {user: currentUser} = useSelector((state) => state.auth);
     console.log(currentUser)
@@ -42,15 +38,6 @@ function App() {
     }, [dispatch]);
 
     useEffect(() => {
-        // if (currentUser) {
-        //     console.log(currentUser)
-        //     // setShowModeratorBoard(currentUser.roles.includes("ROLE_MODERATOR"));
-        //     // setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
-        // } else {
-        //     setShowModeratorBoard(false);
-        //     setShowAdminBoard(false);
-        // }
-
         EventBus.on("logout", () => {
             logOut();
         });
@@ -84,6 +71,12 @@ function App() {
                     <Navbar/>
                     <SingleLocation/>
                 </Route>
+
+                <Route path="/tour/:id">
+                    <Navbar/>
+                    <SingleCocktail/>
+                </Route>
+
                 <Route path="/location">
                     <Navbar/>
                     <LocationPage/>

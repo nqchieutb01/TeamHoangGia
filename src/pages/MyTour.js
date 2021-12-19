@@ -18,7 +18,7 @@ export default function MyTour() {
     const [loading, setLoading] = useState(true)
     const [tours, setTours] = useState([])
     const [open, setOpen] = React.useState(false)
-    const [deleteId , setDeleteId] = useState(-1)
+    const [deleteId, setDeleteId] = useState(-1)
 
     const handleClickOpen = (id) => {
         setDeleteId(id)
@@ -39,12 +39,12 @@ export default function MyTour() {
         setLoading(true)
         try {
             // const response = await fetch(url)
-            const response =await SERVICE.getTours()
+            const response = await SERVICE.getTours()
             const data = response.data
             // console.log('tours: ',data)
-            const tmp_tour = data.map(o=>o.tour)
+            const tmp_tour = data.map(o => o.tour)
             // console.log(tmp_tour)
-            setTours(data.map(o=>o.tour))
+            setTours(data.map(o => o.tour))
             setLoading(false)
             setTours(tmp_tour)
         } catch (error) {
@@ -53,21 +53,22 @@ export default function MyTour() {
         }
     }
 
-    const deleteTour = async ()=> {
+    const deleteTour = async () => {
         try {
-            SERVICE.deleteTour(deleteId).then().catch((e)=>console.log(e))
+            SERVICE.deleteTour(deleteId).then().catch((e) => console.log(e))
             setOpen(true)
             // console.log(deleteId)
             // await fetch(delete_tour + deleteId, {method: "DELETE"})
-            setTours([...tours.filter((tour)=>tour.id!==deleteId)])
+            setTours([...tours.filter((tour) => tour.id !== deleteId)])
         } catch (e) {
             console.log(e)
         }
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
         await fetchTours()
-    }, [])
+    },[])
 
     if (loading) {
         return (
@@ -78,7 +79,7 @@ export default function MyTour() {
     }
     if (tours.length === 0) {
         return (
-            <main style={{marginTop:'10%'}}>
+            <main style={{marginTop: '10%'}}>
                 <div className='title'>
                     <h2>Bạn chưa có tour nào , xin vui lòng tạo Tour</h2>
                 </div>
@@ -93,7 +94,7 @@ export default function MyTour() {
                         <h5>{tour.name}</h5>
                         <h6>{tour.id}</h6>
                         <div>
-                            <Button style={{color: 'red'}} onClick={()=>handleClickOpen(tour.id)}>Delete <DeleteIcon/></Button>
+                            <Button style={{color: 'red'}} onClick={() => handleClickOpen(tour.id)}>Delete <DeleteIcon/></Button>
                         </div>
                     </article>
                 })}

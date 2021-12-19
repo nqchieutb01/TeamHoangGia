@@ -1,28 +1,21 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import SERVICE from "../services/location.service";
 
 import {
     DataGrid,
-    GridToolbarContainer,
     GridToolbarColumnsButton,
-    GridToolbarFilterButton,
-    GridToolbarExport,
+    GridToolbarContainer,
     GridToolbarDensitySelector,
+    GridToolbarExport,
+    GridToolbarFilterButton,
 } from '@mui/x-data-grid';
-import {
-    randomCreatedDate,
-    randomTraderName,
-    randomUpdatedDate,
-} from '@mui/x-data-grid-generator';
-
-import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
 import Slide from "@mui/material/Slide";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
-import {useEffect, useState} from "react";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 function CustomToolbar() {
@@ -45,13 +38,13 @@ export default function Location() {
     const [currentLocationID, setCurrentLocationID] = useState(-1);
     const [open, setOpen] = React.useState(false);
     const editState = {
-        id:null,
+        id: null,
         name: null,
-        address: null ,
-        description :null ,
-        price : null ,
-        timeOpen : null ,
-        timeClose : null ,
+        address: null,
+        description: null,
+        price: null,
+        timeOpen: null,
+        timeClose: null,
         type: null
     }
     useEffect(() => {
@@ -63,7 +56,7 @@ export default function Location() {
                 console.log(locations)
             }
         ).catch((e) => console.log(e))
-        return ()=>{
+        return () => {
             setLocations([])
         }
     }, [])
@@ -75,8 +68,8 @@ export default function Location() {
 
     const handleYes = async () => {
         console.log(currentLocationID)
-        setLocations(locations.filter((location)=>location.id !== currentLocationID))
-        SERVICE.deleteLocation(currentLocationID).then().catch((e)=>console.log(e))
+        setLocations(locations.filter((location) => location.id !== currentLocationID))
+        SERVICE.deleteLocation(currentLocationID).then().catch((e) => console.log(e))
         setOpen(false);
     };
 
@@ -90,11 +83,11 @@ export default function Location() {
     const handleClick = () => {
         // console.log(editRowsModel)
         const id = Object.keys(editRowsModel)[0]
-        if (typeof id === 'undefined'){
+        if (typeof id === 'undefined') {
             return
         }
         const data = editRowsModel[id]
-        editState.id = id ;
+        editState.id = id;
         editState.name = data.name.value
         editState.address = data.address.value
         editState.description = data.description.value
@@ -103,7 +96,7 @@ export default function Location() {
         editState.timeClose = data.timeClose.value
         editState.type = data.type.value
         // console.log(editState)
-        SERVICE.editLocation(editState).then().catch((e)=>console.log(e))
+        SERVICE.editLocation(editState).then().catch((e) => console.log(e))
     }
 
     const handleDeleteLocation = (id) => {
@@ -136,7 +129,7 @@ export default function Location() {
         {field: 'name', headerName: 'Tên', width: 120, editable: true},
         {field: 'address', headerName: 'Địa Chỉ', editable: true},
         {field: 'description', headerName: 'Mô tả', editable: true},
-        // {field: 'image', headerName: 'image', width: 120, editable: true,},
+        {field: 'image', headerName: 'image', width: 120, editable: true,},
         {field: 'price', headerName: 'Giá', type: 'number', width: 120, editable: true,},
         {field: 'timeOpen', headerName: 'Mở cửa', width: 120, editable: true,},
         {field: 'timeClose', headerName: 'Đóng của', width: 120, editable: true,},
@@ -147,9 +140,6 @@ export default function Location() {
 
     return (
         <div style={{width: '100%'}}>
-            <Alert severity="info" style={{marginBottom: 8}}>
-                <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
-            </Alert>
             <div style={{height: 600, width: '100%'}}>
                 <DataGrid
                     rows={locations}
@@ -163,7 +153,7 @@ export default function Location() {
                     getRowId={(row) => row.id}
                 />
             </div>
-            <Button onClick={handleClick} variant="contained" style={{background:'red'}}>Chỉnh sửa</Button>
+            <Button onClick={handleClick} variant="contained" style={{background: 'red'}}>Chỉnh sửa</Button>
             <Dialog
                 open={open}
                 TransitionComponent={Transition}

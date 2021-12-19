@@ -25,6 +25,7 @@ const editLocation = (req)=>{
     return axios.post(API_URL +"locations/update/" , req , {headers:authHeader()})
 }
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     searchLocation,
     getAllLocations,

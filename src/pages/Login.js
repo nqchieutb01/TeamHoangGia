@@ -3,7 +3,6 @@ import "./Login.css"
 import logo from '../logo.svg'
 import background from '../img/background.png'
 import React, {useState, useRef} from "react";
-import Input from "react-validation/build/input";
 
 import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from 'react-router-dom';
@@ -14,15 +13,6 @@ import CheckButton from "react-validation/build/button";
 import {login} from "../actions/auth";
 import {TextField} from "@material-ui/core";
 
-const required = (value) => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
 const Login = (props) => {
     const form = useRef();
     const checkBtn = useRef();
@@ -88,22 +78,11 @@ const Login = (props) => {
                                                     display: "block", marginLeft: "35%",
                                                     width: "70%"
                                                 }} alt="logo"/>
-                                            <h4 className="mt-1 mb-5 pb-1">We are Hoang Gia Team</h4>
+                                            <h4 className="mt-1 mb-5 pb-1">Việt Nam Tour</h4>
                                         </div>
 
                                         <Form onSubmit={handleLogin} ref={form}>
-                                            {/*<p>Please login to your account</p>*/}
                                             <div className="form-outline mb-4">
-                                                {/*<input type="email" id="form2Example11" className="form-control"*/}
-                                                {/*       placeholder="Phone number or email address"/>*/}
-                                                {/*<Input*/}
-                                                {/*    type="text"*/}
-                                                {/*    className="form-control"*/}
-                                                {/*    name="username"*/}
-                                                {/*    value={username}*/}
-                                                {/*    onChange={onChangeUsername}*/}
-                                                {/*    validations={[required]}*/}
-                                                {/*/>*/}
                                                 <TextField
                                                     id="standard-textarea"
                                                     label="Tên đăng nhập"
@@ -120,15 +99,7 @@ const Login = (props) => {
                                             </div>
 
                                             <div className="form-outline mb-4">
-                                                {/*<Input*/}
-                                                {/*    type="password"*/}
-                                                {/*    className="form-control"*/}
-                                                {/*    name="password"*/}
-                                                {/*    value={password}*/}
-                                                {/*    onChange={onChangePassword}*/}
-                                                {/*    validations={[required]}*/}
-                                                {/*/>*/}
-                                                {/*<label className="form-label" htmlFor="password">Password</label>*/}
+
                                                 <TextField
                                                     id="standard-textarea1sss"
                                                     label="Mật khẩu"
@@ -145,11 +116,7 @@ const Login = (props) => {
                                             </div>
 
                                             <div className="text-center pt-1 mb-5 pb-1">
-                                                {/*<button*/}
-                                                {/*    className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"*/}
-                                                {/*    style={{width: '80%'}}*/}
-                                                {/*    type="button">Log in*/}
-                                                {/*</button>*/}
+
                                                 <button
                                                     className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                                                     disabled={loading}>

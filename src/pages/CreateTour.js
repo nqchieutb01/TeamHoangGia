@@ -13,7 +13,6 @@ export default function CreateTour({userId}) {
     const [search, setSearch] = useState([])
     // check Location có trong danh sách của Tour hiện tại không
     const [state,setState] = useState(new Map())
-    // const state = new Map()
 
     const addToCart = (id) => {
         const removeLocation = locations.filter((location) => location.id === id)
@@ -22,7 +21,7 @@ export default function CreateTour({userId}) {
         //setLocations(newLocations)
         // console.log(removeLocation)
         state.set(id,true)
-        if (check.length == 0) {
+        if (check.length === 0) {
             setLocationsInCart(LocationInCart.concat(removeLocation))
         }
     }
@@ -35,25 +34,26 @@ export default function CreateTour({userId}) {
         //setLocations(locations.concat(item))
     }
 
-    const fetchLocations = async () => {
-        setLoading(true)
-        try {
-            const response = await LocationService.getAllLocations()
-            setLoading(false)
-            setLocations(response.data)
-            console.log(response.data)
-            const tmp_state = new Map()
-            for (var i = 0; i < response.data.length; i++) {
-                tmp_state.set(response.data[i].id,false)
-            }
-            setState(tmp_state)
-            console.log('state: ', state)
-            // console.log('map: ',state.get(9))
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
-    }
+    // const fetchLocations = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const response = await LocationService.getAllLocations().then((response)=>{
+    //             setLoading(false)
+    //             setLocations(response.data)
+    //             // console.log(response.data)
+    //             const tmp_state = new Map()
+    //             for (let i = 0; i < response.data.length; i++) {
+    //                 tmp_state.set(response.data[i].id,false)
+    //             }
+    //             setState(tmp_state)
+    //         }).catch((e)=>console.log(e))
+    //
+    //         // console.log('state: ', state)
+    //     } catch (error) {
+    //         setLoading(false)
+    //         console.log(error)
+    //     }
+    // }
     const searchLocation = async () => {
         setLoading(true)
         try {
@@ -66,8 +66,25 @@ export default function CreateTour({userId}) {
         }
     }
 
-    useEffect(() => {
-        fetchLocations()
+    useEffect(async () => {
+        setLoading(true)
+        try {
+            LocationService.getAllLocations().then((response)=>{
+                setLoading(false)
+                setLocations(response.data)
+                // console.log(response.data)
+                const tmp_state = new Map()
+                for (let i = 0; i < response.data.length; i++) {
+                    tmp_state.set(response.data[i].id,false)
+                }
+                setState(tmp_state)
+            }).catch((e)=>console.log(e))
+
+            // console.log('state: ', state)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
     }, [])
 
 

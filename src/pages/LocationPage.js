@@ -13,8 +13,7 @@ import Locations from "../components/Locations";
 import SERVICE from "../services/location.service"
 import {Snackbar} from "@material-ui/core";
 import MuiAlert from '@mui/material/Alert';
-import imageDefault from "../imageDefault"
-
+import IMG from '../imageDefault'
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -32,7 +31,7 @@ export default function LocationPage() {
     const [values, setValues] = useState({
         name: null,
         address: null,
-        image:imageDefault.imageDefault ,
+        image:IMG.imageDefault ,
         price: 0,
         timeOpen: null,
         timeClose: null,
@@ -57,7 +56,6 @@ export default function LocationPage() {
 
         if (!checkRequired) {
             setOpen(true);
-
         }
     };
 
@@ -105,34 +103,50 @@ export default function LocationPage() {
         setValues({...values, [prop]: event.target.value});
     };
 
-    const fetchLocations = async () => {
-        setLoading(true)
-        try {
-            const data = await SERVICE.getAllLocations()
-            setLoading(false)
-            // console.log(data.data)
-            setLocations(data.data)
-        } catch (error) {
-            setLoading(false)
-            console.log(error)
-        }
-    }
+    // const fetchLocations = async () => {
+    //     setLoading(true)
+    //     try {
+    //         const data = await SERVICE.getAllLocations()
+    //         setLoading(false)
+    //         // console.log(data.data)
+    //         setLocations(data.data)
+    //     } catch (error) {
+    //         setLoading(false)
+    //         console.log(error)
+    //     }
+    // }
     const addLocation = async () => {
         try {
             if (images.length > 0) {
                 setValues({...values, image: images[0]['data_url']})
                 values.image = images[0]['data_url']
+                console.log(values)
             }
-            await SERVICE.addLocation(values)
-            await fetchLocations()
-            setImages([])
+            SERVICE.addLocation(values).then((res)=>{
+                console.log(res)
+            }).catch((e)=>console.log(e))
+            // await fetchLocations()
+            // window.location.reload();
+            // setImages([])
         } catch (e) {
             console.log(e)
         }
     }
 
-    useEffect(async () => {
-        await fetchLocations()
+    useEffect( () => {
+        setLoading(true)
+        try {
+            SERVICE.getAllLocations().then((res)=>{
+                setLocations(res.data)
+                setLoading(false)
+            }).catch((e)=>console.log(e))
+            // setLoading(false)
+            // console.log(data.data)
+            // setLocations(data.data)
+        } catch (error) {
+            setLoading(false)
+            console.log(error)
+        }
     }, [])
 
     if (loading) {

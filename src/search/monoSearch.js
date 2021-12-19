@@ -11,9 +11,8 @@ const getLocalStorage = () => {
         return [];
     }
 };
-export default function Search_element({input}) {
+export default function SearchElement({input}) {
     const { setSearchTerm } = useGlobalContext()
-    const searchValue = React.useRef('')
 
     const [name, setName] = useState('');
     const [list, setList] = useState(getLocalStorage());
@@ -50,10 +49,6 @@ export default function Search_element({input}) {
 
     const showAlert = (show = false, type = '', msg = '') => {
         setAlert({ show, type, msg });
-    };
-    const clearList = () => {
-        showAlert(true, 'danger', 'empty list');
-        setList([]);
     };
     const removeItem = (id) => {
         showAlert(true, 'danger', 'item removed');

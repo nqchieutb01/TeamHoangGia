@@ -9,7 +9,6 @@ import {
 } from '@mui/x-data-grid';
 
 import SERVICE from '../services/user.service'
-import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
 import Slide from "@mui/material/Slide";
 import DialogContent from "@mui/material/DialogContent";
@@ -62,8 +61,6 @@ export default function User() {
     };
 
     const handleYes = () => {
-        console.log(currentID)
-        // Không cho phép xóa admin
         if (currentID !== 1) {
             SERVICE.deleteUser(currentID).then().catch((e)=>console.log(e))
             setUsers([...users.filter((user)=>user.id!==currentID)])
@@ -76,11 +73,9 @@ export default function User() {
 
     const handleEditRowsModelChange = useCallback((model) => {
         setEditRowsModel(model);
-        // console.log(users)
     }, []);
 
     const handleClick = ()=>{
-        // console.log(editRowsModel)
         const id = Object.keys(editRowsModel)[0]
         if (typeof id === 'undefined'){
             return
@@ -94,7 +89,6 @@ export default function User() {
     }
 
     const handleDeleteUser = (id)=>{
-        // console.log(id)
         setCurrentID(id)
         handleClickOpen()
     }
@@ -104,7 +98,6 @@ export default function User() {
         {field: 'id',headerName: 'Delete',width: 100,
             renderCell: (params) => (
                 <strong>
-                    {/*{params.value}*/}
                     <div>
                         <Button
                             variant="contained"
@@ -131,9 +124,6 @@ export default function User() {
 
     return (
         <div style={{width: '100%'}}>
-            <Alert severity="info" style={{marginBottom: 8}}>
-                <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
-            </Alert>
             <div style={{height: 600, width: '100%'}}>
                 <DataGrid
                     rows={users}

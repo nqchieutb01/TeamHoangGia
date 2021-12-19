@@ -12,7 +12,7 @@ export default function LocationInCart({ id, name, city, price, timeOpen, timeCl
                             <h5>{name}</h5>
                         </div>
                         <div>
-                            <h5 className="tour-price">{price} VNĐ</h5>
+                            <h5 className="tour-price">{price.toLocaleString()} VNĐ</h5>
                         </div>
                     </div>
 

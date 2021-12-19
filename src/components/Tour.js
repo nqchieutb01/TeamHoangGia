@@ -40,7 +40,7 @@ export default function Tour({id, listImage, name, price, star, description, cre
                 <h6 style={{letterSpacing: "0.05rem"}}>Duis mollis, est non commodo luctus, nisi erat porttitor
                     ligula.{description}</h6>
 
-                <Link to={`/location/${id}`} className='btn btn-primary btn-details'>
+                <Link to={`/tour/${id}`} className='btn btn-primary btn-details'>
                     <InfoIcon/> Chi tiết
                 </Link>
 

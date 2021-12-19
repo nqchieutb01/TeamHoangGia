@@ -1,18 +1,11 @@
-import {
-    REGISTER_SUCCESS,
-    REGISTER_FAIL,
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
-    LOGOUT,
-    SET_MESSAGE,
-} from "./types";
+import {LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS, SET_MESSAGE,} from "./types";
 
 import AuthService from "../services/auth.service";
 
 export const register = (username, password) => (dispatch) => {
     return AuthService.register(username, password).then(
         (response) => {
-            console.log('Response of register: ',response)
+            console.log('Response of register: ', response)
             dispatch({
                 type: REGISTER_SUCCESS,
             });
@@ -49,10 +42,10 @@ export const register = (username, password) => (dispatch) => {
 export const login = (username, password) => (dispatch) => {
     return AuthService.login(username, password).then(
         (data) => {
-            console.log('Response of login:' , data)
+            console.log('Response of login:', data)
             dispatch({
                 type: LOGIN_SUCCESS,
-                payload: { user: data },
+                payload: {user: data},
             });
             return Promise.resolve();
         },

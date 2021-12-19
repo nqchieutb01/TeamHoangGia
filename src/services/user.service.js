@@ -8,7 +8,6 @@ const getAllUsers = () => {
 };
 
 const getUserInfo = () => {
-    // return axios.get("https://61af70223e2aba0017c49342.mockapi.io/user/1",{headers: authHeader()} )
     return axios.get(API_URL + "users/info", {headers: authHeader()});
 }
 
@@ -22,14 +21,25 @@ const editUser = (req)=>{
 const getTours = ()=>{
     return axios.get(API_URL + "users/tours/", {headers: authHeader()});
 }
+const updatePassword = (req) => {
+    // console.log(req)
+    return axios.post(API_URL + "users/changePass", req, {headers: authHeader()});
+}
+const updateInfo = (req) => {
+    return axios.post(API_URL + "users/update", req, {headers: authHeader()});
+
+}
 const deleteTour = (id)=>{
     return axios.delete(API_URL + "tours/delete/" + id, {headers: authHeader()});
 }
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     getAllUsers,
     getUserInfo,
     deleteUser,
     editUser,
     getTours,
-    deleteTour
+    updatePassword,
+    deleteTour,
+    updateInfo
 };

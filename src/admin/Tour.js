@@ -139,9 +139,9 @@ export default function Tour() {
 
     return (
         <div style={{width: '100%'}}>
-            <Alert severity="info" style={{marginBottom: 8}}>
-                <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>
-            </Alert>
+            {/*<Alert severity="info" style={{marginBottom: 8}}>*/}
+            {/*    <code>editRowsModel: {JSON.stringify(editRowsModel)}</code>*/}
+            {/*</Alert>*/}
             <div style={{height: 600, width: '100%'}}>
                 <DataGrid
                     rows={tours}

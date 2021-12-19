@@ -1,17 +1,14 @@
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import logo from '../logo.svg'
-import AppBar_v1 from "./AppBar";
 import SvgIcon from '@mui/material/SvgIcon';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-import {useDispatch, useSelector} from "react-redux";
-import {BrowserRouter, useHistory} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {useHistory} from "react-router-dom";
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import Button from "@mui/material/Button";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import Stack from "@mui/material/Stack";
+import NavBarLeft from "./NavBarLeft";
 
 function HomeIcon(props) {
     return (
@@ -33,8 +30,7 @@ export default function Navbar() {
                 <Link to='/'>
                     <img src={logo} alt='Logo' className='logo'/>
                 </Link>
-
-                    <Button onClick={() => history.goBack()} >Quay về</Button>
+                <Button onClick={() => history.goBack()}>Quay về</Button>
             </div>
 
             <div className='nav_c-center'>
@@ -44,7 +40,7 @@ export default function Navbar() {
                             <div>
                                 <HomeIcon color="primary" style={{color: "#1C1C1E"}}/>
                             </div>
-                            Nhà của tôi
+                            Trang chủ
                         </NavLink>
                     </li>
                     <li>
@@ -55,9 +51,6 @@ export default function Navbar() {
                             Địa điểm
                         </NavLink>
                     </li>
-                    {/*<li>*/}
-                    {/*    <NavLink activeClassName='li_active' to='/about'>about</NavLink>*/}
-                    {/*</li>*/}
                     {
                         currentUser &&
                         <>
@@ -69,22 +62,13 @@ export default function Navbar() {
                                     Tạo Tour
                                 </NavLink>
                             </li>
-                            {/*<li>*/}
-                            {/*    <NavLink activeClassName='li_active' to='/my-tour'>*/}
-                            {/*        <div>*/}
-                            {/*            <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>*/}
-                            {/*        </div>*/}
-                            {/*        My Tour*/}
-                            {/*    </NavLink>*/}
-                            {/*</li>*/}
                         </>
                     }
                 </ul>
-
             </div>
 
             <div className='nav_c-left'>
-                <AppBar_v1/>
+                <NavBarLeft/>
             </div>
         </nav>
     )

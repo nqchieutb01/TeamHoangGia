@@ -85,7 +85,6 @@ export default function ChangePassword(oldPassword) {
                     initialValues={initialValues}
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
-                     className="col-md-2"
                 >
                     {
                         <Form>
@@ -97,6 +96,7 @@ export default function ChangePassword(oldPassword) {
                                     type="password"
                                     className="form-control"
                                 />
+
                                 <ErrorMessage
                                     name="password"
                                     component="div"

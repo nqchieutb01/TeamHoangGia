@@ -11,16 +11,12 @@ export default function CreateTour({userId}) {
     const [locations, setLocations] = useState([])
     const [LocationInCart, setLocationsInCart] = useState([])
     const [search, setSearch] = useState([])
-    // check Location có trong danh sách của Tour hiện tại không
-    const [state,setState] = useState(new Map())
+    const [state, setState] = useState(new Map())
 
     const addToCart = (id) => {
         const removeLocation = locations.filter((location) => location.id === id)
-        //const newLocations = locations.filter((location) => location.id !== id)
         const check = LocationInCart.filter((location) => location.id === id)
-        //setLocations(newLocations)
-        // console.log(removeLocation)
-        state.set(id,true)
+        state.set(id, true)
         if (check.length === 0) {
             setLocationsInCart(LocationInCart.concat(removeLocation))
         }
@@ -30,30 +26,9 @@ export default function CreateTour({userId}) {
         const item = LocationInCart.filter((item) => item.id === id)
         const newItems = LocationInCart.filter((item) => item.id !== id)
         setLocationsInCart(newItems)
-        state.set(id,false)
-        //setLocations(locations.concat(item))
+        state.set(id, false)
     }
 
-    // const fetchLocations = async () => {
-    //     setLoading(true)
-    //     try {
-    //         const response = await LocationService.getAllLocations().then((response)=>{
-    //             setLoading(false)
-    //             setLocations(response.data)
-    //             // console.log(response.data)
-    //             const tmp_state = new Map()
-    //             for (let i = 0; i < response.data.length; i++) {
-    //                 tmp_state.set(response.data[i].id,false)
-    //             }
-    //             setState(tmp_state)
-    //         }).catch((e)=>console.log(e))
-    //
-    //         // console.log('state: ', state)
-    //     } catch (error) {
-    //         setLoading(false)
-    //         console.log(error)
-    //     }
-    // }
     const searchLocation = async () => {
         setLoading(true)
         try {
@@ -69,24 +44,21 @@ export default function CreateTour({userId}) {
     useEffect(async () => {
         setLoading(true)
         try {
-            LocationService.getAllLocations().then((response)=>{
+            LocationService.getAllLocations().then((response) => {
                 setLoading(false)
                 setLocations(response.data)
-                // console.log(response.data)
                 const tmp_state = new Map()
                 for (let i = 0; i < response.data.length; i++) {
-                    tmp_state.set(response.data[i].id,false)
+                    tmp_state.set(response.data[i].id, false)
                 }
                 setState(tmp_state)
-            }).catch((e)=>console.log(e))
+            }).catch((e) => console.log(e))
 
-            // console.log('state: ', state)
         } catch (error) {
             setLoading(false)
             console.log(error)
         }
     }, [])
-
 
     if (loading) {
         return (
@@ -135,7 +107,7 @@ export default function CreateTour({userId}) {
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
                                 <button type='submit' className='submit-btn_c' onClick={searchLocation}>
-                                    submit
+                                    Tìm kiếm
                                 </button>
                             </div>
 

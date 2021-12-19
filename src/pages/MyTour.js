@@ -26,7 +26,6 @@ export default function MyTour() {
     };
 
     const handleYes = async () => {
-        // console.log(deleteId)
         await deleteTour()
         setOpen(false);
     };
@@ -38,12 +37,9 @@ export default function MyTour() {
     const fetchTours = async () => {
         setLoading(true)
         try {
-            // const response = await fetch(url)
             const response = await SERVICE.getTours()
             const data = response.data
-            // console.log('tours: ',data)
             const tmp_tour = data.map(o => o.tour)
-            // console.log(tmp_tour)
             setTours(data.map(o => o.tour))
             setLoading(false)
             setTours(tmp_tour)
@@ -57,15 +53,13 @@ export default function MyTour() {
         try {
             SERVICE.deleteTour(deleteId).then().catch((e) => console.log(e))
             setOpen(true)
-            // console.log(deleteId)
-            // await fetch(delete_tour + deleteId, {method: "DELETE"})
+
             setTours([...tours.filter((tour) => tour.id !== deleteId)])
         } catch (e) {
             console.log(e)
         }
     }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
         await fetchTours()
     },[])

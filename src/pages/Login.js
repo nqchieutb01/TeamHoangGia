@@ -42,7 +42,6 @@ const Login = (props) => {
         setLoading(true);
 
         form.current.validateAll();
-        console.log(username, password)
         if (checkBtn.current.context._errors.length === 0) {
             dispatch(login(username, password))
                 .then(() => {
@@ -91,11 +90,9 @@ const Login = (props) => {
                                                     name="username"
                                                     value={username}
                                                     onChange={onChangeUsername}
-                                                    // validations={[required]}
                                                     required
-                                                    style={{width:'100%'}}
+                                                    style={{width: '100%'}}
                                                 />
-                                                {/*<label className="form-label" htmlFor="username">Username</label>*/}
                                             </div>
 
                                             <div className="form-outline mb-4">
@@ -109,9 +106,8 @@ const Login = (props) => {
                                                     value={password}
                                                     type="password"
                                                     onChange={onChangePassword}
-                                                    // validations={[required]}
                                                     required
-                                                    style={{width:'100%'}}
+                                                    style={{width: '100%'}}
                                                 />
                                             </div>
 
@@ -142,8 +138,7 @@ const Login = (props) => {
                                         <a href="/register" className="btn btn-outline-danger">
                                             Đăng kí
                                         </a>
-                                        {/*<Link activeClassName='li_active' className="btn btn-outline-danger"*/}
-                                        {/*         to='/register'>Register</Link>*/}
+
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">

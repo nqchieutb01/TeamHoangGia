@@ -6,7 +6,6 @@ import URL from '../config'
 const API_URL = URL.URL_BACKEND
 
 const getAllTour = () => {
-    // console.log('api: ',API_URL)
     return axios.get(API_URL + "tours", {headers: authHeader()});
 }
 const getTourId = (id) => {
@@ -36,7 +35,6 @@ const searchTour = (req) => {
     })
 }
 
-// comment api
 const getAllComments = (id) => {
     return axios.get(API_URL + "tours/comment?id=" + id, {headers: authHeader()})
 }

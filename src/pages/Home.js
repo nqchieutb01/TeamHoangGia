@@ -20,14 +20,14 @@ export default function Home() {
             <main>
                 <div class="row_c">
                     <div class="left_c">
-                        <SearchForm/>
+                        {/* <SearchForm/> */}
                     </div>
                     <div class="main_c">
                         {/*<MessageSender/>*/}
                         <CocktailList/>
                     </div>
                     <div class="right_c">
-                        <section className='section-center_c'>
+                        {/* <section className='section-center_c'>
                             <Search_element input={'Name'}/>
                             <br/>
                             <Search_element input={'Location'}/>
@@ -37,7 +37,7 @@ export default function Home() {
                             <br/>
                             <h3>Rating</h3>
                             <HoverRating />
-                        </section>
+                        </section> */}
                     </div>
                 </div>
 

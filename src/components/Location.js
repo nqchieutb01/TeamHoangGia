@@ -11,7 +11,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-
+import InfoIcon from '@mui/icons-material/Info';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -30,6 +30,7 @@ export default function Location ({ id, name, address,description ,image, price,
         setOpen(true);
     }
     const handleClose = () => setOpen(false);
+
     if (removeLocation) {
         return (
             <article className='single-tour'>
@@ -47,7 +48,7 @@ export default function Location ({ id, name, address,description ,image, price,
                     {/*    Chi tiết*/}
                     {/*</Link>*/}
                     <div>
-                        <button onClick={handleOpen} className={"btn btn-primary btn-details"} style={{color:'white' , backgroundColor:'blue'}}>Chi tiết</button>
+                        <button onClick={handleOpen} className={"btn btn-primary btn-details"} style={{color:'white' , backgroundColor:'blue'}}><InfoIcon/> Chi tiết</button>
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
@@ -133,7 +134,7 @@ export default function Location ({ id, name, address,description ,image, price,
                     {/*</Link>*/}
 
                     <div>
-                        <button onClick={handleOpen} className={"btn btn-primary btn-details"} style={{color:'white' , backgroundColor:'blue'}}>Chi tiết</button>
+                        <button onClick={handleOpen} className={"btn btn-primary btn-details"} style={{color:'white' , backgroundColor:'blue'}}><InfoIcon/> Chi tiết</button>
                         <Modal
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"

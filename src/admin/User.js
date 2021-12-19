@@ -65,7 +65,7 @@ export default function User() {
         console.log(currentID)
         // Không cho phép xóa admin
         if (currentID !== 1) {
-            SERVICE.deleteUser(currentID)
+            SERVICE.deleteUser(currentID).then().catch((e)=>console.log(e))
             setUsers([...users.filter((user)=>user.id!==currentID)])
         }
         setOpen(false);
@@ -90,7 +90,7 @@ export default function User() {
         editState.firstname = data.firstname.value
         editState.lastname = data.lastname.value
         editState.phonenumber = data.phonenumber.value
-        SERVICE.editUser(editState)
+        SERVICE.editUser(editState).then().catch((e)=>console.log(e))
     }
 
     const handleDeleteUser = (id)=>{

@@ -9,12 +9,6 @@ import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import SERVICE from '../services/user.service'
 
-// const url = 'https://course-api.com/react-tours-project'
-
-// Lấy tạm API để test xóa Tour
-const url = 'http://localhost:8080/locations/'
-const delete_tour = 'http://localhost:8080/locations/delete/'
-
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -47,9 +41,9 @@ export default function MyTour() {
             // const response = await fetch(url)
             const response =await SERVICE.getTours()
             const data = response.data
-            console.log('tours: ',data)
+            // console.log('tours: ',data)
             const tmp_tour = data.map(o=>o.tour)
-            console.log(tmp_tour)
+            // console.log(tmp_tour)
             setTours(data.map(o=>o.tour))
             setLoading(false)
             setTours(tmp_tour)
@@ -61,7 +55,7 @@ export default function MyTour() {
 
     const deleteTour = async ()=> {
         try {
-            await SERVICE.deleteTour(deleteId)
+            SERVICE.deleteTour(deleteId).then().catch((e)=>console.log(e))
             setOpen(true)
             // console.log(deleteId)
             // await fetch(delete_tour + deleteId, {method: "DELETE"})

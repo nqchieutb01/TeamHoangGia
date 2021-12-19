@@ -76,7 +76,7 @@ export default function Location() {
     const handleYes = async () => {
         console.log(currentLocationID)
         setLocations(locations.filter((location)=>location.id !== currentLocationID))
-        await SERVICE.deleteLocation(currentLocationID)
+        SERVICE.deleteLocation(currentLocationID).then().catch((e)=>console.log(e))
         setOpen(false);
     };
 
@@ -103,7 +103,7 @@ export default function Location() {
         editState.timeClose = data.timeClose.value
         editState.type = data.type.value
         // console.log(editState)
-        SERVICE.editLocation(editState)
+        SERVICE.editLocation(editState).then().catch((e)=>console.log(e))
     }
 
     const handleDeleteLocation = (id) => {

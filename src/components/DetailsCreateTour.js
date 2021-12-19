@@ -118,7 +118,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
 
             <br/>
             <h4>Price <AttachMoneyIcon style={{color:"yellowgreen"}}/></h4>
-            <input type="number" min="0" step={1000} id="typeText" className="form-control" onChange={handleChange('price')}/>
+            <input type="number" min="0" step={100000} id="typeText" className="form-control" onChange={handleChange('price')}/>
             <br/>
             <h4>Description</h4>
             <textarea type="text" id="typeText" className="form-control" onChange={handleChange('description')} />

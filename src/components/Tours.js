@@ -12,7 +12,7 @@ export default function Tours() {
     if (tours.length < 1) {
         return (
             <h2 className='section-title'>
-                no cocktails matched your search criteria
+               Không tìm thấy Tour nào !!!
             </h2>
         )
     }

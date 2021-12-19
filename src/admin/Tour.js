@@ -71,7 +71,7 @@ export default function Tour() {
     const handleYes = async () => {
             setTours([...tours.filter((tour) => tour.id !== currentID)])
             console.log(currentID)
-            await SERVICE.deleteTour(currentID)
+            SERVICE.deleteTour(currentID).then().catch((e)=>console.log(e))
             setOpen(false);
     };
     const handleNo = () => {
@@ -95,7 +95,7 @@ export default function Tour() {
         editState.description = data.description.value
         editState.price = data.price.value
         // console.log(data)
-        await SERVICE.editTour(editState)
+        SERVICE.editTour(editState).then().catch((e)=>console.log(e))
     }
 
     const handleDeleteUser = (id) => {

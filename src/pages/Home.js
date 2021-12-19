@@ -6,12 +6,13 @@ import {useGlobalContext} from "../context";
 import RangeSlider from "../search/RangeSlider";
 import HoverRating from "../search/Rating";
 import Tours from "../components/Tours";
+import Search_v1 from "../components/Search";
 
 export default function Home() {
     const auth = useGlobalContext()
 
     useEffect(() => {
-        console.log(auth.auth)
+        // console.log(auth.auth)
     }, [auth])
 
     if (auth.auth === false) {
@@ -21,7 +22,9 @@ export default function Home() {
             <main>
                 <div class="row_c">
                     <div class="left_c">
-                        <SearchForm/>
+                        <section className='section-center_c'>
+                              <Search_v1/>
+                        </section>
                     </div>
                     <div class="main_c">
                         {/*<CocktailList/>*/}

@@ -57,12 +57,9 @@ export default function CreateTour({userId}) {
     const searchLocation = async () => {
         setLoading(true)
         try {
-
             const response = await LocationService.searchLocation(search)
             setLoading(false)
             setLocations(response.data)
-
-
         } catch (error) {
             setLoading(false)
             console.log(error)

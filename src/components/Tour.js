@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack';
 import "../index.css"
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
-import default_img from "../img/default.jpeg"
-
+import {Rating} from "@material-ui/lab";
+import InfoIcon from '@mui/icons-material/Info';
 export default function Tour({id, listImage, name, price, star, description, createdAt, updatedAt}) {
     // console.log(id)
 
@@ -28,19 +28,20 @@ export default function Tour({id, listImage, name, price, star, description, cre
                 <Stack direction="row" spacing={2}>
                     <Avatar>{id}</Avatar>
                     <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
-                        Chieunq
+                        {name}
                         <br/> {new Date(createdAt).toDateString()}
                     </h6>
                 </Stack>
             </div>
 
             <div className='cocktail-footer'>
-                <h4 className="tour-price">Giá: {price} VNĐ</h4>
+                <h4 className="tour-price">Giá: {price.toLocaleString()} VNĐ</h4>
+                <Rating name="disabled" value={star} disabled />
                 <h6 style={{letterSpacing: "0.05rem"}}>Duis mollis, est non commodo luctus, nisi erat porttitor
                     ligula.{description}</h6>
 
-                <Link to={`/cocktail/${id}`} className='btn btn-primary btn-details'>
-                    Chi tiết
+                <Link to={`/location/${id}`} className='btn btn-primary btn-details'>
+                    <InfoIcon/> Chi tiết
                 </Link>
 
             </div>

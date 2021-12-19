@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css"
 import logo from '../logo.svg'
-import background from '../background.png'
+import background from '../img/background.png'
 import React, {useState, useRef} from "react";
 import Input from "react-validation/build/input";
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Tour_test.css"
+import "../css/Tour.css"
 import LocationInCart from "./LocationInCart";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 export default function LocationsInCart ({ items, removeItem }){
@@ -10,7 +10,7 @@ export default function LocationsInCart ({ items, removeItem }){
                     <h4>
                         <AddLocationAltIcon style={{color:"blue"}}/>  Danh sách địa điểm</h4>
                 </div>
-                <div className="underline"></div>
+                <div className="underline"/>
             </div>
             <div>
                 {items.map((item) => {

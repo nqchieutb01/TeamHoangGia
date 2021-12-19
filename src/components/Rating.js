@@ -7,7 +7,7 @@ export default function BasicRating(props) {
 
   return (
     <Box>
-      {props.type == "controlled" ? (
+      {props.type === "controlled" ? (
         <Rating
           name="simple-controlled"
           value={value}

@@ -1,7 +1,6 @@
 import React, {useCallback} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./pages/Home";
-import About from "./pages/About";
 import SingleCocktail from "./pages/SingleCocktail";
 import CreateTour from "./pages/CreateTour";
 import Error from "./pages/Error";
@@ -24,7 +23,6 @@ import SingleLocation from "./pages/LocationSinglePage";
 function App() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
-    console.log(currentUser)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -57,21 +55,11 @@ function App() {
                     <Navbar/>
                     <Home/>
                 </Route>
-                <Route path="/about">
-                    <Navbar/>
-                    <About/>
-                </Route>
 
                 <Route path="/cocktail/:id">
                     <Navbar/>
                     <SingleCocktail/>
                 </Route>
-
-                <Route path="/location/:id">
-                    <Navbar/>
-                    <SingleLocation/>
-                </Route>
-
                 <Route path="/tour/:id">
                     <Navbar/>
                     <SingleCocktail/>
@@ -89,7 +77,6 @@ function App() {
                 <Route path="/register">
                     <Navbar/>
                     <Register/>
-                    {/*<Test/>*/}
                 </Route>
 
                 {

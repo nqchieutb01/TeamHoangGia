@@ -11,9 +11,7 @@ export default function SearchV1() {
     const {initValue, search, setSearch} = useGlobalContext()
     const {isClick, setIsClick} = useGlobalContext()
     const handleChange = (prop) => (event) => {
-        //console.log("test change")
         setSearch({...search, [prop]: event.target.value});
-        //console.log(values)
     };
 
     function handleSubmit(e) {
@@ -23,7 +21,6 @@ export default function SearchV1() {
 
     const handleDeleteFilter = () => {
         setSearch(initValue)
-        console.log('asss')
         setIsClick(!isClick)
     }
 

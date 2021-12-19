@@ -1,14 +1,11 @@
 import PersonIcon from '@mui/icons-material/Person';
 import React, {useRef, useState} from 'react' ;
-import "./MessageSender.css" ;
+import "../css/MessageSender.css" ;
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import { useGlobalContext } from '../context';
-// import db from "./firebase"
-// import firebase from "firebase"
 
 
 

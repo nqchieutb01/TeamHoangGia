@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const API_URL = "http://localhost:8080/users/";
 import URL from '../config'
 const API_URL = URL.URL_BACKEND
 

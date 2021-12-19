@@ -14,7 +14,6 @@ import ChangePassword from "../components/ChangePassword"
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-// const match = await bcrypt.compare(password, user.passwordHash);
 
 export default function SettingAccount() {
     const [open, setOpen] = React.useState(false);
@@ -76,10 +75,11 @@ export default function SettingAccount() {
         }
     }
     const handleChangeProfile = async () => {
-        // const match = bcrypt.compareSync("admin", password);
-        // console.log(match)
-        //console.log(user)
-        await service.updateInfo(user)
+        try {
+            await service.updateInfo(user)
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     const handleClickChangePassword = () => {
@@ -99,7 +99,7 @@ export default function SettingAccount() {
                                 className="font-weight-bold">{user.firstname}</span>
                             <span
                                 className="text-black-50">{user.phonenumber}</span>
-                            <span>United States</span>
+                            <span> </span>
                         </div>
                     </div>
                     <div className="col-md-8">
@@ -110,12 +110,23 @@ export default function SettingAccount() {
                                     <h6></h6>
                                 </div>
                             </div>
-                            <div className="row mt-2">
+                            <div className="row mt-3">
                                 <div className="col-md-2">
-                                    <div> FIRST NAME:</div>
+                                    <div> Họ:</div>
                                 </div>
                                 <div className="col-md-6">
-                                    <input type="text" className="form-control" placeholder="first name"
+                                    <input type="text" className="form-control" placeholder="Họ"
+                                           value={user.lastname}
+                                           onChange={(e) => setUser({...user, lastname: e.target.value})}
+                                    />
+                                </div>
+                            </div>
+                            <div className="row mt-3">
+                                <div className="col-md-2">
+                                    <div> Tên:</div>
+                                </div>
+                                <div className="col-md-6">
+                                    <input type="text" className="form-control" placeholder="Tên"
                                            value={user.firstname}
                                            onChange={(e) => setUser({...user, firstname: e.target.value})}
                                     />
@@ -123,19 +134,7 @@ export default function SettingAccount() {
                             </div>
                             <div className="row mt-3">
                                 <div className="col-md-2">
-                                    <div> LAST NAME:</div>
-                                </div>
-                                <div className="col-md-6">
-                                    <input type="text" className="form-control" placeholder="last name"
-                                           value={user.lastname}
-                                           onChange={(e) => setUser({...user, lastname: e.target.value})}
-                                    />
-                                </div>
-
-                            </div>
-                            <div className="row mt-3">
-                                <div className="col-md-2">
-                                    <div> PHONENUMBER:</div>
+                                    <div> Số điện thoại:</div>
                                 </div>
                                 <div className="col-md-6">
                                     <input type="text" className="form-control" placeholder="0123456789"
@@ -147,7 +146,7 @@ export default function SettingAccount() {
                             <div className="row mt-3">
 
                                 <div className="col-md-2">
-                                    <div> ROLE:</div>
+                                    <div> Vai trò:</div>
                                 </div>
                                 <div className="col-md-6">
                                     <input type="text"
@@ -160,14 +159,14 @@ export default function SettingAccount() {
 
                             <div className="mt-5 text-right">
                                 <button className="btn btn-primary profile-button" type="button"
-                                        onClick={handleClickOpen}>Save Profile
+                                        onClick={handleClickOpen}> Lưu thông tin
                                 </button>
 
                             </div>
 
                             <div className="mt-5 text-right">
-                                <button className="btn btn-primary profile-button"
-                                        onClick={handleClickChangePassword}>change password
+                                <button className="btn btn-primary profile-button" onClick={handleClickChangePassword}>
+                                    Đổi mật khẩu
                                 </button>
                                 <br/><br/><br/>
                             </div>

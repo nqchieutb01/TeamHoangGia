@@ -1,19 +1,16 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import Avatar from "@mui/material/Avatar";
 import Stack from '@mui/material/Stack';
-import "../index.css"
+import "../css/share/index.css"
 import {Slide} from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 import {Rating} from "@material-ui/lab";
 import InfoIcon from '@mui/icons-material/Info';
 export default function Tour({id, listImage, name, price, star, description, createdAt, updatedAt}) {
-    // console.log(id)
-
     return (
         <article className='cocktail'>
             <div className='img-container'>
-                {/*<img src={image} alt={name} />*/}
                 <Slide>
                     {listImage.map((slideImage, index) => (
                         <div className="each-slide" key={index}>

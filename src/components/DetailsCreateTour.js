@@ -93,12 +93,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
     const addTour = async () => {
         let tmp = await TourService.createTour(values, locationsInCart)
         tmp = tmp.data
-        // console.log("=====================")
-        // console.log(tmp)
-        // console.log(tmp.tourId)
-        // console.log(locationsInCart)
         const xx = locationsInCart.map((ss) => ss.id)
-        // console.log(xx)
         const req = {tourId: tmp.tourId, locations: xx}
         await TourService.addLoction(req)
         handleClick()

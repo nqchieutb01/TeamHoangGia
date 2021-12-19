@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
-import "./Tour_test.css"
-// import "./Location.css"
-import "../index.css"
+import React  from 'react';
+import "../css/Tour.css"
+import "../css/share/index.css"
 import default_img from "../img/default.jpeg"
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CheckIcon from '@mui/icons-material/Check';
@@ -44,9 +42,6 @@ export default function Location ({ id, name, address,description ,image, price,
                     <h3>{name}</h3>
                     <h4>{address}</h4>
                     <h4 className="tour-price">Giá: {price.toLocaleString()} VNĐ</h4>
-                    {/*<Link to={`/location/${id}`} className='btn btn-primary btn-details'>*/}
-                    {/*    Chi tiết*/}
-                    {/*</Link>*/}
                     <div>
                         <button onClick={handleOpen} className={"btn btn-primary btn-details"} style={{color:'white' , backgroundColor:'blue'}}><InfoIcon/> Chi tiết</button>
                         <Modal
@@ -62,13 +57,7 @@ export default function Location ({ id, name, address,description ,image, price,
                         >
                             <Fade in={open}>
                                 <Box sx={style}>
-                                    {/*<Typography id="transition-modal-title" variant="h6" component="h2">*/}
-                                    {/*    Text in a modal*/}
-                                    {/*</Typography>*/}
                                     <section className='cocktail-section'>
-                                        {/*<Link to='/' className='btn_c btn_c-primary'>*/}
-                                        {/*    back home*/}
-                                        {/*</Link>*/}
                                         <h2 className='section_c-title'>{name}</h2>
                                         <div className='drink'>
                                             {
@@ -130,9 +119,6 @@ export default function Location ({ id, name, address,description ,image, price,
                     <h3>{name}</h3>
                     <h4>{address}</h4>
                     <h4 className="tour-price">Giá: {price.toLocaleString()} VNĐ</h4>
-                    {/*<Link to={`/location/${id}`} className='btn btn-primary btn-details'>*/}
-                    {/*    Chi tiết*/}
-                    {/*</Link>*/}
 
                     <div>
                         <button onClick={handleOpen} className={"btn btn-primary btn-details"} style={{color:'white' , backgroundColor:'blue'}}><InfoIcon/> Chi tiết</button>

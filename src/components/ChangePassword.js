@@ -1,8 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../pages/Login.css"
 import service from "../services/user.service"
-import React, {useState, useRef} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
 import * as Yup from 'yup';
 import {ErrorMessage, Field, Formik, Form} from "formik";
 import Dialog from "@mui/material/Dialog";
@@ -18,16 +17,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function ChangePassword(oldPassword) {
-    const {message} = useSelector(state => state.message);
     const [open, setOpen] = React.useState(false);
-    const dispatch = useDispatch();
     const initialValues = {
         password: '',
         newPassword: '',
         confirmPassword: '',
     };
-    console.log("assssssssss")
-    console.log(oldPassword)
     const handleOk = () => {
         setOpen(false)
     };
@@ -38,17 +33,17 @@ export default function ChangePassword(oldPassword) {
     const validationSchema = () => {
         return Yup.object().shape({
             password: Yup.string()
-                .required('Password is required')
-                .min(1, 'Password must be at least 6 characters')
-                .max(40, 'Password must not exceed 40 characters')
+                .required('Vui lòng nhập mật khẩu')
+                .min(6, 'Mật khẩu cần có ít nhất 6 ký tự')
+                .max(40, 'Mật khẩu không được vượt quá 40 ký tự')
                 .test('true', 'Mật khẩu không chính xác', val => ValidPass(val) === true),
             newPassword: Yup.string()
-                .required('Password is required')
-                .min(1, 'Password must be at least 6 characters')
-                .max(40, 'Password must not exceed 40 characters'),
+                .required('Vui lòng nhập mật khẩu')
+                .min(6, 'Mật khẩu cần có ít nhất 6 ký tự')
+                .max(40, 'Mật khẩu không được vượt quá 40 ký tự'),
             confirmPassword: Yup.string()
-                .required('Confirm Password is required')
-                .oneOf([Yup.ref('newPassword'), null], 'Confirm Password does not match'),
+                .required('Nhập mật khẩu xác nhận')
+                .oneOf([Yup.ref('newPassword'), null], 'Mật khẩu xác nhận không khớp'),
         });
     }
     const ValidPass = (val) => {
@@ -58,24 +53,15 @@ export default function ChangePassword(oldPassword) {
     }
 
     const handleSubmit = async (data) => {
-        console.log("==========")
-        const ss = data.newPassword
         const req = {
             password: data.newPassword
         }
-        console.log(data.newPassword)
-        console.log(req)
         await service.updatePassword(req)
-        //setSuccessful(true)
         setOpen(true)
         console.log(JSON.stringify(data, null, 2));
-
     }
 
     return (
-
-        /* <div className="card-body p-md-5 mx-md-4">
-        */
         <div className="col-md-6 border-right">
 
             <div className="register-form">
@@ -88,7 +74,7 @@ export default function ChangePassword(oldPassword) {
                         <Form>
 
                             <div className="form-group">
-                                <label htmlFor="password"> Password </label>
+                                <label htmlFor="password"> Mật khẩu </label>
                                 <Field
                                     name="password"
                                     type="password"
@@ -103,7 +89,7 @@ export default function ChangePassword(oldPassword) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="newPassword"> New Password </label>
+                                <label htmlFor="newPassword"> Mật khẩu mới </label>
                                 <Field
                                     name="newPassword"
                                     type="password"
@@ -117,8 +103,7 @@ export default function ChangePassword(oldPassword) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="confirmPassword"> Confirm
-                                    Password </label>
+                                <label htmlFor="confirmPassword"> Xác nhận mật khẩu </label>
                                 <Field
                                     name="confirmPassword"
                                     type="password"
@@ -133,7 +118,7 @@ export default function ChangePassword(oldPassword) {
 
                             <div className="form-group">
                                 <br></br>
-                                <button type="submit" className="btn btn-primary">xác nhận</button>
+                                <button type="submit" className="btn btn-primary">Xác nhận</button>
                             </div>
                         </Form>
                     }

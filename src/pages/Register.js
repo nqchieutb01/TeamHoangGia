@@ -16,22 +16,20 @@ export default function Register() {
     const validationSchema = () => {
         return Yup.object().shape({
             username: Yup.string()
-                .required('Username is required')
-                .min(3, 'Username must be at least 3 characters')
-                .max(20, 'Username must not exceed 20 characters'),
+                .required('Vui lòng điền tên đăng nhập')
+                .min(3, 'Tên đăng nhập cần có ít nhất 3 ký tụ')
+                .max(20, 'Tên đăng nhập không được vượt quá 20 ký tự'),
             password: Yup.string()
-                .required('Password is required')
-                .min(6, 'Password must be at least 6 characters')
-                .max(40, 'Password must not exceed 40 characters'),
+                .required('Vui lòng nhập mật khẩu')
+                .min(6, 'Mật khẩu cần có ít nhất 6 ký tự')
+                .max(40, 'Mật khẩu không được vượt quá 40 ký tự'),
             confirmPassword: Yup.string()
-                .required('Confirm Password is required')
-                .oneOf([Yup.ref('password'), null], 'Confirm Password does not match'),
-            // acceptTerms: Yup.bool().oneOf([true], 'Accept Terms is required'),
+                .required('Vui lòng nhập lại mật khẩu')
+                .oneOf([Yup.ref('password'), null], 'Mật khẩu nhập lại không khớp'),
         });
     }
 
     const handleSubmit = (data) => {
-        console.log(data)
         setSuccessful(false);
         dispatch(register(data.username, data.password))
             .then(() => {
@@ -40,7 +38,6 @@ export default function Register() {
             .catch(() => {
                 setSuccessful(false);
             });
-        console.log(JSON.stringify(data, null, 2));
     }
 
     const initialValues = {
@@ -79,7 +76,8 @@ export default function Register() {
                                                             <Form>
                                                                 <div className="form-group">
                                                                     <label htmlFor="username"><h6
-                                                                        style={{letterSpacing: '0.1rem'}}>Tên đăng nhập</h6>
+                                                                        style={{letterSpacing: '0.1rem'}}>Tên đăng
+                                                                        nhập</h6>
                                                                     </label>
                                                                     <Field name="username" type="text"
                                                                            className="form-control"

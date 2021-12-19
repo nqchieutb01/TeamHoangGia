@@ -1,11 +1,10 @@
 import React from 'react'
 import Loading from '../pages/Loading'
 import { useGlobalContext } from '../context'
-import "../index.css"
+import "../css/share/index.css"
 import Tour from './Tour'
 export default function Tours() {
     const { tours, loading } = useGlobalContext()
-    // console.log('->2: ',tours)
     if (loading) {
         return <Loading/>
     }

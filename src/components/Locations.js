@@ -1,9 +1,6 @@
 import React from 'react';
 import Location from './Location';
-import "./Location.css"
-
 export default function Locations({ locations, removeLocation,state }) {
-    // console.log('as',state)
     return (
         <section>
             <div className="title">

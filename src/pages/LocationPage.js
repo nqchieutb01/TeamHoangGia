@@ -3,7 +3,7 @@ import Loading from './Loading'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import ImageUploading from "react-images-uploading";
-import "../components/Tour_test.css"
+import "../css/Tour.css"
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -14,6 +14,7 @@ import SERVICE from "../services/location.service"
 import {Snackbar} from "@material-ui/core";
 import MuiAlert from '@mui/material/Alert';
 import IMG from '../imageDefault'
+
 const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -22,7 +23,6 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function LocationPage() {
-    // console.log(imageDefault.imageDefault)
     const [loading, setLoading] = useState(true)
     const [locations, setLocations] = useState([])
     const [images, setImages] = useState([]);
@@ -31,7 +31,7 @@ export default function LocationPage() {
     const [values, setValues] = useState({
         name: null,
         address: null,
-        image:IMG.imageDefault ,
+        image: IMG.imageDefault,
         price: 0,
         timeOpen: null,
         timeClose: null,
@@ -48,7 +48,7 @@ export default function LocationPage() {
         checkRequired = false
         required(values.type, "Type of Location Tour must be not null")
         required(values.timeClose, "TimeClose  of Location must be not null")
-        required(values.timeOpen, "TimeOpen of Location must be not null")
+        required(values.timqeOpen, "TimeOpen of Location must be not null")
         validPrice(values.price, "Price of Location must be >= 0")
         required(values.price, "Price of Location must be not null")
         required(values.address, "address of Location must be not null")
@@ -81,7 +81,6 @@ export default function LocationPage() {
             checkRequired = true
             setOpen(false)
             setCheck({bool: true, message: message})
-            // console.log(message)
         }
     }
     const validPrice = (value, message) => {
@@ -103,18 +102,6 @@ export default function LocationPage() {
         setValues({...values, [prop]: event.target.value});
     };
 
-    // const fetchLocations = async () => {
-    //     setLoading(true)
-    //     try {
-    //         const data = await SERVICE.getAllLocations()
-    //         setLoading(false)
-    //         // console.log(data.data)
-    //         setLocations(data.data)
-    //     } catch (error) {
-    //         setLoading(false)
-    //         console.log(error)
-    //     }
-    // }
     const addLocation = async () => {
         try {
             if (images.length > 0) {
@@ -122,27 +109,22 @@ export default function LocationPage() {
                 values.image = images[0]['data_url']
                 console.log(values)
             }
-            SERVICE.addLocation(values).then((res)=>{
+            SERVICE.addLocation(values).then((res) => {
                 console.log(res)
-            }).catch((e)=>console.log(e))
-            // await fetchLocations()
-            // window.location.reload();
-            // setImages([])
+            }).catch((e) => console.log(e))
+            window.location.reload();
         } catch (e) {
             console.log(e)
         }
     }
 
-    useEffect( () => {
+    useEffect(() => {
         setLoading(true)
         try {
-            SERVICE.getAllLocations().then((res)=>{
+            SERVICE.getAllLocations().then((res) => {
                 setLocations(res.data)
                 setLoading(false)
-            }).catch((e)=>console.log(e))
-            // setLoading(false)
-            // console.log(data.data)
-            // setLocations(data.data)
+            }).catch((e) => console.log(e))
         } catch (error) {
             setLoading(false)
             console.log(error)
@@ -159,15 +141,7 @@ export default function LocationPage() {
     const handleClick = () => {
         setOpenSuccess(true);
     };
-    // if (locations.length === 0) {
-    //     return (
-    //         <main>
-    //             <div className='title'>
-    //                 <h2>Chưa có Location nào</h2>
-    //             </div>
-    //         </main>
-    //     )
-    // }
+
     return (
         <>
 
@@ -198,19 +172,16 @@ export default function LocationPage() {
                         multiple
                         value={images}
                         onChange={onChange}
-                        // maxNumber={maxNumber}
                         dataURLKey="data_url"
                     >
                         {({
                               imageList,
                               onImageUpload,
-                              // onImageRemoveAll,
                               onImageUpdate,
                               onImageRemove,
                               isDragging,
                               dragProps
                           }) => (
-                            // write your building UI
                             <div className="">
                                 <Button
                                     style={isDragging ? {color: "red"} : undefined}

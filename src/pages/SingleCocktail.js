@@ -1,7 +1,7 @@
 import React from "react";
 import Loading from "./Loading";
 import { useParams, Link } from "react-router-dom";
-import "../index.css";
+import "../css/share/index.css";
 import BasicRating from "../components/Rating";
 import SERVICE from "../services/tour.service";
 import PostCommentBox from "../components/PostCommentBox";

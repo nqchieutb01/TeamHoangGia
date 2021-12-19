@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import "./Tour_test.css"
+import "../css/Tour.css"
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-export default function LocationInCart({ id, name, city, price, timeOpen, timeClose, removeItem }){
+export default function LocationInCart({ id, name, price, removeItem }){
     return (
         <div>
             <article className="single-tour">

@@ -1,5 +1,5 @@
 import React from 'react';
-import "./Tour_test.css"
+import "../css/Tour.css"
 import ItemInCart from "./ItemInCart";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
@@ -8,7 +8,6 @@ const ItemsssInCart = ({ items, removeItem }) => {
         <section>
             <div className="title">
                 <div>
-
                     <h2>
                         <ShoppingCartIcon style={{color:"blue"}}/>  Cart</h2>
                 </div>

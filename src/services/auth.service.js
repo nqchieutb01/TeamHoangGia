@@ -1,19 +1,21 @@
 import axios from "axios";
 
 import URL from '../config'
+
 const API_URL = URL.URL_BACKEND
 
-const register = (username, password) => {
-    console.log({username,password})
+const register = (firstname, lastname, username, password) => {
     return axios.post(API_URL + "users/register", {
+        firstname,
+        lastname,
         username,
         password,
     });
 };
-const register_v1= (username, password) => {
+const register_v1 = (username, password) => {
     return axios.post(API_URL + "users/register", JSON.stringify({
-        username:username,
-        password:password
+        username: username,
+        password: password
     }));
 };
 const login = (username, password) => {

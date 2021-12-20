@@ -31,7 +31,7 @@ export default function Register() {
 
     const handleSubmit = (data) => {
         setSuccessful(false);
-        dispatch(register(data.username, data.password))
+        dispatch(register(data.firstname,data.lastname,data.username, data.password))
             .then(() => {
                 setSuccessful(true);
             })
@@ -41,6 +41,8 @@ export default function Register() {
     }
 
     const initialValues = {
+        firstname:'Người',
+        lastname:'dùng',
         username: '',
         password: '',
         confirmPassword: '',

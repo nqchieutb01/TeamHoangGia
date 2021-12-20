@@ -60,7 +60,6 @@ const StyledMenu = styled((props) => (
 export default function NavBarLeft() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
-
     const {user} = useGlobalContext()
     // console.log(currentUser)
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -78,6 +77,7 @@ export default function NavBarLeft() {
 
     const routeSettingAccount = () => {
         history.push('/setting-account');
+        window.location.reload()
         setAnchorEl(null);
     }
 

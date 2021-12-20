@@ -39,7 +39,7 @@ export default function ChangePassword(oldPassword) {
                 .test('true', 'Mật khẩu không chính xác', val => ValidPass(val) === true),
             newPassword: Yup.string()
                 .required('Vui lòng nhập mật khẩu')
-                .min(6, 'Mật khẩu cần có ít nhất 6 ký tự')
+                .min(5, 'Mật khẩu cần có ít nhất 5 ký tự')
                 .max(40, 'Mật khẩu không được vượt quá 40 ký tự'),
             confirmPassword: Yup.string()
                 .required('Nhập mật khẩu xác nhận')

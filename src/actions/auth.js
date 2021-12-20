@@ -2,10 +2,10 @@ import {LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS, SET_
 
 import AuthService from "../services/auth.service";
 
-export const register = (username, password) => (dispatch) => {
-    return AuthService.register(username, password).then(
+export const register = (firstname, lastname,username, password) => (dispatch) => {
+    return AuthService.register(firstname, lastname,username, password).then(
         (response) => {
-            console.log('Response of register: ', response)
+            // console.log('Response of register: ', response)
             dispatch({
                 type: REGISTER_SUCCESS,
             });

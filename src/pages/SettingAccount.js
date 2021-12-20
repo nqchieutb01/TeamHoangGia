@@ -77,13 +77,13 @@ export default function SettingAccount() {
                 <div style={{width: '50%', margin: '0 auto'}}>
                     <h5>Họ</h5>
                     <input type="text" className="form-control" placeholder="Họ"
-                           value={user.lastname}
-                           onChange={(e) => setUser({...user, lastname: e.target.value})}
+                           value={user.firstname}
+                           onChange={(e) => setUser({...user, firstname: e.target.value})}
                     />
                     <h5>Tên Đệm</h5>
                     <input type="text" className="form-control" placeholder="Tên"
-                           value={user.firstname}
-                           onChange={(e) => setUser({...user, firstname: e.target.value})}
+                           value={user.lastname}
+                           onChange={(e) => setUser({...user, lastname: e.target.value})}
                     />
                     <h5>Số Điện Thoại</h5>
                     <input type="text" className="form-control" placeholder="0123456789"

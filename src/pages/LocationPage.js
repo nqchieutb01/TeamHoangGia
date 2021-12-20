@@ -48,7 +48,7 @@ export default function LocationPage() {
         checkRequired = false
         required(values.type, "Type of Location Tour must be not null")
         required(values.timeClose, "TimeClose  of Location must be not null")
-        required(values.timqeOpen, "TimeOpen of Location must be not null")
+        required(values.timeOpen, "TimeOpen of Location must be not null")
         validPrice(values.price, "Price of Location must be >= 0")
         required(values.price, "Price of Location must be not null")
         required(values.address, "address of Location must be not null")

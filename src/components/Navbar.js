@@ -30,7 +30,7 @@ export default function Navbar() {
                 <Link to='/'>
                     <img src={logo} alt='Logo' className='logo'/>
                 </Link>
-                <Button onClick={() => history.goBack()}>Quay về</Button>
+                {/* <Button onClick={() => history.goBack()}>Quay về</Button> */}
             </div>
 
             <div className='nav_c-center'>

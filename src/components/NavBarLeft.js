@@ -75,16 +75,14 @@ export default function NavBarLeft() {
     const history = useHistory();
 
     const routeSettingAccount = () => {
-        let path = `setting-account`;
-        history.push(path);
+        history.push('/setting-account');
         setAnchorEl(null);
     }
 
     const routeAdmin = () => {
         if (currentUser) {
             if (currentUser.role === 'admin') {
-                let path = `admin`;
-                history.push(path);
+                history.push('/admin');
                 setAnchorEl(null);
             }
         }

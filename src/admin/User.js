@@ -135,7 +135,7 @@ export default function User() {
 
                 />
             </div>
-            <Button onClick={handleClick} variant="contained" style={{background:'red'}}>Chỉnh sửa</Button>
+            {/*<Button onClick={handleClick} variant="contained" style={{background:'red'}}>Chỉnh sửa</Button>*/}
             <Dialog
                 open={open}
                 TransitionComponent={Transition}

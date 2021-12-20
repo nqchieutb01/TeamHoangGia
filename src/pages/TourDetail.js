@@ -108,7 +108,7 @@ export default function TourDetail() {
                         </p>
                         <p>
                             <span className="drink-data">Đánh giá :</span>
-                            <BasicRating default={rating}></BasicRating>
+                            <BasicRating default={rating}/>
                         </p>
                         <p>
                             <span className="drink-data">Giá :</span> {price.toLocaleString()} VNĐ

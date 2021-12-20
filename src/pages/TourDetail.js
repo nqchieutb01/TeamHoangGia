@@ -116,7 +116,7 @@ export default function TourDetail() {
                         <p>
                             <span className="drink-data">Các địa điểm: </span>
 
-                            {listLocation.map((item) => {
+                            {listLocation.map((item,index) => {
                                 return item ? (
                                     <>
                                         <Link onClick={handleOpen}>
@@ -179,14 +179,17 @@ export default function TourDetail() {
                                                 </Box>
                                             </Fade>
                                         </Modal>
-                                        <>{",   "}</>
+                                        {
+                                            index !== listLocation.length-1 ? <>{",   "}</> : <></>
+                                        }
+
                                     </>
                                 ) : null;
                             })}
                         </p>
 
-                        <p>
-                            <span className="drink-data">Giới thiệu </span>
+                        <p style={{textAlign: 'justify'}}>
+                            <span className="drink-data">Giới thiệu :</span> <br/><br/>
                             {description}
                         </p>
                     </div>

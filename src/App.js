@@ -1,4 +1,4 @@
-import React, {useCallback} from "react";
+import React, {useCallback, useEffect} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./pages/Home";
 import CreateTour from "./pages/CreateTour";
@@ -11,13 +11,13 @@ import Register from "./pages/Register";
 import MyTour from "./pages/MyTour";
 import Admin from "./admin/Admin";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 import {history} from "./helpers/history";
 import {clearMessage} from "./actions/message";
 import {logout} from "./actions/auth";
 import EventBus from "./common/EventBus";
 import LocationPage from "./pages/LocationPage";
 import TourDetail from "./pages/TourDetail";
+
 function App() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
@@ -62,11 +62,6 @@ function App() {
                     <TourDetail/>
                 </Route>
 
-                <Route path="/location">
-                    <Navbar/>
-                    <LocationPage/>
-                </Route>
-
                 <Route path="/login">
                     <Navbar/>
                     <Login/>
@@ -75,11 +70,10 @@ function App() {
                     <Navbar/>
                     <Register/>
                 </Route>
-
                 {
                     currentUser &&
                     (
-                        currentUser.role ==='admin' &&
+                        currentUser.role === 'admin' &&
                         <Route path='/admin'>
                             <Navbar/>
                             <Admin/>
@@ -99,6 +93,10 @@ function App() {
                         <Route path="/my-tour">
                             <Navbar/>
                             <MyTour/>
+                        </Route>
+                        <Route path="/location">
+                            <Navbar/>
+                            <LocationPage/>
                         </Route>
                     </>
                 }

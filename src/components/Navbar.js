@@ -43,14 +43,6 @@ export default function Navbar() {
                             Trang chủ
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink activeClassName='li_active' to='/location'>
-                            <div>
-                                <GpsFixedIcon color="primary" style={{color: "#1C1C1E"}}/>
-                            </div>
-                            Địa điểm
-                        </NavLink>
-                    </li>
                     {
                         currentUser &&
                         <>
@@ -60,6 +52,14 @@ export default function Navbar() {
                                         <AddBoxIcon color="primary" style={{color: "#1C1C1E"}}/>
                                     </div>
                                     Tạo Tour
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink activeClassName='li_active' to='/location'>
+                                    <div>
+                                        <GpsFixedIcon color="primary" style={{color: "#1C1C1E"}}/>
+                                    </div>
+                                    Địa điểm
                                 </NavLink>
                             </li>
                         </>

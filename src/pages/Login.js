@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Login.css"
-import logo from '../logo.svg'
+import "../css/Login.css"
+import logo from '../img/logo.svg'
 import background from '../img/background.png'
 import React, {useState, useRef} from "react";
 

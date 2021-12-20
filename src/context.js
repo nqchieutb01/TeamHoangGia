@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
 import SERVICE from './services/tour.service'
 import {useCallback} from 'react'
+import userService from "./services/user.service";
 
 const AppContext = React.createContext()
 
@@ -13,6 +14,14 @@ const AppProvider = ({children}) => {
         priceMax: "",
         rating: 0
     }
+    const [user, setUser] = useState({
+        firstname: null,
+        lastname: null,
+        phonenumber: null,
+        role: null,
+    })
+    const [password, setPassword] = React.useState(false);
+    const [clickUser,setClickUser] = useState(false)
 
     const [auth, setAuth] = useState(true)
     const [loading, setLoading] = useState(true)
@@ -23,7 +32,7 @@ const AppProvider = ({children}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
         setLoading(false)
-        const res = SERVICE.searchTour(search).then((res) => {
+        SERVICE.searchTour(search).then((res) => {
             setTours(res.data.map((tourE) => {
                     const temp = Object.assign({}, tourE.tour);
                     const listImage = []
@@ -38,10 +47,25 @@ const AppProvider = ({children}) => {
 
     }, [isClick])
 
+    const fetchUser = async () => {
+        try {
+            const tmp = await userService.getUserInfo()
+            setUser(tmp.data)
+            setPassword(tmp.data.password)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    useEffect(async () => {
+        fetchUser().catch((e)=>console.log(e))
+    }, [clickUser])
+
     return (
         <AppContext.Provider
             value={{
-                loading, auth, setAuth, tours, setTours, search, setSearch, isClick, setIsClick, initValue
+                loading, auth, setAuth, tours, setTours, search, setSearch, isClick, setIsClick, initValue,
+                clickUser,setClickUser ,
+                user, setUser,password, setPassword
             }}
         >
             {children}

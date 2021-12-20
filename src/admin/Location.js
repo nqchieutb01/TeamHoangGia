@@ -132,7 +132,7 @@ export default function Location() {
         {field: 'image', headerName: 'image', width: 120, editable: true,},
         {field: 'price', headerName: 'Giá', type: 'number', width: 120, editable: true,},
         {field: 'timeOpen', headerName: 'Mở cửa', width: 120, editable: true,},
-        {field: 'timeClose', headerName: 'Đóng của', width: 120, editable: true,},
+        {field: 'timeClose', headerName: 'Đóng cửa', width: 120, editable: true,},
         {field: 'type', headerName: 'Loại', width: 120, editable: true,},
         {field: 'createdAt', headerName: 'createdAt', width: 120},
         {field: 'updatedAt', headerName: 'updatedAt', width: 120},

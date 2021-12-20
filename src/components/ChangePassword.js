@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../pages/Login.css"
+import "../css/Login.css"
 import service from "../services/user.service"
 import React from "react";
 import * as Yup from 'yup';
@@ -34,7 +34,7 @@ export default function ChangePassword(oldPassword) {
         return Yup.object().shape({
             password: Yup.string()
                 .required('Vui lòng nhập mật khẩu')
-                .min(6, 'Mật khẩu cần có ít nhất 6 ký tự')
+                .min(5, 'Mật khẩu cần có ít nhất 5 ký tự')
                 .max(40, 'Mật khẩu không được vượt quá 40 ký tự')
                 .test('true', 'Mật khẩu không chính xác', val => ValidPass(val) === true),
             newPassword: Yup.string()
@@ -58,11 +58,11 @@ export default function ChangePassword(oldPassword) {
         }
         await service.updatePassword(req)
         setOpen(true)
-        console.log(JSON.stringify(data, null, 2));
+        // console.log(JSON.stringify(data, null, 2));
     }
 
     return (
-        <div className="col-md-6 border-right">
+        <div>
 
             <div className="register-form">
                 <Formik
@@ -74,7 +74,7 @@ export default function ChangePassword(oldPassword) {
                         <Form>
 
                             <div className="form-group">
-                                <label htmlFor="password"> Mật khẩu </label>
+                                <label htmlFor="password"> <h5>Mật khẩu</h5> </label>
                                 <Field
                                     name="password"
                                     type="password"
@@ -89,7 +89,7 @@ export default function ChangePassword(oldPassword) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="newPassword"> Mật khẩu mới </label>
+                                <label htmlFor="newPassword"> <h5>Mật khẩu mới</h5> </label>
                                 <Field
                                     name="newPassword"
                                     type="password"
@@ -103,7 +103,7 @@ export default function ChangePassword(oldPassword) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="confirmPassword"> Xác nhận mật khẩu </label>
+                                <label htmlFor="confirmPassword"> <h5>Xác nhận mật khẩu</h5> </label>
                                 <Field
                                     name="confirmPassword"
                                     type="password"

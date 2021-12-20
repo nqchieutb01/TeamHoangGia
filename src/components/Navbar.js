@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
-import logo from '../logo.svg'
+import logo from '../img/logo.svg'
 import SvgIcon from '@mui/material/SvgIcon';
 import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";

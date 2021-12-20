@@ -7,7 +7,6 @@ import Error from "./pages/Error";
 
 import Navbar from "./components/Navbar";
 import SettingAccount from "./pages/SettingAccount";
-import LocationPage from "./pages/LocationPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import MyTour from "./pages/MyTour";
@@ -18,13 +17,11 @@ import {history} from "./helpers/history";
 import {clearMessage} from "./actions/message";
 import {logout} from "./actions/auth";
 import EventBus from "./common/EventBus";
-import SingleLocation from "./pages/LocationSinglePage";
-
+import LocationPage from "./pages/LocationPage";
 function App() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
     const dispatch = useDispatch();
-
     useEffect(() => {
         history.listen((location) => {
             dispatch(clearMessage()); // clear message when changing location

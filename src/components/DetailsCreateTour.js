@@ -7,7 +7,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
 import Slide from "@mui/material/Slide";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "../pages/Login.css"
+import "../css/Login.css"
 import TourService from "../services/tour.service"
 import {Snackbar} from "@material-ui/core";
 import MuiAlert from '@mui/material/Alert';
@@ -103,7 +103,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
 
     return (
         <div className="form-outline">
-            <h4>Name of Tour</h4>
+            <h4>Tên của Tour</h4>
             <input
                 type="text"
                 id="typeText"
@@ -112,16 +112,16 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
             />
 
             <br/>
-            <h4>Price <AttachMoneyIcon style={{color:"yellowgreen"}}/></h4>
+            <h4>Giá <AttachMoneyIcon style={{color:"yellowgreen"}}/></h4>
             <input type="number" min="0" step={100000} id="typeText" className="form-control" onChange={handleChange('price')}/>
             <br/>
-            <h4>Description</h4>
+            <h4>Mô tả</h4>
             <textarea type="text" id="typeText" className="form-control" onChange={handleChange('description')} />
             <br/>
 
             <div>
                 <Button variant="contained" onClick={handleClickOpen}>
-                    Submit
+                    Thêm
                 </Button>
 
                 <Dialog
@@ -160,7 +160,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
                 </Dialog>
                 <Snackbar open={openSuccess} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success" sx={{width: '150%'}}>
-                        This is a success message!
+                       Thành Công!
                     </Alert>
                 </Snackbar>
             </div>

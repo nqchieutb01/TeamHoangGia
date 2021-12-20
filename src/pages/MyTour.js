@@ -8,6 +8,9 @@ import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import SERVICE from '../services/user.service'
+import {Rating} from "@material-ui/lab";
+import InfoIcon from "@mui/icons-material/Info";
+import {Link} from "react-router-dom";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -87,10 +90,14 @@ export default function MyTour() {
                 {tours.map((tour) => {
                     return <article className="single-tour" key={tour.id}>
                         <h5>{tour.name}</h5>
-                        <h6>{tour.id}</h6>
+                        <h6>Mô tả: {tour.description}</h6>
+                        <Rating name="disabled" value={tour.star} disabled />
                         <div>
                             <Button style={{color: 'red'}} onClick={() => handleClickOpen(tour.id)}>Delete <DeleteIcon/></Button>
                         </div>
+                        <Link to={`/tour/${tour.id}`} className='btn btn-primary btn-details'>
+                            <InfoIcon/> Chi tiết
+                        </Link>
                     </article>
                 })}
             </div>

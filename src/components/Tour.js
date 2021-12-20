@@ -34,8 +34,7 @@ export default function Tour({id, listImage, name, price, star, description, cre
             <div className='cocktail-footer'>
                 <h4 className="tour-price">Giá: {price.toLocaleString()} VNĐ</h4>
                 <Rating name="disabled" value={star} disabled />
-                <h6 style={{letterSpacing: "0.05rem"}}>Duis mollis, est non commodo luctus, nisi erat porttitor
-                    ligula.{description}</h6>
+                <h6 style={{letterSpacing: "0.05rem"}}>{description.substr(0,100)}</h6>
 
                 <Link to={`/tour/${id}`} className='btn btn-primary btn-details'>
                     <InfoIcon/> Chi tiết

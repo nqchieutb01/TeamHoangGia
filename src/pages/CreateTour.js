@@ -89,10 +89,10 @@ export default function CreateTour({userId}) {
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
                                 <button type='submit' className='submit-btn_c' onClick={searchLocation}>
-                                    submit
+                                    Tìm
                                 </button>
                             </div>
-                            <h2>no locations left</h2>
+                            <h2>Không có địa điểm nào !!!</h2>
 
                         </div> :
                         <main className='main-tour'>
@@ -107,7 +107,7 @@ export default function CreateTour({userId}) {
                                     onChange={(e) => setSearch(e.target.value)}
                                 />
                                 <button type='submit' className='submit-btn_c' onClick={searchLocation}>
-                                    submit
+                                    Tìm
                                 </button>
                             </div>
 

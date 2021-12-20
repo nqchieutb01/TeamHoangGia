@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./Login.css"
-import logo from '../logo.svg'
+import "../css/Login.css"
+import logo from '../img/logo.svg'
 import background from '../img/background.png'
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -21,7 +21,7 @@ export default function Register() {
                 .max(20, 'Tên đăng nhập không được vượt quá 20 ký tự'),
             password: Yup.string()
                 .required('Vui lòng nhập mật khẩu')
-                .min(6, 'Mật khẩu cần có ít nhất 6 ký tự')
+                .min(5, 'Mật khẩu cần có ít nhất 5 ký tự')
                 .max(40, 'Mật khẩu không được vượt quá 40 ký tự'),
             confirmPassword: Yup.string()
                 .required('Vui lòng nhập lại mật khẩu')

@@ -31,6 +31,7 @@ export default function LocationPage() {
     const [values, setValues] = useState({
         name: null,
         address: null,
+        description:null,
         image: IMG.imageDefault,
         price: 0,
         timeOpen: null,
@@ -46,13 +47,13 @@ export default function LocationPage() {
 
     const handleClickOpen = () => {
         checkRequired = false
-        required(values.type, "Type of Location Tour must be not null")
-        required(values.timeClose, "TimeClose  of Location must be not null")
-        required(values.timqeOpen, "TimeOpen of Location must be not null")
-        validPrice(values.price, "Price of Location must be >= 0")
-        required(values.price, "Price of Location must be not null")
-        required(values.address, "address of Location must be not null")
-        required(values.name, "Name of Location must be not null")
+        required(values.description, "Vui lòng điền đủ thông tin")
+        required(values.timeClose, "Vui lòng điền đủ thông tin")
+        required(values.timeOpen, "Vui lòng điền đủ thông tin")
+        validPrice(values.price, "Vui lòng điền đủ thông tin")
+        required(values.price, "Vui lòng điền đủ thông tin")
+        required(values.address, "Vui lòng điền đủ thông tin")
+        required(values.name, "Vui lòng điền đủ thông tin")
 
         if (!checkRequired) {
             setOpen(true);
@@ -107,7 +108,7 @@ export default function LocationPage() {
             if (images.length > 0) {
                 setValues({...values, image: images[0]['data_url']})
                 values.image = images[0]['data_url']
-                console.log(values)
+                // console.log(values)
             }
             SERVICE.addLocation(values).then((res) => {
                 console.log(res)
@@ -149,21 +150,23 @@ export default function LocationPage() {
 
                 <div className='left_c' style={{marginTop: '1%'}}>
 
-                    <h6>Add Location</h6>
+                    <h6>Thêm địa điểm</h6>
                     <div className="underline"></div>
-                    <div><TextField label={"Name"} variant="standard"
+                    <div><TextField label={"Tên"} variant="standard"
                                     onChange={handleChange('name')}/></div>
-                    <div><TextField id="standard-basic" label={"Address"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Địa chỉ"} variant="standard"
                                     onChange={handleChange('address')}/></div>
-                    <div><TextField type="number" min="0" step={1000} id="standard-basic" label={"price"}
+                    <div><TextField id="standard-basic" label={"Mô tả"} variant="standard"
+                                    onChange={handleChange('description')}/></div>
+                    <div><TextField type="number" min="0" step={100000} id="standard-basic" label={"Giá"}
                                     variant="standard"
                                     onChange={handleChange('price')}/></div>
 
-                    <div><TextField id="standard-basic" label={"TimeOpen"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Mở của"} variant="standard"
                                     onChange={handleChange('timeOpen')}/></div>
-                    <div><TextField id="standard-basic" label={"TimeClose"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Đóng cửa"} variant="standard"
                                     onChange={handleChange('timeClose')}/></div>
-                    <div><TextField id="standard-basic" label={"Type"} variant="standard"
+                    <div><TextField id="standard-basic" label={"Loại"} variant="standard"
                                     onChange={handleChange('type')}/></div>
                     <br/>
 
@@ -198,9 +201,9 @@ export default function LocationPage() {
                                         <img src={image["data_url"]} alt="" width="100"/>
                                         <div className="image-item__btn-wrapper">
                                             <Button style={{color: 'red'}} className="delete-btn"
-                                                    onClick={() => onImageUpdate(index)}>Update</Button>
+                                                    onClick={() => onImageUpdate(index)}>Cập nhập</Button>
                                             <Button style={{color: 'red'}} className="delete-btn"
-                                                    onClick={() => onImageRemove(index)}>Remove</Button>
+                                                    onClick={() => onImageRemove(index)}>Xóa</Button>
                                         </div>
                                     </div>
                                 ))}
@@ -266,7 +269,7 @@ export default function LocationPage() {
 
                 <Snackbar open={openSuccess} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success" sx={{width: '150%'}}>
-                        This is a success message!
+                        Thành công!
                     </Alert>
                 </Snackbar>
             </div>

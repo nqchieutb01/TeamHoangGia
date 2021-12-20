@@ -72,9 +72,9 @@ export default function Admin() {
                         variant="fullWidth"
                         aria-label="full width tabs example"
                     >
-                        <Tab label="Users Table" {...a11yProps(0)} />
-                        <Tab label="Locations Table" {...a11yProps(1)} />
-                        <Tab label="Tour Table" {...a11yProps(2)} />
+                        <Tab label="Bảng người dùng" {...a11yProps(0)} />
+                        <Tab label="Bảng địa điểm" {...a11yProps(1)} />
+                        <Tab label="Bảng Tour" {...a11yProps(2)} />
                     </Tabs>
                 </AppBar>
                 <SwappableViews

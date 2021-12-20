@@ -16,6 +16,7 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
+import {useGlobalContext} from "../context";
 
 const StyledMenu = styled((props) => (
     <Menu
@@ -60,6 +61,8 @@ const StyledMenu = styled((props) => (
 export default function NavBarLeft() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
+
+    const {user} = useGlobalContext()
     // console.log(currentUser)
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -111,9 +114,10 @@ export default function NavBarLeft() {
                     <Stack direction="row" spacing={10}>
                         <div>
                             <Stack direction="row" spacing={2}>
-                                <Avatar> {currentUser.name[0].toUpperCase()}</Avatar>
+                                <Avatar> {(user.firstname !== null && user.firstname !== undefined && user.firstname.length >0) ? user.firstname[0].toUpperCase():'N'}</Avatar>
                                 <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
-                                    {currentUser.name !== 'null null' ? currentUser.name : 'Người dùng'}
+                                    {/*{currentUser.name !== 'null null' ? currentUser.name : 'Người dùng'}*/}
+                                    {(user.firstname + " "+ user.lastname).substr(0,15)}
                                     <br/>
                                     <p style={{color: 'red'}}>Role: {currentUser.role}</p>
                                 </h6>

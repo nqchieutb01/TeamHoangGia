@@ -377,7 +377,7 @@ Tour
   width: var(--smallWidth);
   max-width: var(--fullWidth);
   margin: 0 auto;
-  text-align: left;
+  /* text-align: left; */
 }
 .drink img {
   border-radius: var(--mainBorderRadius);
@@ -398,7 +398,7 @@ Tour
   float: left;
 }
 .drink-info {
-  padding-top: 2rem;
+  /* padding-top: 2rem; */
 }
 @media screen and (min-width: 992px) {
   .drink {
@@ -668,7 +668,27 @@ li a{
 div {
   text-align: center;
 }
-.fck{
 
+
+.row_d {
+  display: flex;
+  flex-wrap: wrap;
+
+  width: var(--smallWidth);
+  max-width: var(--fullWidth);
+  margin: 0 auto;
+}
+.left_d {
+  width: 40%;
+  background-color: #ffffff;
+  padding: 20px;
+   margin-top: 1%;
 }
 
+.right_d {
+  width: 60%;
+  background-color: white;
+  padding: 20px;
+  margin-top: 1%;
+
+}

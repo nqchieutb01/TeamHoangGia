@@ -1,7 +1,6 @@
 import React, {useCallback} from "react";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Home from "./pages/Home";
-import SingleCocktail from "./pages/SingleCocktail";
 import CreateTour from "./pages/CreateTour";
 import Error from "./pages/Error";
 
@@ -18,6 +17,7 @@ import {clearMessage} from "./actions/message";
 import {logout} from "./actions/auth";
 import EventBus from "./common/EventBus";
 import LocationPage from "./pages/LocationPage";
+import TourDetail from "./pages/TourDetail";
 function App() {
 
     const {user: currentUser} = useSelector((state) => state.auth);
@@ -55,11 +55,11 @@ function App() {
 
                 <Route path="/cocktail/:id">
                     <Navbar/>
-                    <SingleCocktail/>
+                    <TourDetail/>
                 </Route>
                 <Route path="/tour/:id">
                     <Navbar/>
-                    <SingleCocktail/>
+                    <TourDetail/>
                 </Route>
 
                 <Route path="/location">

@@ -49,17 +49,11 @@ export default function Tour() {
         SERVICE.getAllTour().then((res) => {
             setTours(res.data.map((tourE) => {
                     const temp = Object.assign({}, tourE.tour);
-                    // console.log(temp)
                     temp['location'] = tourE.location
                     return temp;
                 }
             ))
-            console.log('tour', res.data)
         }).catch((e) => console.log(e))
-
-        // SERVICE.getTourId(1).then((res) => {
-        //     console.log('tour id:', res.data)
-        // })
 
     }, [])
 
@@ -70,7 +64,7 @@ export default function Tour() {
 
     const handleYes = async () => {
             setTours([...tours.filter((tour) => tour.id !== currentID)])
-            console.log(currentID)
+            // console.log(currentID)
             SERVICE.deleteTour(currentID).then().catch((e)=>console.log(e))
             setOpen(false);
     };
@@ -80,11 +74,9 @@ export default function Tour() {
 
     const handleEditRowsModelChange = useCallback((model) => {
         setEditRowsModel(model);
-        // console.log(users)
     }, []);
 
     const handleClick = async () => {
-        // editState.name = editRowsModel.
         const id = Object.keys(editRowsModel)[0]
         if (typeof id === 'undefined'){
             return
@@ -94,12 +86,10 @@ export default function Tour() {
         editState.name = data.name.value
         editState.description = data.description.value
         editState.price = data.price.value
-        // console.log(data)
         SERVICE.editTour(editState).then().catch((e)=>console.log(e))
     }
 
     const handleDeleteUser = (id) => {
-        // console.log(id)
         setCurrentID(id)
         handleClickOpen(1)
     }
@@ -122,7 +112,6 @@ export default function Tour() {
                         >
                             <DeleteForeverIcon/> ID = {params.value}
                         </Button>
-
                     </div>
                 </strong>
             )

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -19,8 +19,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
-export default function DetailsCreateTour({userId, locationsInCart }) {
-    // console.log(currentUser)
+export default function DetailsCreateTour({locationsInCart}) {
     const initialValues = {
         name: null,
         price: null,
@@ -37,13 +36,11 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
     let checkRequired = false
 
     const handleClickOpen = () => {
-        // console.log("test submit")
         checkRequired = false
-        required(values.description, "Description of Tour must be not null")
-        validPrice(values.price,"Price  of Tour must be number" )
-        required(values.price, "Price  of Tour must be not null")
-        required(values.name, "Name of Tour must be not null")
-
+        required(values.description, "Vui lòng điền đầy đủ thông tin")
+        required(values.price, "Vui lòng điền đầy đủ thông tin")
+        required(values.name, "Vui lòng điền đầy đủ thông tin")
+        required(locationsInCart, "Phải có ít nhất 1 địa điểm")
         if (!checkRequired) {
             setOpen(true);
         }
@@ -53,7 +50,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
     };
 
     const handleYes = () => {
-        addTour()
+        addTour().catch((e) => console.log(e))
         setOpen(false);
     };
 
@@ -61,28 +58,20 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
         setOpen(false);
     };
     const handleChange = (prop) => (event) => {
-        //console.log("test change")
         setValues({...values, [prop]: event.target.value});
-        //console.log(values)
     };
-    const validPrice = (value, message) => {
-        //console.log(value)
-        //let xx = value.toNumber
-        //console.log(typeof xx)
-
-    }
 
     const required = (value, message) => {
-        if (!value) {
+        if (!value || value.length === 0) {
             checkRequired = true
             setOpen(false)
             setCheck({bool: true, message: message})
-            // console.log(message)
         }
     }
     const handleClick = () => {
         setOpenSuccess(true);
     };
+
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -91,6 +80,8 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
     };
 
     const addTour = async () => {
+        console.log(locationsInCart)
+        // if(locationsInCart.length !==0){
         let tmp = await TourService.createTour(values, locationsInCart)
         tmp = tmp.data
         const xx = locationsInCart.map((ss) => ss.id)
@@ -98,6 +89,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
         await TourService.addLoction(req)
         handleClick()
         window.location.reload();
+        // }
     }
 
 
@@ -112,11 +104,12 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
             />
 
             <br/>
-            <h4>Giá <AttachMoneyIcon style={{color:"yellowgreen"}}/></h4>
-            <input type="number" min="0" step={100000} id="typeText" className="form-control" onChange={handleChange('price')}/>
+            <h4>Giá <AttachMoneyIcon style={{color: "yellowgreen"}}/></h4>
+            <input type="number" min="0" step={100000} id="typeText" className="form-control"
+                   onChange={handleChange('price')}/>
             <br/>
             <h4>Mô tả</h4>
-            <textarea type="text" id="typeText" className="form-control" onChange={handleChange('description')} />
+            <textarea type="text" id="typeText" className="form-control" onChange={handleChange('description')}/>
             <br/>
 
             <div>
@@ -160,7 +153,7 @@ export default function DetailsCreateTour({userId, locationsInCart }) {
                 </Dialog>
                 <Snackbar open={openSuccess} autoHideDuration={6000} onClose={handleClose}>
                     <Alert onClose={handleClose} severity="success" sx={{width: '150%'}}>
-                       Thành Công!
+                        Thành Công!
                     </Alert>
                 </Snackbar>
             </div>

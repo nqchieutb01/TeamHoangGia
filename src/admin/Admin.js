@@ -48,7 +48,6 @@ function a11yProps(index) {
 
 export default function Admin() {
     const {user: currentUser} = useSelector((state) => state.auth);
-    console.log(currentUser)
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
 

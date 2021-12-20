@@ -117,7 +117,7 @@ const Login = (props) => {
                                                     className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                                                     disabled={loading}>
                                                     {loading && (
-                                                        <span className="spinner-border spinner-border-sm"></span>
+                                                        <span className="spinner-border spinner-border-sm"/>
                                                     )}
                                                     Đăng nhập
                                                 </button>
@@ -142,7 +142,7 @@ const Login = (props) => {
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                                    <img src={background} style={{width: "100%", height: "100%"}}></img>
+                                    <img src={background} style={{width: "100%", height: "100%"}} alt={""}/>
                                 </div>
                             </div>
                         </div>

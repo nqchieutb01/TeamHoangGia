@@ -160,7 +160,7 @@ export default function Register() {
                                     </div>
                                 </div>
                                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
-                                    <img src={background} style={{width: "100%", height: "100%"}}/>
+                                    <img src={background} style={{width: "100%", height: "100%"}} alt={""}/>
                                 </div>
                             </div>
                         </div>

@@ -1,6 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react'
 import SERVICE from './services/tour.service'
-import {useCallback} from 'react'
 import userService from "./services/user.service";
 
 const AppContext = React.createContext()

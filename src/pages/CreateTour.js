@@ -23,7 +23,7 @@ export default function CreateTour({userId}) {
     }
 
     const removeItemInCart = (id) => {
-        const item = LocationInCart.filter((item) => item.id === id)
+        LocationInCart.filter((item) => item.id === id)
         const newItems = LocationInCart.filter((item) => item.id !== id)
         setLocationsInCart(newItems)
         state.set(id, false)
@@ -41,6 +41,7 @@ export default function CreateTour({userId}) {
         }
     }
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
         setLoading(true)
         try {
@@ -97,7 +98,7 @@ export default function CreateTour({userId}) {
                         </div> :
                         <main className='main-tour'>
                             <h6> Tìm kiếm</h6>
-                            <div className='underline'></div>
+                            <div className='underline'/>
                             <div className='form-control_c'>
                                 <input
                                     type='text'
@@ -120,7 +121,7 @@ export default function CreateTour({userId}) {
                 <section className='section-center_c'>
 
                     <br/>
-                    <DetailsCreateTour userId={userId} locationsInCart={LocationInCart}/>
+                    <DetailsCreateTour locationsInCart={LocationInCart}/>
                 </section>
 
             </div>

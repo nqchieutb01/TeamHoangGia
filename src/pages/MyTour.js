@@ -90,10 +90,10 @@ export default function MyTour() {
                 {tours.map((tour) => {
                     return <article className="single-tour" key={tour.id}>
                         <h5>{tour.name}</h5>
-                        <h6>Mô tả: {tour.description}</h6>
+                        <h6>Mô tả: {tour.description.substr(0,100)}</h6>
                         <Rating name="disabled" value={tour.star} disabled />
                         <div>
-                            <Button style={{color: 'red'}} onClick={() => handleClickOpen(tour.id)}>Delete <DeleteIcon/></Button>
+                            <Button style={{color: 'red'}} onClick={() => handleClickOpen(tour.id)}>Xóa <DeleteIcon/></Button>
                         </div>
                         <Link to={`/tour/${tour.id}`} className='btn btn-primary btn-details'>
                             <InfoIcon/> Chi tiết

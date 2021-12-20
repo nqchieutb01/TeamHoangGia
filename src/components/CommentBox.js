@@ -16,19 +16,13 @@ import { Grid, Paper } from "@material-ui/core";
 
 import Ava from "./Ava";
 
-// const Transition = React.forwardRef(function Transition(props, ref) {
-//   return <Slide direction="up" ref={ref} {...props} />;
-// });
-
 export default function CommentBox(props) {
+
   const [value, setValue] = React.useState(0);
   const [comment, setComment] = React.useState(null);
   const [open, setOpen] = React.useState(false);
 
   const type = props.type;
-  const imgLink =
-    "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260";
-
   const handleChange = (event) => {
     setComment(event.target.value);
   };
@@ -76,14 +70,14 @@ export default function CommentBox(props) {
     }
   };
 
-  return type == "edit" ? (
+  return type === "edit" ? (
     <Paper style={{ padding: "20px 20px 0px", marginTop: 10 }}>
       <Grid container wrap="nowrap" spacing={2}>
-        <Grid item>
-          <Ava input={props.input.name} id={props.input.userId}/>
-        </Grid>
+        {/*<Grid item>*/}
+        {/*  <Ava input={props.input.name} id={props.input.userId}/>*/}
+        {/*</Grid>*/}
         <Grid justifyContent="left" item xs zeroMinWidth>
-          <h4 style={{ textAlign: "left" }}>{props.input.name}</h4>
+          {/*<h4 style={{ textAlign: "left" }}>{props.input.name}</h4>*/}
           <p style={{ display: "flex" }}>
             <Rating
               name="simple-controlled"
@@ -112,7 +106,7 @@ export default function CommentBox(props) {
     <Paper style={{ padding: "20px 20px 0px", marginTop: 10 }}>
       <Grid container wrap="nowrap" spacing={2}>
         <Grid item>
-          {console.log(props.input)}
+          {/*{console.log(props.input)}*/}
         <Ava input={props.input.user.firstname} id={props.input.userId}/>
         </Grid>
         <Grid justifyContent="left" item xs zeroMinWidth>

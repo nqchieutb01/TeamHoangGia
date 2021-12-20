@@ -48,17 +48,14 @@ export default function Location() {
         type: null
     }
     useEffect(() => {
-
         SERVICE.getAllLocations().then(
             (res) => {
                 setLocations(res.data)
-                console.log(res.data)
-                console.log(locations)
             }
         ).catch((e) => console.log(e))
-        return () => {
-            setLocations([])
-        }
+        // return () => {
+        //     setLocations([])
+        // }
     }, [])
 
     const [editRowsModel, setEditRowsModel] = React.useState({});
@@ -129,7 +126,7 @@ export default function Location() {
         {field: 'name', headerName: 'Tên', width: 120, editable: true},
         {field: 'address', headerName: 'Địa Chỉ', editable: true},
         {field: 'description', headerName: 'Mô tả', editable: true},
-        {field: 'image', headerName: 'image', width: 120, editable: true,},
+        // {field: 'image', headerName: 'image', width: 120, editable: true,},
         {field: 'price', headerName: 'Giá', type: 'number', width: 120, editable: true,},
         {field: 'timeOpen', headerName: 'Mở cửa', width: 120, editable: true,},
         {field: 'timeClose', headerName: 'Đóng cửa', width: 120, editable: true,},

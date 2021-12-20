@@ -1,16 +1,15 @@
 import * as React from 'react';
-import Toolbar from '@mui/material/Toolbar';
+import {useCallback} from 'react';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import {NavLink, useHistory} from "react-router-dom";
 import Button from '@mui/material/Button';
-import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logout} from "../actions/auth";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Divider from '@mui/material/Divider';
-import {styled, alpha} from '@mui/material/styles';
+import {alpha, styled} from '@mui/material/styles';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
@@ -113,10 +112,11 @@ export default function NavBarLeft() {
                     <Stack direction="row" spacing={10}>
                         <div>
                             <Stack direction="row" spacing={2}>
-                                <Avatar> {(user.firstname !== null && user.firstname !== undefined && user.firstname.length >0) ? user.firstname[0].toUpperCase():'N'}</Avatar>
+                                <Avatar> {(user.firstname !== null && user.firstname !== undefined && user.firstname.length > 0) ? user.firstname[0].toUpperCase() : 'N'}</Avatar>
                                 <h6 style={{textAlign: "left", letterSpacing: "0.05rem"}}>
-                                    {/*{currentUser.name !== 'null null' ? currentUser.name : 'Người dùng'}*/}
-                                    {(user.firstname + " "+ user.lastname).substr(0,15)}
+                                    {(user.firstname + " " + user.lastname) !== "null null"
+                                        ? (user.firstname + " " + user.lastname).substr(0, 15)
+                                        : "Người dùng"}
                                     <br/>
                                     <p style={{color: 'red'}}>Role: {currentUser.role}</p>
                                 </h6>
@@ -171,7 +171,7 @@ export default function NavBarLeft() {
                     <Button variant="contained" style={{marginRight: '0%'}}>Đăng nhập</Button>
                 </NavLink>)
             }
-        {/*// </Toolbar>*/}
+            {/*// </Toolbar>*/}
         </>
     );
 }

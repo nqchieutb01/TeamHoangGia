@@ -7,7 +7,6 @@ import {useHistory} from "react-router-dom";
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
-import Button from "@mui/material/Button";
 import NavBarLeft from "./NavBarLeft";
 
 function HomeIcon(props) {

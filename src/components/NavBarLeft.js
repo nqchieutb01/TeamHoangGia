@@ -98,7 +98,8 @@ export default function NavBarLeft() {
         history.push('/home')
     }, [dispatch]);
     return (
-        <Toolbar style={{background: "white"}}>
+        // <Toolbar style={{background: "white"}}>
+        <>
             <IconButton
                 size="large"
                 edge="start"
@@ -170,6 +171,7 @@ export default function NavBarLeft() {
                     <Button variant="contained" style={{marginRight: '0%'}}>Đăng nhập</Button>
                 </NavLink>)
             }
-        </Toolbar>
+        {/*// </Toolbar>*/}
+        </>
     );
 }

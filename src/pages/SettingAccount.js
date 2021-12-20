@@ -33,7 +33,6 @@ export default function SettingAccount() {
         required(user.firstname, "Vui lòng điền họ")
         if (!checkRequired) {
             setOpen(true);
-
         }
     };
     const handleOk = () => {
@@ -59,7 +58,7 @@ export default function SettingAccount() {
     }
     const handleChangeProfile = async () => {
         try {
-            await service.updateInfo(user)
+            service.updateInfo(user).catch((e)=>console.log(e))
         } catch (e) {
             console.log(e)
         }
@@ -143,7 +142,7 @@ export default function SettingAccount() {
                 </div>
                 <br/> <br/>
                 <h1>Tour của tôi</h1>
-                <div className="underline"></div>
+                <div className="underline"/>
                 <MyTour/>
             </div>
             <div className="right_c">

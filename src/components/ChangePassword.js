@@ -58,6 +58,7 @@ export default function ChangePassword(oldPassword) {
         }
         await service.updatePassword(req)
         setOpen(true)
+        window.location.reload()
         // console.log(JSON.stringify(data, null, 2));
     }
 

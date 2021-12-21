@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../css/Tour.css"
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 

@@ -73,18 +73,18 @@ export default function User() {
         setEditRowsModel(model);
     }, []);
 
-    const handleClick = ()=>{
-        const id = Object.keys(editRowsModel)[0]
-        if (typeof id === 'undefined'){
-            return
-        }
-        const data = editRowsModel[id]
-        editState.id = id ;
-        editState.firstname = data.firstname.value
-        editState.lastname = data.lastname.value
-        editState.phonenumber = data.phonenumber.value
-        SERVICE.editUser(editState).then().catch((e)=>console.log(e))
-    }
+    // const handleClick = ()=>{
+    //     const id = Object.keys(editRowsModel)[0]
+    //     if (typeof id === 'undefined'){
+    //         return
+    //     }
+    //     const data = editRowsModel[id]
+    //     editState.id = id ;
+    //     editState.firstname = data.firstname.value
+    //     editState.lastname = data.lastname.value
+    //     editState.phonenumber = data.phonenumber.value
+    //     SERVICE.editUser(editState).then().catch((e)=>console.log(e))
+    // }
 
     const handleDeleteUser = (id)=>{
         setCurrentID(id)

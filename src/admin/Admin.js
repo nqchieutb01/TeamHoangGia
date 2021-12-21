@@ -8,7 +8,6 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import User from "./User";
-import {useSelector} from "react-redux";
 import Location from "./Location";
 import Tour from './Tour';
 
@@ -47,7 +46,7 @@ function a11yProps(index) {
 }
 
 export default function Admin() {
-    const {user: currentUser} = useSelector((state) => state.auth);
+    // const {user: currentUser} = useSelector((state) => state.auth);
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
 

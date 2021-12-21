@@ -21,7 +21,7 @@ export default function Navbar() {
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const {user: currentUser} = useSelector((state) => state.auth);
-    const history = useHistory();
+    // const history = useHistory();
 
     return (
         <nav className='nav_cbar'>

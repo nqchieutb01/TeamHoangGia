@@ -8,7 +8,6 @@ import {
     GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 import SERVICE from '../services/tour.service'
-import Alert from '@mui/material/Alert';
 import {Button} from "@mui/material";
 import Slide from "@mui/material/Slide";
 import DialogContent from "@mui/material/DialogContent";

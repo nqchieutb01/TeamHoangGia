@@ -42,6 +42,7 @@ export default function SettingAccount() {
     const handleYes = () => {
         handleChangeProfile().catch((e) => console.log(e))
         setClickUser(!clickUser)
+        window.location.reload()
         setOpen(false);
     };
 
@@ -53,7 +54,7 @@ export default function SettingAccount() {
             checkRequired = true
             setOpen(false)
             setCheck({bool: true, message: message})
-            console.log(message)
+            // console.log(message)
         }
     }
     const handleChangeProfile = async () => {

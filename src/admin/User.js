@@ -37,12 +37,7 @@ export default function User() {
     const [users,setUsers] = useState([])
     const [editRowsModel, setEditRowsModel] = React.useState({});
     const [currentID,setCurrentID] = React.useState(-1);
-    const editState = {
-        id:null,
-        fistname: null ,
-        lastname :null ,
-        phonenumber : null ,
-    }
+
     useEffect( ()=>{
         SERVICE.getAllUsers().then((res)=>{
             setUsers(res.data)

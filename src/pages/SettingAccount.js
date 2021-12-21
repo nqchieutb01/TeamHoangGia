@@ -42,7 +42,6 @@ export default function SettingAccount() {
     const handleYes = () => {
         handleChangeProfile().catch((e) => console.log(e))
         setClickUser(!clickUser)
-        window.location.reload()
         setOpen(false);
     };
 
@@ -59,10 +58,11 @@ export default function SettingAccount() {
     }
     const handleChangeProfile = async () => {
         try {
-            service.updateInfo(user).catch((e)=>console.log(e))
+            await service.updateInfo(user).catch((e)=>console.log(e))
         } catch (e) {
             console.log(e)
         }
+        window.location.reload()
     }
 
     const handleClickChangePassword = () => {
@@ -81,7 +81,7 @@ export default function SettingAccount() {
                            value={user.firstname}
                            onChange={(e) => setUser({...user, firstname: e.target.value})}
                     />
-                    <h5>Tên Đệm</h5>
+                    <h5>Tên</h5>
                     <input type="text" className="form-control" placeholder="Tên"
                            value={user.lastname}
                            onChange={(e) => setUser({...user, lastname: e.target.value})}

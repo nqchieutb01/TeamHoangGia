@@ -14,8 +14,8 @@ const AppProvider = ({children}) => {
         rating: 0
     }
     const [user, setUser] = useState({
-        firstname: null,
-        lastname: null,
+        firstname: 'Người',
+        lastname: 'dùng',
         phonenumber: null,
         role: null,
     })
@@ -55,6 +55,7 @@ const AppProvider = ({children}) => {
             console.log(error)
         }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
         fetchUser().catch((e)=>console.log(e))
     }, [clickUser])

@@ -95,7 +95,7 @@ export default function NavBarLeft() {
         dispatch(logout());
         setAnchorEl(null);
         history.push('/home')
-    }, [dispatch]);
+    }, [dispatch, history]);
     return (
         // <Toolbar style={{background: "white"}}>
         <>

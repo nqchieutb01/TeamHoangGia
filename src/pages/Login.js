@@ -45,8 +45,8 @@ const Login = (props) => {
         if (checkBtn.current.context._errors.length === 0) {
             dispatch(login(username, password))
                 .then(() => {
-                    props.history.push("/home");
                     window.location.reload();
+                    props.history.push("/home");
                 })
                 .catch(() => {
                     setLoading(false);

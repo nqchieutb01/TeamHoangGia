@@ -8,14 +8,14 @@ export default function CommentList(props) {
       currentUser ? (
         <>
           {comment.map((item, index) => {
-            return item.userid == currentUser.userId ||
-              currentUser.userId == 1 ? (
+            return item.userid === currentUser.userId ||
+              currentUser.userId === 1 ? (
               <CommentBox input={item} delete={true} />
             ) : null;
           })}
           {comment.map((item, index) => {
-            return item.userid != currentUser.userId &&
-              currentUser.userId != 1 ? (
+            return item.userid !== currentUser.userId &&
+              currentUser.userId !== 1 ? (
               <CommentBox input={item} />
             ) : null;
           })}
@@ -42,7 +42,7 @@ export default function CommentList(props) {
         return (
           <>
             {comment.map((item, index) => {
-              return item.userid == currentUser.userId ? (
+              return item.userid === currentUser.userId ? (
                 <CommentBox input={item} delete={true} />
               ) : null;
             })}
@@ -66,7 +66,7 @@ export default function CommentList(props) {
             <>
               {comment.map((item, index) => {
                 return item ? (
-                  currentUser.userId == item.userid ? (
+                  currentUser.userId === item.userid ? (
                     <CommentBox input={item} delete={true} />
                   ) : (
                     <CommentBox input={item} />

@@ -1,6 +1,6 @@
 import React from "react";
 import Loading from "./Loading";
-import { Link, useParams } from "react-router-dom";
+import {useParams } from "react-router-dom";
 import "../css/share/index.css";
 import BasicRating from "../components/Rating";
 import SERVICE from "../services/tour.service";

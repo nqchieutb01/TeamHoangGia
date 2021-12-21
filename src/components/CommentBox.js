@@ -21,7 +21,6 @@ export default function CommentBox(props) {
   const [value, setValue] = React.useState(0);
   const [comment, setComment] = React.useState(null);
   const [open, setOpen] = React.useState(false);
-
   const type = props.type;
   const handleChange = (event) => {
     setComment(event.target.value);

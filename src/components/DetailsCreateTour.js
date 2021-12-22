@@ -80,7 +80,7 @@ export default function DetailsCreateTour({locationsInCart}) {
     };
 
     const addTour = async () => {
-        console.log(locationsInCart)
+        // console.log(locationsInCart)
         // if(locationsInCart.length !==0){
         let tmp = await TourService.createTour(values, locationsInCart)
         tmp = tmp.data

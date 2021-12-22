@@ -106,13 +106,14 @@ export default function LocationPage() {
     const addLocation = async () => {
         try {
             if (images.length > 0) {
-                setValues({...values, image: images[0]['data_url']})
-                values.image = images[0]['data_url']
+                // await setValues({...values, image: images[0]['data_url']})
+                values.image = await images[0]['data_url']
                 // console.log(values)
             }
-            SERVICE.addLocation(values).then((res) => {
-                console.log(res)
-            }).catch((e) => console.log(e))
+            // SERVICE.addLocation(values).then((res) => {
+            //     console.log(res)
+            // }).catch((e) => console.log(e))
+            await SERVICE.addLocation(values)
             window.location.reload();
         } catch (e) {
             console.log(e)

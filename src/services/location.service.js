@@ -5,7 +5,7 @@ import URL from '../config'
 const API_URL = URL.URL_BACKEND
 
 const searchLocation = (name) =>{
-    return axios.get(API_URL + "locations?name="+name, {headers: authHeader()});
+    return axios.get(API_URL + "locations?name="+name+"&address="+name, {headers: authHeader()});
 }
 
 const getAllLocations = () => {

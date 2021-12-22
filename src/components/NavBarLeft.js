@@ -77,7 +77,7 @@ export default function NavBarLeft() {
 
     const routeSettingAccount = () => {
         history.push('/setting-account');
-        window.location.reload()
+        // window.location.reload()
         setAnchorEl(null);
     }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import "../css/settingAccount.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import service from "../services/user.service"
@@ -19,9 +19,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 export default function SettingAccount() {
     const {clickUser, setClickUser} = useGlobalContext()
     const {user, setUser, password} = useGlobalContext()
-    const [open, setOpen] = React.useState(false);
-    const [changePassword, setChangePassword] = React.useState(false);
-    const [check, setCheck] = React.useState({
+    const [open, setOpen] = useState(false);
+    const [changePassword, setChangePassword] = useState(false);
+    const [check, setCheck] = useState({
         bool: false,
         message: null,
     });
@@ -39,8 +39,14 @@ export default function SettingAccount() {
         setCheck({bool: false});
     };
 
-    const handleYes = () => {
-        handleChangeProfile().catch((e) => console.log(e))
+    const handleYes = async () => {
+        // handleChangeProfile().catch((e) => console.log(e))
+        try {
+            await service.updateInfo(user)
+        } catch (e) {
+            console.log(e)
+        }
+        // window.location.reload()
         setClickUser(!clickUser)
         setOpen(false);
     };

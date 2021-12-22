@@ -19,7 +19,7 @@ const AppProvider = ({children}) => {
         phonenumber: null,
         role: null,
     })
-    const [password, setPassword] = React.useState(false);
+    const [password, setPassword] = useState(false);
     const [clickUser,setClickUser] = useState(false)
 
     const [auth, setAuth] = useState(true)
@@ -46,7 +46,8 @@ const AppProvider = ({children}) => {
 
     }, [isClick])
 
-    const fetchUser = async () => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async () => {
         try {
             const tmp = await userService.getUserInfo()
             setUser(tmp.data)
@@ -54,10 +55,6 @@ const AppProvider = ({children}) => {
         } catch (error) {
             console.log(error)
         }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(async () => {
-        fetchUser().catch((e)=>console.log(e))
     }, [clickUser])
 
     return (
